@@ -113,7 +113,6 @@ protected:
             return;
         }
 #endif
-        glViewport(0, 0, m_ViewPort.x, m_ViewPort.y);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         m_Renderer.Initialize("assets/normal.png", "assets/icon.png");
@@ -130,6 +129,11 @@ protected:
         io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
     }
 
+    bool MouseInMap(int x, int y) const {
+        return x > 0 && x < m_ViewPort.x
+            && y > 0 && y < m_ViewPort.y;
+    }
+
     void ProcessInput() override {
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
@@ -140,45 +144,79 @@ protected:
                 Stop();
                 break;
             case SDL_MOUSEWHEEL:
-                if (event.wheel.y > 0)
-                    m_MapView.zoom += 1.f;
-                else if (event.wheel.y < 0)
-                    m_MapView.zoom -= 1.f;
+                if (MouseInMap(event.wheel.mouseX, event.wheel.mouseY)) {
+                    if (event.wheel.y > 0)
+                        m_MapView.zoom += 1.f;
+                    else if (event.wheel.y < 0)
+                        m_MapView.zoom -= 1.f;
+                }
+                break;
+            case SDL_MOUSEBUTTONDOWN:
+                if (event.button.button == SDL_BUTTON_LEFT
+                    && event.button.clicks == 1
+                    && MouseInMap(event.button.x, event.button.y))
+                    m_IsDrag = true;
                 break;
             case SDL_MOUSEBUTTONUP:
                 if (event.button.button == SDL_BUTTON_MIDDLE)
                     ResetView();
+                if (event.button.button == SDL_BUTTON_LEFT)
+                    m_IsDrag = false;
+                break;
+            case SDL_MOUSEMOTION:
+                if (m_IsDrag) {
+                    glm::vec2 move(event.motion.xrel, -event.motion.yrel);
+                    glm::vec2 viewport = m_ViewPort;
+                    m_MapView.offset += move / viewport;
+                }
                 break;
             }
         }
     }
     void Update(float deltaTime) override {
-        
+        ConstrainView();
     }
 
-    void Render() override {
+    void RenderImGui() {
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplSDL2_NewFrame();
         ImGui::NewFrame();
+        ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), ImGuiDockNodeFlags_PassthruCentralNode);
+
+        // 左侧边栏 - 控制面板
+        ImGui::Begin("Control Panel", nullptr, ImGuiWindowFlags_NoCollapse);
         {
-            ImGui::Text("Hello World");
+            auto framerate = ImGui::GetIO().Framerate;
+            ImGui::Text("FPS: %.1f", framerate);
+
             ImGui::Checkbox("showgrid", &m_MapView.showGrid);
             if (m_MapView.showGrid)
                 ImGui::ColorEdit4("gridcolor", glm::value_ptr(m_MapView.gridColor));
             ImGui::SliderFloat("zoom", &m_MapView.zoom, m_ZoomRange.x, m_ZoomRange.y);
             ImGui::DragFloat2("offset", glm::value_ptr(m_MapView.offset), 0.05f);
         }
-        ConstrainView();
 
+        ImGui::End();
+        
         ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+    }
 
+    void RenderGL() {
         // 清除颜色和深度缓冲
+        glViewport(0, 0, m_ViewPort.x, m_ViewPort.y);
+        
+        m_Renderer.Render(m_MapView, m_ViewPort);
+    }
+
+    void Render() override {
         glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        m_Renderer.Render(m_MapView, m_ViewPort);
+        RenderGL();
 
-        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        RenderImGui();
+
         SDL_GL_SwapWindow(m_Window);
     }
 
@@ -223,6 +261,8 @@ private:
     
     LandmarkMapRenderer m_Renderer;
     MapView m_MapView;
+
+    bool m_IsDrag = false;
 };
 
 int main(int argc, char* argv[]) {
