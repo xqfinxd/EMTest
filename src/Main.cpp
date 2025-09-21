@@ -16,6 +16,7 @@
 #include "stb_image.h"
 #include "GameLoop.h"
 #include "MapRenderer.h"
+#include <imgui_internal.h>
 
 GLuint CompileShader(GLenum type, const char* source) {
     GLuint shader = glCreateShader(type);
@@ -124,8 +125,8 @@ protected:
 
         auto& io = ImGui::GetIO();
         io.IniFilename = nullptr;
-        io.Fonts->AddFontFromFileTTF("assets/DroidSans.ttf", 16);
-        io.Fonts->AddFontDefault();
+        //io.Fonts->AddFontFromFileTTF("assets/DroidSans.ttf", 16);
+        //io.Fonts->AddFontDefault();
         io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
     }
 
@@ -183,8 +184,91 @@ protected:
         ImGui::NewFrame();
         ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), ImGuiDockNodeFlags_PassthruCentralNode);
 
-        // 左侧边栏 - 控制面板
-        ImGui::Begin("Control Panel", nullptr, ImGuiWindowFlags_NoCollapse);
+        // 窗口的 ID 和 标题
+        ImGuiID dockspaceID = ImGui::GetID("##ui.dock_space");
+        const char* UI_DOCK_WINDOW = "##ui.dock_window";
+        const char* UI_PROPERTY_BOX = "Property##ui.property";
+        const char* UI_VIEW_BOX = "##ui.view";
+
+
+        const ImGuiViewport* viewport = ImGui::GetMainViewport();
+        ImGui::SetNextWindowPos(viewport->WorkPos);
+        ImGui::SetNextWindowSize(viewport->WorkSize);
+        ImGui::SetNextWindowViewport(viewport->ID);
+
+        int windowFlags = ImGuiWindowFlags_NoDecoration // 无装饰
+            | ImGuiWindowFlags_NoMove                   // 不可移动
+            | ImGuiWindowFlags_NoBackground             // 无背景（背景透明）
+            | ImGuiWindowFlags_NoDocking                // 不可停靠
+            | ImGuiWindowFlags_NoBringToFrontOnFocus    // 无法设置前台和聚焦
+            | ImGuiWindowFlags_NoNavFocus               // 无法通过键盘和手柄聚焦
+            ;
+
+        // 压入样式设置
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);            // 无边框
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f)); // 无边界
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);              // 无圆角
+        ImGui::Begin(UI_DOCK_WINDOW, 0, windowFlags); // 开始停靠窗口
+        ImGui::PopStyleVar(3);                        // 弹出样式设置
+        {
+
+            // 判断是否开启停靠
+            if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DockingEnable) {
+                // 判断是否有根节点，防止一直重建
+                if (!ImGui::DockBuilderGetNode(dockspaceID)) {
+                    // 移除根节点
+                    ImGui::DockBuilderRemoveNode(dockspaceID);
+
+                    // 创建根节点
+                    ImGuiID root = ImGui::DockBuilderAddNode(dockspaceID, ImGuiDockNodeFlags_DockSpace);
+
+                    // 设置根节点位置大小
+                    ImGui::DockBuilderSetNodePos(root, { 0.0f, 0.0f });
+                    ImGui::DockBuilderSetNodeSize(root, ImGui::GetWindowSize());
+
+                    // 分割停靠空间
+                    ImGuiID leftTopNode, leftBottomNode;
+                    // 根节点分割左节点
+                    ImGuiID leftNode = ImGui::DockBuilderSplitNode(root, ImGuiDir_Left, 0.75f, &leftTopNode, &leftBottomNode);
+
+                    // 设置节点停靠窗口
+                    ImGui::DockBuilderDockWindow(UI_VIEW_BOX, leftTopNode);     // 左上节点
+                    if (ImGuiDockNode* MainNode = ImGui::DockBuilderGetNode(leftTopNode)) {
+                        MainNode->LocalFlags |= ImGuiDockNodeFlags_NoTabBar | ImGuiDockNodeFlags_NoResize;
+                    }
+                    
+                    ImGui::DockBuilderDockWindow(UI_PROPERTY_BOX, leftBottomNode); // 左下节点
+
+                    // 结束停靠设置
+                    ImGui::DockBuilderFinish(dockspaceID);
+
+                    // 设置焦点窗口
+                    ImGui::SetWindowFocus(UI_VIEW_BOX);
+                }
+            }
+
+            // 创建停靠空间
+            ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 0.0f);
+            ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
+            ImGui::DockSpace(dockspaceID, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_None);
+            ImGui::PopStyleVar();
+            ImGui::PopStyleColor();
+        }
+        ImGui::End(); // 结束停靠窗口
+
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);            // 无边框
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f)); // 无边界
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);              // 无圆角
+        ImGui::Begin(UI_VIEW_BOX, nullptr, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_DockNodeHost);
+        ImGui::PopStyleVar(3); // 弹出样式设置
+        {
+            auto framerate = ImGui::GetIO().Framerate;
+            ImGui::Text("FPS: %.1f", framerate);
+        }
+        ImGui::End();
+        
+        // 右侧边栏 - 控制面板
+        ImGui::Begin(UI_PROPERTY_BOX, nullptr, ImGuiWindowFlags_NoCollapse);
         {
             auto framerate = ImGui::GetIO().Framerate;
             ImGui::Text("FPS: %.1f", framerate);
