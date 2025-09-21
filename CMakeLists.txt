@@ -12,10 +12,15 @@ set(IMGUI_SRC
 	3rdparty/IMGUI/backends/imgui_impl_sdl2.cpp
 	3rdparty/IMGUI/backends/imgui_impl_opengl3.cpp
 )
+set(STB_IMAGE_SRC 
+	3rdparty/stb_image/stb_image.cpp
+)
 
 add_executable(EMTest 
 	${IMGUI_SRC}
+	${STB_IMAGE_SRC}
 	src/GameLoop.cpp
+	src/MapRenderer.cpp
 	src/Main.cpp
 )
 
@@ -23,6 +28,7 @@ target_include_directories(EMTest PRIVATE
 	3rdparty/glm/include
 	3rdparty/IMGUI
 	3rdparty/IMGUI/backends
+	3rdparty/stb_image
 )
 
 if(EMSCRIPTEN)
