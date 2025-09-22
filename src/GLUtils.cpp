@@ -1,6 +1,7 @@
 #include "GLUtils.h"
 #include "stb_image.h"
 #include <SDL_log.h>
+#include <fstream>
 
 GLuint CompileShader(GLenum type, const char* source) {
     GLuint shader = glCreateShader(type);
@@ -16,6 +17,21 @@ GLuint CompileShader(GLenum type, const char* source) {
         SDL_Log("Shader compilation error: %s\n", infoLog);
     }
     return shader;
+}
+
+GLuint CompileShaderFile(GLenum type, const char* path) {
+    std::ifstream inputFile(path, std::ios::in);
+    if (!inputFile.is_open()) {
+        SDL_Log("Could not open the file %s\n", path);
+        return 0;
+    }
+    inputFile.seekg(0, std::ios::end);
+    std::string source;
+    size_t count = inputFile.tellg();
+    source.resize(count);
+    inputFile.seekg(0, std::ios::beg);
+    inputFile.read(source.data(), count);
+    return CompileShader(type, source.c_str());
 }
 
 GLuint LoadTexture(const char* path, int& width, int& height, bool flip) {

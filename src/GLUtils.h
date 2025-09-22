@@ -10,4 +10,5 @@
 #include <glm/gtc/type_ptr.hpp>
 
 GLuint CompileShader(GLenum type, const char* source);
+GLuint CompileShaderFile(GLenum type, const char* path);
 GLuint LoadTexture(const char* path, int& width, int& height, bool flip);

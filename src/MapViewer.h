@@ -22,7 +22,7 @@ struct Landmark {
 
 // 地图视图结构
 struct MapView {
-    glm::vec2 offset = glm::vec2(0.0f);
+    glm::ivec2 offset;
     float zoom = 1.0f;
     
     bool showGrid = true;
@@ -31,29 +31,19 @@ struct MapView {
 
 class MapViewer {
 private:
-    GLuint mapShaderProgram;
-    GLuint landmarkShaderProgram;
-    GLuint mapVAO, mapVBO;
-    GLuint landmarkVAO, landmarkVBO;
-    GLuint mapTexture;
-    GLuint landmarkAtlasTexture;
-    int mapWidth, mapHeight;
-    int atlasWidth, atlasHeight;
-    int landmarksPerRow;
+    GLuint m_ImagePipeline;
+    GLuint m_ImageVAO = 0;
+    GLuint m_ImageVBO = 0;
+    GLuint m_ImageEBO = 0;
 
-    std::vector<Landmark> landmarks;
+    GLuint m_MapTexture = 0;
+    glm::ivec2 m_MapSize;
 
-    void setupMapBuffers();
-
-    void setupLandmarkBuffers();
-
-    void generateRandomLandmarks(int count);
+    void InitImagePipeline();
 
 public:
-    void Initialize(const std::string& mapPath, const std::string& atlasPath);
+    void Initialize();
     void Cleanup();
     void Render(const MapView& view, const glm::vec2& viewPort);
-
-    int getMapWidth() const { return mapWidth; }
-    int getMapHeight() const { return mapHeight; }
+    void Constrain(MapView& view, const glm::vec2& viewPort);
 };
