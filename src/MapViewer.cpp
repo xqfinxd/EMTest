@@ -1,12 +1,11 @@
 #include "MapViewer.h"
 #include "GLUtils.h"
 
-#ifndef __EMSCRIPTEN__
 // 着色器源代码
-const char* mapVertexShader = R"(
-#version 330 core
-layout (location = 0) in vec2 aPos;
-layout (location = 1) in vec2 aTexCoord;
+const char* mapVertexShader = R"(#version 300 es
+precision mediump float;
+in vec2 aPos;
+in vec2 aTexCoord;
 
 out vec2 TexCoord;
 
@@ -18,8 +17,8 @@ void main() {
 }
 )";
 
-const char* mapFragmentShader = R"(
-#version 330 core
+const char* mapFragmentShader = R"(#version 300 es
+precision mediump float;
 in vec2 TexCoord;
 out vec4 FragColor;
 
@@ -41,10 +40,10 @@ void main() {
 }
 )";
 
-const char* landmarkVertexShader = R"(
-#version 330 core
-layout (location = 0) in vec2 aPos;
-layout (location = 1) in vec2 aTexCoord;
+const char* landmarkVertexShader = R"(#version 300 es
+precision mediump float;
+in vec2 aPos;
+in vec2 aTexCoord;
 
 out vec2 TexCoord;
 
@@ -60,8 +59,8 @@ void main() {
 }
 )";
 
-const char* landmarkFragmentShader = R"(
-#version 330 core
+const char* landmarkFragmentShader = R"(#version 300 es
+precision mediump float;
 in vec2 TexCoord;
 out vec4 FragColor;
 
@@ -74,83 +73,6 @@ void main() {
     FragColor = texColor * tintColor;
 }
 )";
-#else
-// 着色器源代码
-const char* mapVertexShader = R"(
-precision mediump float;
-
-attribute vec2 aPos;
-attribute vec2 aTexCoord;
-
-varying vec2 TexCoord;
-
-uniform mat4 mvp;
-
-void main() {
-    gl_Position = mvp * vec4(aPos, 0.0, 1.0);
-    TexCoord = aTexCoord;
-}
-)";
-
-const char* mapFragmentShader = R"(
-#extension GL_OES_standard_derivatives : enable
-precision mediump float;
-
-varying vec2 TexCoord;
-
-uniform sampler2D mapTexture;
-uniform bool showGrid;
-uniform vec4 gridColor;
-
-void main() {
-    gl_FragColor  = texture2D(mapTexture, TexCoord);
-    
-    // 叠加网格
-    if (showGrid) {
-        vec2 gridPos = TexCoord * 20.0;
-        vec2 grid = abs(fract(gridPos - 0.5) - 0.5) / fwidth(gridPos);
-        float line = min(grid.x, grid.y);
-        float gridIntensity = 1.0 - min(line, 1.0);
-        gl_FragColor  = mix(gl_FragColor , gridColor, gridIntensity * 0.3);
-    }
-}
-)";
-
-const char* landmarkVertexShader = R"(
-precision mediump float;
-
-attribute vec2 aPos;
-attribute vec2 aTexCoord;
-
-varying vec2 TexCoord;
-
-uniform mat4 projection;
-uniform mat4 view;
-uniform vec2 position;
-uniform float scale;
-
-void main() {
-    vec2 worldPos = position + aPos * scale;
-    gl_Position = projection * view * vec4(worldPos, 0.0, 1.0);
-    TexCoord = aTexCoord;
-}
-)";
-
-const char* landmarkFragmentShader = R"(
-precision mediump float;
-
-varying vec2 TexCoord;
-
-uniform sampler2D landmarkTexture;
-uniform vec4 tintColor;
-
-void main() {
-    vec4 texColor = texture2D(landmarkTexture, TexCoord);
-    if (texColor.a < 0.1) discard; // 丢弃透明像素
-    gl_FragColor = texColor * tintColor;
-}
-)";
-#endif
 
 void MapViewer::setupMapBuffers() {
     float vertices[] = {
