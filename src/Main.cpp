@@ -47,7 +47,7 @@ protected:
         m_Context = SDL_GL_CreateContext(m_Window);
 #endif
         if (!m_Context) {
-            SDL_Log("Failed to Get Context: %sxxxxxxxxxxxxxxx\n", SDL_GetError());
+            SDL_Log("Failed to Get Context: %s\n", SDL_GetError());
             return;
         }
 
@@ -57,6 +57,11 @@ protected:
             return;
         }
 #endif
+        GLint majorVersion, minorVersion;
+        glGetIntegerv(GL_MAJOR_VERSION, &majorVersion);
+        glGetIntegerv(GL_MINOR_VERSION, &minorVersion);
+        SDL_Log("OpenGL Version: %d.%d", majorVersion, minorVersion);
+
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         m_Renderer.Initialize("assets/normal.png", "assets/icon.png");

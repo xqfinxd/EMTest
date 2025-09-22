@@ -39,9 +39,7 @@ if(EMSCRIPTEN)
 	target_link_options(EMTest PRIVATE 
 		-sUSE_WEBGPU=1
 		-sUSE_SDL=2
-		-sUSE_WEBGL2=1
 		-sWASM=1
-		--no-heap-copy
 		-sALLOW_MEMORY_GROWTH=1
 		--preload-file ${CMAKE_CURRENT_SOURCE_DIR}/assets@/assets
 	)
