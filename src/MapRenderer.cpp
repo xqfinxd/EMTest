@@ -30,7 +30,7 @@ void main() {
     
     // 叠加网格
     if (showGrid) {
-        vec2 gridPos = vec2(TexCoord.x * 30.0, TexCoord.y * 20.0);
+        vec2 gridPos = TexCoord * 20.0;
         vec2 grid = abs(fract(gridPos - 0.5) - 0.5) / fwidth(gridPos);
         float line = min(grid.x, grid.y);
         float gridIntensity = 1.0 - min(line, 1.0);
@@ -80,8 +80,8 @@ void LandmarkMapRenderer::setupMapBuffers() {
     float vertices[] = {
         // 位置          // 纹理坐标
         -0.5f, -0.5f,   0.0f, 0.0f,
-        0.5f, -0.5f,   2.f/3.f, 0.0f,
-        0.5f,  0.5f,   2.f/3.f, 1.0f,
+        0.5f, -0.5f,   1.f, 0.0f,
+        0.5f,  0.5f,   1.f, 1.0f,
         -0.5f,  0.5f,   0.0f, 1.0f
     };
 
