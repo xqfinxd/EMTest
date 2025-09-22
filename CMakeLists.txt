@@ -19,8 +19,9 @@ set(STB_IMAGE_SRC
 add_executable(EMTest 
 	${IMGUI_SRC}
 	${STB_IMAGE_SRC}
+	src/GLUtils.cpp
 	src/GameLoop.cpp
-	src/MapRenderer.cpp
+	src/MapViewer.cpp
 	src/Main.cpp
 )
 

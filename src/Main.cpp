@@ -1,66 +1,13 @@
 #include <iostream>
 #include <SDL.h>
-#include <glm/glm.hpp>
-#include <glm/ext.hpp>
 
 #include "imgui.h"
 #include "imgui_impl_sdl2.h"
 #include "imgui_impl_opengl3.h"
+#include "imgui_internal.h"
 
-#ifdef WIN32
-#include <glad/glad.h>
-#elif defined(__EMSCRIPTEN__)
-#include <GLES3/gl3.h>
-#endif
-
-#include "stb_image.h"
 #include "GameLoop.h"
-#include "MapRenderer.h"
-#include <imgui_internal.h>
-
-GLuint CompileShader(GLenum type, const char* source) {
-    GLuint shader = glCreateShader(type);
-    glShaderSource(shader, 1, &source, nullptr);
-    glCompileShader(shader);
-
-    // 检查编译错误
-    GLint success;
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
-    if (!success) {
-        char infoLog[512];
-        glGetShaderInfoLog(shader, 512, nullptr, infoLog);
-        printf("Shader compilation error: %s\n", infoLog);
-    }
-    return shader;
-}
-
-GLuint LoadTexture(const std::string& path, int& width, int& height, bool flip) {
-    stbi_set_flip_vertically_on_load(flip);
-
-    int nrChannels;
-    unsigned char* data = stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
-    if (!data) {
-        throw std::runtime_error("Failed to load texture: " + path);
-    }
-
-    GLuint texture;
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-    GLenum format = (nrChannels == 4) ? GL_RGBA : GL_RGB;
-    glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-    glGenerateMipmap(GL_TEXTURE_2D);
-
-    stbi_image_free(data);
-    std::cout << "Loaded texture: " << path << " (" << width << "x" << height << ")" << std::endl;
-
-    return texture;
-}
+#include "MapViewer.h"
 
 glm::vec2 FixViewSize(const glm::vec2& viewPort) {
     glm::vec2 viewSize(1.f, 1.f);
@@ -75,13 +22,11 @@ glm::vec2 FixViewSize(const glm::vec2& viewPort) {
 class MyGame : public GameLoop {
 protected:
     void Initialize() override {
-        // 初始化 SDL
         if (SDL_Init(SDL_INIT_VIDEO) < 0) {
             SDL_Log("Failed to initialize SDL: %s\n", SDL_GetError());
             return;
         }
 
-        // 创建窗口
         int windowFlags = SDL_WINDOW_SHOWN;
 #ifndef __EMSCRIPTEN__
         windowFlags |= SDL_WINDOW_OPENGL;
@@ -102,7 +47,7 @@ protected:
         m_Context = SDL_GL_CreateContext(m_Window);
 #endif
         if (!m_Context) {
-            SDL_Log("上下文创建失败: %s\n", SDL_GetError());
+            SDL_Log("Failed to Create Window: %s\n", SDL_GetError());
             SDL_DestroyWindow(m_Window);
             SDL_Quit();
             return;
@@ -343,7 +288,7 @@ private:
     glm::ivec2 m_ViewPort = { 600, 600 };
     glm::vec2 m_ZoomRange = { 1.f, 5.f };
     
-    LandmarkMapRenderer m_Renderer;
+    MapViewer m_Renderer;
     MapView m_MapView;
 
     bool m_IsDrag = false;

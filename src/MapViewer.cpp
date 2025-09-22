@@ -1,4 +1,5 @@
-#include "MapRenderer.h"
+#include "MapViewer.h"
+#include "GLUtils.h"
 
 // 着色器源代码
 const char* mapVertexShader = R"(
@@ -73,10 +74,7 @@ void main() {
 }
 )";
 
-GLuint CompileShader(GLenum type, const char* source);
-GLuint LoadTexture(const std::string& path, int& width, int& height, bool flip);
-
-void LandmarkMapRenderer::setupMapBuffers() {
+void MapViewer::setupMapBuffers() {
     float vertices[] = {
         // 位置          // 纹理坐标
         -0.5f, -0.5f,   0.0f, 0.0f,
@@ -109,7 +107,7 @@ void LandmarkMapRenderer::setupMapBuffers() {
     glDeleteBuffers(1, &EBO);
 }
 
-void LandmarkMapRenderer::setupLandmarkBuffers() {
+void MapViewer::setupLandmarkBuffers() {
     // 地标使用四边形，中心在原点
     float vertices[] = {
         // 位置          // 纹理坐标
@@ -143,7 +141,7 @@ void LandmarkMapRenderer::setupLandmarkBuffers() {
     glDeleteBuffers(1, &EBO);
 }
 
-void LandmarkMapRenderer::generateRandomLandmarks(int count) {
+void MapViewer::generateRandomLandmarks(int count) {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<float> posDist(0.1f, 0.9f);
@@ -172,7 +170,7 @@ void LandmarkMapRenderer::generateRandomLandmarks(int count) {
     std::cout << "Generated " << landmarks.size() << " random landmarks" << std::endl;
 }
 
-void LandmarkMapRenderer::Initialize(const std::string& mapPath, const std::string& atlasPath) {
+void MapViewer::Initialize(const std::string& mapPath, const std::string& atlasPath) {
     // 编译地图着色器
     GLuint mapVS = CompileShader(GL_VERTEX_SHADER, mapVertexShader);
     GLuint mapFS = CompileShader(GL_FRAGMENT_SHADER, mapFragmentShader);
@@ -197,8 +195,8 @@ void LandmarkMapRenderer::Initialize(const std::string& mapPath, const std::stri
     glDeleteShader(landmarkFS);
 
     // 加载纹理
-    mapTexture = LoadTexture(mapPath, mapWidth, mapHeight, true);
-    landmarkAtlasTexture = LoadTexture(atlasPath, atlasWidth, atlasHeight, false);
+    mapTexture = LoadTexture(mapPath.c_str(), mapWidth, mapHeight, true);
+    landmarkAtlasTexture = LoadTexture(atlasPath.c_str(), atlasWidth, atlasHeight, false);
 
     // 假设地标合集是8x8的网格
     landmarksPerRow = 8;
@@ -211,7 +209,7 @@ void LandmarkMapRenderer::Initialize(const std::string& mapPath, const std::stri
     generateRandomLandmarks(50);
 }
 
-void LandmarkMapRenderer::Cleanup() {
+void MapViewer::Cleanup() {
     glDeleteVertexArrays(1, &mapVAO);
     glDeleteBuffers(1, &mapVBO);
     glDeleteVertexArrays(1, &landmarkVAO);
@@ -223,7 +221,7 @@ void LandmarkMapRenderer::Cleanup() {
 }
 
 extern glm::vec2 FixViewSize(const glm::vec2& viewPort);
-void LandmarkMapRenderer::Render(const MapView& view, const glm::vec2& viewPort) {
+void MapViewer::Render(const MapView& view, const glm::vec2& viewPort) {
     // 设置投影矩阵
     auto viewSize = FixViewSize(viewPort);
     glm::mat4 projMatrix = glm::ortho(
