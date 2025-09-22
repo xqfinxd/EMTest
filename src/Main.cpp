@@ -37,19 +37,17 @@ protected:
             m_Size.x, m_Size.y, windowFlags);
         if (!m_Window) {
             SDL_Log("Failed to Create Window: %s\n", SDL_GetError());
-            SDL_Quit();
             return;
         }
 
 #ifdef __EMSCRIPTEN__
+        m_LocalRenderer = SDL_CreateRenderer(m_Window, -1, SDL_RENDERER_ACCELERATED);
         m_Context = SDL_GL_GetCurrentContext();
 #else
         m_Context = SDL_GL_CreateContext(m_Window);
 #endif
         if (!m_Context) {
-            SDL_Log("Failed to Create Window: %s\n", SDL_GetError());
-            SDL_DestroyWindow(m_Window);
-            SDL_Quit();
+            SDL_Log("Failed to Get Context: %sxxxxxxxxxxxxxxx\n", SDL_GetError());
             return;
         }
 
@@ -260,6 +258,10 @@ protected:
             SDL_GL_DeleteContext(m_Context);
             m_Context = nullptr;
         }
+        if (m_LocalRenderer) {
+            SDL_DestroyRenderer(m_LocalRenderer);
+            m_LocalRenderer = nullptr;
+        }
         if (m_Window) {
             SDL_DestroyWindow(m_Window);
             m_Window = nullptr;
@@ -282,6 +284,7 @@ protected:
 private:
     // SDL 窗口和渲染器
     SDL_Window* m_Window = nullptr;
+    SDL_Renderer* m_LocalRenderer = nullptr;
     SDL_GLContext m_Context = nullptr;
 
     glm::ivec2 m_Size = { 800, 600 };
