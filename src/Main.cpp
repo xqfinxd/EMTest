@@ -9,14 +9,15 @@
 #include "GameLoop.h"
 #include "MapViewer.h"
 
-glm::vec2 FixViewSize(const glm::vec2& viewPort) {
-    glm::vec2 viewSize(1.f, 1.f);
-    float aspect = (float)viewPort.x / viewPort.y;
+void SetViewSize(glm::vec2& viewSize, float aspect) {
     if (aspect > 1.0f)
         viewSize.x *= aspect;
     else
         viewSize.y /= aspect;
-    return viewSize;
+}
+
+void SetViewSize(glm::vec2& viewSize, const glm::ivec2& viewPort) {
+    SetViewSize(viewSize, 1.f * viewPort.x / viewPort.y);
 }
 
 class MyGame : public GameLoop {
@@ -57,14 +58,9 @@ protected:
             return;
         }
 #endif
-        GLint majorVersion, minorVersion;
-        glGetIntegerv(GL_MAJOR_VERSION, &majorVersion);
-        glGetIntegerv(GL_MINOR_VERSION, &minorVersion);
-        SDL_Log("OpenGL Version: %d.%d", majorVersion, minorVersion);
-
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        m_Renderer.Initialize("assets/normal.png", "assets/icon.png");
+        m_Renderer.Initialize();
 
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
@@ -114,9 +110,8 @@ protected:
                 break;
             case SDL_MOUSEMOTION:
                 if (m_IsDrag) {
-                    glm::vec2 move(event.motion.xrel, -event.motion.yrel);
-                    glm::vec2 viewport = m_ViewPort;
-                    m_MapView.offset += move / viewport;
+                    m_MapView.offset += glm::ivec2(
+                        -event.motion.xrel, event.motion.yrel);
                 }
                 break;
             }
@@ -218,14 +213,9 @@ protected:
         // 右侧边栏 - 控制面板
         ImGui::Begin(UI_PROPERTY_BOX, nullptr, ImGuiWindowFlags_NoCollapse);
         {
-            auto framerate = ImGui::GetIO().Framerate;
-            ImGui::Text("FPS: %.1f", framerate);
-
-            ImGui::Checkbox("showgrid", &m_MapView.showGrid);
-            if (m_MapView.showGrid)
-                ImGui::ColorEdit4("gridcolor", glm::value_ptr(m_MapView.gridColor));
+            ImGui::ColorEdit4("bg color", glm::value_ptr(m_BgColor));
             ImGui::SliderFloat("zoom", &m_MapView.zoom, m_ZoomRange.x, m_ZoomRange.y);
-            ImGui::DragFloat2("offset", glm::value_ptr(m_MapView.offset), 0.05f);
+            ImGui::DragInt2("offset", glm::value_ptr(m_MapView.offset), 2);
         }
 
         ImGui::End();
@@ -235,14 +225,14 @@ protected:
     }
 
     void RenderGL() {
-        // 清除颜色和深度缓冲
         glViewport(0, 0, m_ViewPort.x, m_ViewPort.y);
-        
         m_Renderer.Render(m_MapView, m_ViewPort);
+        glViewport(0, 0, m_Size.x, m_Size.y);
     }
 
     void Render() override {
-        glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
+        glClearColor(m_BgColor.r, m_BgColor.g,
+            m_BgColor.b, m_BgColor.a);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         RenderGL();
@@ -280,10 +270,7 @@ protected:
     }
 
     void ConstrainView() {
-        m_MapView.zoom = glm::clamp(m_MapView.zoom, m_ZoomRange.x, m_ZoomRange.y);
-        auto viewSize = FixViewSize(m_ViewPort);
-        auto offsetRange = glm::vec2(m_MapView.zoom, m_MapView.zoom) - viewSize;
-        m_MapView.offset = glm::clamp(m_MapView.offset, offsetRange / -2.f, offsetRange / 2.f);
+        m_Renderer.Constrain(m_MapView, m_ViewPort);
     }
 
 private:
@@ -295,6 +282,7 @@ private:
     glm::ivec2 m_Size = { 800, 600 };
     glm::ivec2 m_ViewPort = { 600, 600 };
     glm::vec2 m_ZoomRange = { 1.f, 5.f };
+    glm::vec4 m_BgColor = { 0.8f,0.8f,0.8f,1 };
     
     MapViewer m_Renderer;
     MapView m_MapView;
