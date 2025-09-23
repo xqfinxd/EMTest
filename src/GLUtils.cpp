@@ -8,7 +8,7 @@ GLuint CompileShader(GLenum type, const char* source) {
     glShaderSource(shader, 1, &source, nullptr);
     glCompileShader(shader);
 
-    // ¼ì²é±àÒë´íÎó
+    // æ£€æŸ¥ç¼–è¯‘é”™è¯¯
     GLint success;
     glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
     if (!success) {

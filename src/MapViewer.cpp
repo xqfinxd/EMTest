@@ -106,7 +106,7 @@ void MapViewer::DrawIcon(const glm::mat4& vpMat, const std::string& name, glm::i
 void MapViewer::Initialize() {
     InitImagePipeline();
 
-    // º”‘ÿŒ∆¿Ì
+    // Âä†ËΩΩÁ∫πÁêÜ
     m_MapTexture = LoadTexture("assets/normal.png",
         m_MapSize.x, m_MapSize.y, true);
     m_IconsTexture = LoadTexture("assets/icons.png",
@@ -132,8 +132,8 @@ void MapViewer::Initialize() {
             glm::ivec4 rect;
             auto offsetField = iconConfig[i].at("offset").get<std::string>();
             auto sizeField = iconConfig[i].at("size").get<std::string>();
-            sscanf_s(offsetField.c_str(), "%d,%d", &rect.x, &rect.y);
-            sscanf_s(sizeField.c_str(), "%d,%d", &rect.z, &rect.w);
+            sscanf(offsetField.c_str(), "%d,%d", &rect.x, &rect.y);
+            sscanf(sizeField.c_str(), "%d,%d", &rect.z, &rect.w);
             m_IconMap[name] = rect;
         }
     } while (false);
@@ -170,7 +170,7 @@ void MapViewer::Render(const MapView& view, const glm::vec2& viewPort) {
         glm::vec3(0, 0, 0),
         glm::vec3(0, 1, 0));
     
-    // ‰÷»æµÿÕº
+    // Ê∏≤ÊüìÂú∞Âõæ
     glUseProgram(m_ImagePipeline);
     auto vpMat = projMatrix * viewMatrix;
     DrawMap(vpMat);

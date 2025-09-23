@@ -10,15 +10,15 @@
 #include <iostream>
 #include <unordered_map>
 
-// µØ±ê½á¹¹
+// åœ°æ ‡ç»“æ„
 struct Landmark {
     glm::vec2 position;
     float scale;
     glm::vec4 tintColor;
-    int textureIndex; // ÔÚµØ±êºÏ¼¯ÎÆÀíÖĞµÄË÷Òı
+    int textureIndex; // åœ¨åœ°æ ‡åˆé›†çº¹ç†ä¸­çš„ç´¢å¼•
 };
 
-// µØÍ¼ÊÓÍ¼½á¹¹
+// åœ°å›¾è§†å›¾ç»“æ„
 struct MapView {
     glm::ivec2 offset;
     float zoom = 1.0f;
