@@ -8,9 +8,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <vector>
 #include <iostream>
-#include <cmath>
-#include <random>
-
+#include <unordered_map>
 
 // 地标结构
 struct Landmark {
@@ -31,6 +29,7 @@ struct MapView {
 
 class MapViewer {
 private:
+    using IconMap = std::unordered_map<std::string, glm::ivec4>;
     GLuint m_ImagePipeline;
     GLuint m_ImageVAO = 0;
     GLuint m_ImageVBO = 0;
@@ -41,10 +40,11 @@ private:
 
     GLuint m_IconsTexture = 0;
     glm::ivec2 m_IconsSize;
+    IconMap m_IconMap;
 
     void InitImagePipeline();
     void DrawMap(const glm::mat4& vpMat);
-    void DrawIcon(const glm::mat4& vpMat, glm::ivec2 pos, glm::ivec2 offset, glm::ivec2 size);
+    void DrawIcon(const glm::mat4& vpMat, const std::string& name, glm::ivec2 pos);
 
 public:
     void Initialize();

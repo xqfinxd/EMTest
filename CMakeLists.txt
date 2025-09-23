@@ -30,6 +30,7 @@ target_include_directories(EMTest PRIVATE
 	3rdparty/IMGUI
 	3rdparty/IMGUI/backends
 	3rdparty/stb_image
+	3rdparty/json
 )
 
 if(EMSCRIPTEN)
@@ -55,7 +56,9 @@ else()
 		SDL2::SDL2
 		glad
 	)
-	target_include_directories(EMTest PRIVATE ${SDL2_INCLUDE_DIRS})
+	target_include_directories(EMTest PRIVATE
+		${SDL2_INCLUDE_DIRS}
+	)
 	target_compile_definitions(EMTest PRIVATE 
 		SDL_MAIN_HANDLED
 	)

@@ -1,5 +1,8 @@
 #include "MapViewer.h"
+#include <SDL_log.h>
 #include "GLUtils.h"
+#include "nlohmann/json.hpp"
+#include <fstream>
 
 void MapViewer::InitImagePipeline() {
     float vertices[] = {
@@ -65,7 +68,12 @@ void MapViewer::DrawMap(const glm::mat4& vpMat) {
     glBindVertexArray(0);
 }
 
-void MapViewer::DrawIcon(const glm::mat4& vpMat, glm::ivec2 pos, glm::ivec2 offset, glm::ivec2 size) {
+void MapViewer::DrawIcon(const glm::mat4& vpMat, const std::string& name, glm::ivec2 pos) {
+    auto iter = m_IconMap.find(name);
+    if (iter == m_IconMap.end())
+        return;
+    glm::ivec2 size(iter->second.z, iter->second.w);
+
     glm::mat4 modelMatrix = glm::mat4(1.f);
     modelMatrix = glm::scale(modelMatrix, glm::vec3(size, 1.f));
     modelMatrix = glm::translate(modelMatrix, glm::vec3(pos, 0.f));
@@ -74,7 +82,7 @@ void MapViewer::DrawIcon(const glm::mat4& vpMat, glm::ivec2 pos, glm::ivec2 offs
     GLint mvpLoc = glGetUniformLocation(m_ImagePipeline, "mvp");
     glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(mvpMatrix));
 
-    glm::vec2 texOffset(offset);
+    glm::vec2 texOffset(iter->second.x, iter->second.y);
     texOffset /= m_IconsSize;
     glm::vec2 texSize(size);
     texSize /= m_IconsSize;
@@ -103,6 +111,32 @@ void MapViewer::Initialize() {
         m_MapSize.x, m_MapSize.y, true);
     m_IconsTexture = LoadTexture("assets/icons.png",
         m_IconsSize.x, m_IconsSize.y, true);
+
+    do {
+        using json = nlohmann::json;
+        const char* path = "assets/icons.json";
+
+        json iconConfig;
+        std::ifstream jsonFile(path);
+        if (!jsonFile.is_open()) {
+            SDL_Log("Could not open the file %s\n", path);
+            break;
+        }
+        jsonFile >> iconConfig;
+
+        if (!iconConfig.is_array())
+            break;
+
+        for (size_t i = 0; i < iconConfig.size(); i++) {
+            auto name = iconConfig[i].at("type").get<std::string>();
+            glm::ivec4 rect;
+            auto offsetField = iconConfig[i].at("offset").get<std::string>();
+            auto sizeField = iconConfig[i].at("size").get<std::string>();
+            sscanf_s(offsetField.c_str(), "%d,%d", &rect.x, &rect.y);
+            sscanf_s(sizeField.c_str(), "%d,%d", &rect.z, &rect.w);
+            m_IconMap[name] = rect;
+        }
+    } while (false);
 }
 
 void MapViewer::Cleanup() {
@@ -140,7 +174,7 @@ void MapViewer::Render(const MapView& view, const glm::vec2& viewPort) {
     glUseProgram(m_ImagePipeline);
     auto vpMat = projMatrix * viewMatrix;
     DrawMap(vpMat);
-    DrawIcon(vpMat, {0,0}, { 358,702 }, { 61,61 });
+    DrawIcon(vpMat, "Rot Blessing", {0, 0});
 }
 
 void MapViewer::Constrain(MapView& view, const glm::vec2& viewPort) {
