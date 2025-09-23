@@ -15,6 +15,7 @@ GLuint CompileShader(GLenum type, const char* source) {
         char infoLog[512];
         glGetShaderInfoLog(shader, 512, nullptr, infoLog);
         SDL_Log("Shader compilation error: %s\n", infoLog);
+        return 0;
     }
     return shader;
 }
@@ -31,6 +32,7 @@ GLuint CompileShaderFile(GLenum type, const char* path) {
     source.resize(count);
     inputFile.seekg(0, std::ios::beg);
     inputFile.read(source.data(), count);
+    SDL_Log("Load Shader %s\n", path);
     return CompileShader(type, source.c_str());
 }
 
@@ -43,6 +45,7 @@ GLuint LoadTexture(const char* path, int& width, int& height, bool flip) {
         SDL_Log("Failed to load texture: %s", path);
         return 0;
     }
+    SDL_Log("Load Texture %s (%dx%d)", path, height, width);
 
     GLuint texture;
     glGenTextures(1, &texture);

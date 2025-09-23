@@ -39,7 +39,12 @@ private:
     GLuint m_MapTexture = 0;
     glm::ivec2 m_MapSize;
 
+    GLuint m_IconsTexture = 0;
+    glm::ivec2 m_IconsSize;
+
     void InitImagePipeline();
+    void DrawMap(const glm::mat4& vpMat);
+    void DrawIcon(const glm::mat4& vpMat, glm::ivec2 pos, glm::ivec2 offset, glm::ivec2 size);
 
 public:
     void Initialize();

@@ -40,12 +40,69 @@ void MapViewer::InitImagePipeline() {
     glDeleteShader(fs);
 }
 
+void MapViewer::DrawMap(const glm::mat4& vpMat) {
+    glm::mat4 modelMatrix = glm::mat4(1.f);
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(m_MapSize, 1.f));
+
+    glm::mat4 mvpMatrix = vpMat * modelMatrix;
+    GLint mvpLoc = glGetUniformLocation(m_ImagePipeline, "mvp");
+    glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(mvpMatrix));
+
+    glm::vec2 texOffset(0, 0);
+    GLint offsetLoc = glGetUniformLocation(m_ImagePipeline, "offset");
+    glUniform2fv(offsetLoc, 1, glm::value_ptr(texOffset));
+
+    glm::vec2 texSize(1, 1);
+    GLint sizeLoc = glGetUniformLocation(m_ImagePipeline, "size");
+    glUniform2fv(sizeLoc, 1, glm::value_ptr(texSize));
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, m_MapTexture);
+
+    glBindVertexArray(m_ImageVAO);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+    glBindVertexArray(0);
+}
+
+void MapViewer::DrawIcon(const glm::mat4& vpMat, glm::ivec2 pos, glm::ivec2 offset, glm::ivec2 size) {
+    glm::mat4 modelMatrix = glm::mat4(1.f);
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(size, 1.f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(pos, 0.f));
+
+    glm::mat4 mvpMatrix = vpMat * modelMatrix;
+    GLint mvpLoc = glGetUniformLocation(m_ImagePipeline, "mvp");
+    glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(mvpMatrix));
+
+    glm::vec2 texOffset(offset);
+    texOffset /= m_IconsSize;
+    glm::vec2 texSize(size);
+    texSize /= m_IconsSize;
+
+    texOffset.y = 1 - texOffset.y - texSize.y;
+    GLint offsetLoc = glGetUniformLocation(m_ImagePipeline, "offset");
+    glUniform2fv(offsetLoc, 1, glm::value_ptr(texOffset));
+
+    GLint sizeLoc = glGetUniformLocation(m_ImagePipeline, "size");
+    glUniform2fv(sizeLoc, 1, glm::value_ptr(texSize));
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, m_IconsTexture);
+
+    glBindVertexArray(m_ImageVAO);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+    glBindVertexArray(0);
+}
+
 void MapViewer::Initialize() {
     InitImagePipeline();
 
     // º”‘ÿŒ∆¿Ì
     m_MapTexture = LoadTexture("assets/normal.png",
         m_MapSize.x, m_MapSize.y, true);
+    m_IconsTexture = LoadTexture("assets/icons.png",
+        m_IconsSize.x, m_IconsSize.y, true);
 }
 
 void MapViewer::Cleanup() {
@@ -61,16 +118,16 @@ extern void SetViewSize(glm::vec2& viewSize, const glm::ivec2& viewPort);
 void MapViewer::Render(const MapView& view, const glm::vec2& viewPort) {
     glm::vec2 viewSize(m_MapSize);
     SetViewSize(viewSize, viewPort);
+    viewSize /= view.zoom;
 
     glm::vec2 pos(0, 0);
     glm::vec2 offset(0, 0);
-    offset.x = m_MapSize.x * view.offset.x / viewPort.x;
-    offset.y = m_MapSize.y * view.offset.y / viewPort.y;
-    viewSize /= view.zoom;
-
+    offset.x = viewSize.x * view.offset.x / viewPort.x;
+    offset.y = viewSize.y * view.offset.y / viewPort.y;
+    
     glm::mat4 projMatrix = glm::ortho(
-        (offset.x - viewSize.x)/2.f, (offset.x + viewSize.x)/2.f,
-        (offset.y - viewSize.y)/2.f, (offset.y + viewSize.y)/2.f,
+        offset.x - viewSize.x/2.f, offset.x + viewSize.x/2.f,
+        offset.y - viewSize.y/2.f, offset.y + viewSize.y/2.f,
         -1.0f, 1.0f
     );
 
@@ -79,33 +136,11 @@ void MapViewer::Render(const MapView& view, const glm::vec2& viewPort) {
         glm::vec3(0, 0, 0),
         glm::vec3(0, 1, 0));
     
-    glm::mat4 modelMatrix = glm::mat4(1.f);
-    glm::vec2 scale(m_MapSize);
-    modelMatrix = glm::scale(modelMatrix, glm::vec3(scale, 1.f));
-
     // ‰÷»æµÿÕº
     glUseProgram(m_ImagePipeline);
-    {
-        glm::mat4 mvpMatrix = projMatrix * viewMatrix * modelMatrix;
-        GLint mvpLoc = glGetUniformLocation(m_ImagePipeline, "mvp");
-        glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(mvpMatrix));
-
-        glm::vec2 texOffset(0, 0);
-        GLint offsetLoc = glGetUniformLocation(m_ImagePipeline, "offset");
-        glUniform2fv(offsetLoc, 1, glm::value_ptr(texOffset));
-
-        glm::vec2 texSize(1, 1);
-        GLint sizeLoc = glGetUniformLocation(m_ImagePipeline, "size");
-        glUniform2fv(sizeLoc, 1, glm::value_ptr(texSize));
-
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, m_MapTexture);
-
-        glBindVertexArray(m_ImageVAO);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
-        glBindVertexArray(0);
-    }
+    auto vpMat = projMatrix * viewMatrix;
+    DrawMap(vpMat);
+    DrawIcon(vpMat, {0,0}, { 358,702 }, { 61,61 });
 }
 
 void MapViewer::Constrain(MapView& view, const glm::vec2& viewPort) {
