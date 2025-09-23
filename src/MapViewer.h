@@ -10,24 +10,20 @@
 #include <iostream>
 #include <unordered_map>
 
-// 地标结构
-struct Landmark {
-    glm::vec2 position;
-    float scale;
-    glm::vec4 tintColor;
-    int textureIndex; // 在地标合集纹理中的索引
-};
-
-// 地图视图结构
-struct MapView {
-    glm::ivec2 offset;
-    float zoom = 1.0f;
-    
-    bool showGrid = true;
-    glm::vec4 gridColor = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
-};
+#include "MapDefines.h"
 
 class MapViewer {
+public:
+    struct View {
+        glm::ivec2 offset;
+        float zoom = 1.0f;
+
+        void Reset() {
+            zoom = 1.f;
+            offset = glm::vec2(0, 0);
+        }
+    };
+
 private:
     using IconMap = std::unordered_map<std::string, glm::ivec4>;
     GLuint m_ImagePipeline;
@@ -42,13 +38,23 @@ private:
     glm::ivec2 m_IconsSize;
     IconMap m_IconMap;
 
+    View m_View;
+
     void InitImagePipeline();
     void DrawMap(const glm::mat4& vpMat);
     void DrawIcon(const glm::mat4& vpMat, const std::string& name, glm::ivec2 pos);
 
+    glm::vec2 GetViewSize(const glm::ivec2& viewPort) const;
+    std::string GetMapPath(const char* mapName);
+
 public:
     void Initialize();
     void Cleanup();
-    void Render(const MapView& view, const glm::vec2& viewPort);
-    void Constrain(MapView& view, const glm::vec2& viewPort);
+    void Render(const glm::vec2& viewPort);
+    void Constrain(const glm::vec2& viewPort);
+
+    View& GetView() { return m_View; }
+    const View& GetView() const {
+        return const_cast<MapViewer*>(this)->GetView();
+    }
 };

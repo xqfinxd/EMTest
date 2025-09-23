@@ -9,17 +9,6 @@
 #include "GameLoop.h"
 #include "MapViewer.h"
 
-void SetViewSize(glm::vec2& viewSize, float aspect) {
-    if (aspect > 1.0f)
-        viewSize.x *= aspect;
-    else
-        viewSize.y /= aspect;
-}
-
-void SetViewSize(glm::vec2& viewSize, const glm::ivec2& viewPort) {
-    SetViewSize(viewSize, 1.f * viewPort.x / viewPort.y);
-}
-
 class MyGame : public GameLoop {
 protected:
     void Initialize() override {
@@ -60,7 +49,7 @@ protected:
 #endif
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        m_Renderer.Initialize();
+        m_MapViewer.Initialize();
 
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
@@ -84,6 +73,7 @@ protected:
         while (SDL_PollEvent(&event)) {
             ImGui_ImplSDL2_ProcessEvent(&event);
 
+            auto& view = m_MapViewer.GetView();
             switch (event.type) {
             case SDL_QUIT:
                 Stop();
@@ -91,9 +81,9 @@ protected:
             case SDL_MOUSEWHEEL:
                 if (MouseInMap(event.wheel.mouseX, event.wheel.mouseY)) {
                     if (event.wheel.y > 0)
-                        m_MapView.zoom += 1.f;
+                        view.zoom += 1.f;
                     else if (event.wheel.y < 0)
-                        m_MapView.zoom -= 1.f;
+                        view.zoom -= 1.f;
                 }
                 break;
             case SDL_MOUSEBUTTONDOWN:
@@ -104,13 +94,13 @@ protected:
                 break;
             case SDL_MOUSEBUTTONUP:
                 if (event.button.button == SDL_BUTTON_MIDDLE)
-                    ResetView();
+                    view.Reset();
                 if (event.button.button == SDL_BUTTON_LEFT)
                     m_IsDrag = false;
                 break;
             case SDL_MOUSEMOTION:
                 if (m_IsDrag) {
-                    m_MapView.offset += glm::ivec2(
+                    view.offset += glm::ivec2(
                         -event.motion.xrel, event.motion.yrel);
                 }
                 break;
@@ -118,7 +108,7 @@ protected:
         }
     }
     void Update(float deltaTime) override {
-        ConstrainView();
+        m_MapViewer.Constrain(m_ViewPort);
     }
 
     void RenderImGui() {
@@ -128,11 +118,10 @@ protected:
         ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), ImGuiDockNodeFlags_PassthruCentralNode);
 
         // 窗口的 ID 和 标题
-        ImGuiID dockspaceID = ImGui::GetID("##ui.dock_space");
-        const char* UI_DOCK_WINDOW = "##ui.dock_window";
+        ImGuiID dockID = ImGui::GetID("##ui.dock_space");
+        const char* UI_ROOT_WINDOW = "##ui.root";
         const char* UI_PROPERTY_BOX = "Property##ui.property";
         const char* UI_VIEW_BOX = "##ui.view";
-
 
         const ImGuiViewport* viewport = ImGui::GetMainViewport();
         ImGui::SetNextWindowPos(viewport->WorkPos);
@@ -151,19 +140,19 @@ protected:
         ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);            // 无边框
         ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f)); // 无边界
         ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);              // 无圆角
-        ImGui::Begin(UI_DOCK_WINDOW, 0, windowFlags); // 开始停靠窗口
+        ImGui::Begin(UI_ROOT_WINDOW, 0, windowFlags); // 开始停靠窗口
         ImGui::PopStyleVar(3);                        // 弹出样式设置
         {
 
             // 判断是否开启停靠
             if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DockingEnable) {
                 // 判断是否有根节点，防止一直重建
-                if (!ImGui::DockBuilderGetNode(dockspaceID)) {
+                if (!ImGui::DockBuilderGetNode(dockID)) {
                     // 移除根节点
-                    ImGui::DockBuilderRemoveNode(dockspaceID);
+                    ImGui::DockBuilderRemoveNode(dockID);
 
                     // 创建根节点
-                    ImGuiID root = ImGui::DockBuilderAddNode(dockspaceID, ImGuiDockNodeFlags_DockSpace);
+                    ImGuiID root = ImGui::DockBuilderAddNode(dockID, ImGuiDockNodeFlags_DockSpace);
 
                     // 设置根节点位置大小
                     ImGui::DockBuilderSetNodePos(root, { 0.0f, 0.0f });
@@ -183,7 +172,7 @@ protected:
                     ImGui::DockBuilderDockWindow(UI_PROPERTY_BOX, leftBottomNode); // 左下节点
 
                     // 结束停靠设置
-                    ImGui::DockBuilderFinish(dockspaceID);
+                    ImGui::DockBuilderFinish(dockID);
 
                     // 设置焦点窗口
                     ImGui::SetWindowFocus(UI_VIEW_BOX);
@@ -193,7 +182,7 @@ protected:
             // 创建停靠空间
             ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 0.0f);
             ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
-            ImGui::DockSpace(dockspaceID, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_None);
+            ImGui::DockSpace(dockID, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_None);
             ImGui::PopStyleVar();
             ImGui::PopStyleColor();
         }
@@ -210,12 +199,14 @@ protected:
         }
         ImGui::End();
         
-        // 右侧边栏 - 控制面板
+        // 右侧边栏
         ImGui::Begin(UI_PROPERTY_BOX, nullptr, ImGuiWindowFlags_NoCollapse);
         {
             ImGui::ColorEdit4("bg color", glm::value_ptr(m_BgColor));
-            ImGui::SliderFloat("zoom", &m_MapView.zoom, m_ZoomRange.x, m_ZoomRange.y);
-            ImGui::DragInt2("offset", glm::value_ptr(m_MapView.offset), 2);
+
+            auto& view = m_MapViewer.GetView();
+            ImGui::SliderFloat("zoom", &view.zoom, m_ZoomRange.x, m_ZoomRange.y);
+            ImGui::DragInt2("offset", glm::value_ptr(view.offset), 2);
         }
 
         ImGui::End();
@@ -226,7 +217,7 @@ protected:
 
     void RenderGL() {
         glViewport(0, 0, m_ViewPort.x, m_ViewPort.y);
-        m_Renderer.Render(m_MapView, m_ViewPort);
+        m_MapViewer.Render(m_ViewPort);
         glViewport(0, 0, m_Size.x, m_Size.y);
     }
 
@@ -247,7 +238,7 @@ protected:
         ImGui_ImplSDL2_Shutdown();
         ImGui::DestroyContext();
 
-        m_Renderer.Cleanup();
+        m_MapViewer.Cleanup();
 
         if (m_Context) {
             SDL_GL_DeleteContext(m_Context);
@@ -264,17 +255,7 @@ protected:
         SDL_Quit();
     }
 
-    void ResetView() {
-        m_MapView.zoom = 1.f;
-        m_MapView.offset = glm::vec2(0, 0);
-    }
-
-    void ConstrainView() {
-        m_Renderer.Constrain(m_MapView, m_ViewPort);
-    }
-
 private:
-    // SDL 窗口和渲染器
     SDL_Window* m_Window = nullptr;
     SDL_Renderer* m_LocalRenderer = nullptr;
     SDL_GLContext m_Context = nullptr;
@@ -284,8 +265,7 @@ private:
     glm::vec2 m_ZoomRange = { 1.f, 5.f };
     glm::vec4 m_BgColor = { 0.8f,0.8f,0.8f,1 };
     
-    MapViewer m_Renderer;
-    MapView m_MapView;
+    MapViewer m_MapViewer;
 
     bool m_IsDrag = false;
 };

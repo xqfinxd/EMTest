@@ -1,8 +1,10 @@
 #include "MapViewer.h"
-#include <SDL_log.h>
 #include "GLUtils.h"
 #include "nlohmann/json.hpp"
 #include <fstream>
+#include <algorithm>
+#include <string>
+#include <SDL_log.h>
 
 void MapViewer::InitImagePipeline() {
     float vertices[] = {
@@ -103,11 +105,28 @@ void MapViewer::DrawIcon(const glm::mat4& vpMat, const std::string& name, glm::i
     glBindVertexArray(0);
 }
 
+glm::vec2 MapViewer::GetViewSize(const glm::ivec2& viewPort) const {
+    float aspect = 1.f * viewPort.x / viewPort.y;
+    glm::vec2 viewSize(m_MapSize);
+    if (aspect > 1.0f)
+        viewSize.x *= aspect;
+    else
+        viewSize.y /= aspect;
+
+    return viewSize / m_View.zoom;;
+}
+
+std::string MapViewer::GetMapPath(const char* mapName) {
+    std::string name(mapName);
+    std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+    return std::string("assets/") + name + ".png";
+}
+
 void MapViewer::Initialize() {
     InitImagePipeline();
 
-    // 加载纹理
-    m_MapTexture = LoadTexture("assets/normal.png",
+    m_MapTexture = LoadTexture(
+        GetMapPath(Maps_::ROTTED_WOODS).c_str(),
         m_MapSize.x, m_MapSize.y, true);
     m_IconsTexture = LoadTexture("assets/icons.png",
         m_IconsSize.x, m_IconsSize.y, true);
@@ -148,16 +167,13 @@ void MapViewer::Cleanup() {
     glDeleteTextures(1, &m_MapTexture);
 }
 
-extern void SetViewSize(glm::vec2& viewSize, const glm::ivec2& viewPort);
-void MapViewer::Render(const MapView& view, const glm::vec2& viewPort) {
-    glm::vec2 viewSize(m_MapSize);
-    SetViewSize(viewSize, viewPort);
-    viewSize /= view.zoom;
+void MapViewer::Render(const glm::vec2& viewPort) {
+    glm::vec2 viewSize = GetViewSize(viewPort);
 
     glm::vec2 pos(0, 0);
     glm::vec2 offset(0, 0);
-    offset.x = viewSize.x * view.offset.x / viewPort.x;
-    offset.y = viewSize.y * view.offset.y / viewPort.y;
+    offset.x = viewSize.x * m_View.offset.x / viewPort.x;
+    offset.y = viewSize.y * m_View.offset.y / viewPort.y;
     
     glm::mat4 projMatrix = glm::ortho(
         offset.x - viewSize.x/2.f, offset.x + viewSize.x/2.f,
@@ -169,19 +185,17 @@ void MapViewer::Render(const MapView& view, const glm::vec2& viewPort) {
         glm::vec3(0, 0, 1.f),
         glm::vec3(0, 0, 0),
         glm::vec3(0, 1, 0));
-    
-    // 渲染地图
+
     glUseProgram(m_ImagePipeline);
     auto vpMat = projMatrix * viewMatrix;
     DrawMap(vpMat);
-    DrawIcon(vpMat, "Rot Blessing", {0, 0});
+    DrawIcon(vpMat, Icons_::ROT_BLESSING, {0, 0});
 }
 
-void MapViewer::Constrain(MapView& view, const glm::vec2& viewPort) {
-    view.zoom = glm::clamp(view.zoom, 1.f, 5.f);
-    glm::vec2 viewSize = m_MapSize;
-    SetViewSize(viewSize, viewPort);
-    viewSize /= view.zoom;
+void MapViewer::Constrain(const glm::vec2& viewPort) {
+    m_View.zoom = glm::clamp(m_View.zoom, 1.f, 5.f);
+
+    glm::vec2 viewSize = GetViewSize(viewPort);
     glm::ivec2 range = m_MapSize - glm::ivec2(viewSize);
-    view.offset = glm::clamp(view.offset, -range / 2, range / 2);
+    m_View.offset = glm::clamp(m_View.offset, -range / 2, range / 2);
 }
