@@ -1,0 +1,66 @@
+[
+  {
+    "name": "South Lake",
+    "coordinates": "612,1202"
+  },
+  {
+    "name": "Groveside",
+    "coordinates": "426,1002"
+  },
+  {
+    "name": "Gatefront",
+    "coordinates": "481,848"
+  },
+  {
+    "name": "Stormhill North of Gate",
+    "coordinates": "430,679"
+  },
+  {
+    "name": "Alexander Spot",
+    "coordinates": "634,459"
+  },
+  {
+    "name": "Northwest Stormhill",
+    "coordinates": "348,423"
+  },
+  {
+    "name": "Northeast Stormhill",
+    "coordinates": "616,268"
+  },
+  {
+    "name": "South Mistwood",
+    "coordinates": "1143,1124"
+  },
+  {
+    "name": "Waypoint Ruins",
+    "coordinates": "943,1066"
+  },
+  {
+    "name": "Minor Erdtree",
+    "coordinates": "1154,967"
+  },
+  {
+    "name": "West Mistwood",
+    "coordinates": "965,910"
+  },
+  {
+    "name": "Northwest Mistwood",
+    "coordinates": "1021,711"
+  },
+  {
+    "name": "Artist's Shack",
+    "coordinates": "886,666"
+  },
+  {
+    "name": "Northeast Mistwood",
+    "coordinates": "1178,647"
+  },
+  {
+    "name": "Summonwater Approach",
+    "coordinates": "976,455"
+  },
+  {
+    "name": "Summonwater",
+    "coordinates": "1186,323"
+  }
+]

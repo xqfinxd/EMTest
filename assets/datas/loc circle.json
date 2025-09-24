@@ -1,0 +1,70 @@
+[
+  {
+    "name": "West Stormhill Graveyard",
+    "coordinates": "331,621"
+  },
+  {
+    "name": "Northwest Corner",
+    "coordinates": "328,325"
+  },
+  {
+    "name": "Southwest Corner",
+    "coordinates": "410,1158"
+  },
+  {
+    "name": "East of Saintsbridge",
+    "coordinates": "863,406"
+  },
+  {
+    "name": "Northeast Corner",
+    "coordinates": "1234,365"
+  },
+  {
+    "name": "Northeast of Lake",
+    "coordinates": "844,833"
+  },
+  {
+    "name": "Northwest Mistwood Pond",
+    "coordinates": "1103,818"
+  },
+  {
+    "name": "Southwest Mistwood",
+    "coordinates": "1065,1057"
+  },
+  {
+    "name": "Northwest Lake",
+    "coordinates": "564,1064"
+  },
+  {
+    "name": "South Lake",
+    "coordinates": "730,1183"
+  },
+  {
+    "name": "South of Castle",
+    "coordinates": "659,958"
+  },
+  {
+    "name": "Northwest of Castle",
+    "coordinates": "558,708"
+  },
+  {
+    "name": "Noklateo Entrance",
+    "coordinates": "678,854"
+  },
+  {
+    "name": "Southeast Mountaintop",
+    "coordinates": "614,607"
+  },
+  {
+    "name": "North of Crater",
+    "coordinates": "729,290"
+  },
+  {
+    "name": "Northwest Rotted Woods",
+    "coordinates": "1123,845"
+  },
+  {
+    "name": "Southeast Rotted Woods",
+    "coordinates": "947,1064"
+  }
+]

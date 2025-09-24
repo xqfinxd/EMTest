@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Southwest",
+    "coordinates": "993,1208"
+  },
+  {
+    "name": "Northeast",
+    "coordinates": "1249,931"
+  },
+  {
+    "name": "West",
+    "coordinates": "871,1025"
+  }
+]

@@ -71,7 +71,7 @@ void MapViewer::DrawMap(const glm::mat4& vpMat) {
 }
 
 void MapViewer::DrawIcon(const glm::mat4& vpMat, const char* name, const glm::ivec2& pos) {
-    auto iconRect = m_Atlas->GetRect(Icons_::BOSS);
+    auto iconRect = m_Atlas->GetRect(name);
     if (!iconRect)
         return;
     glm::ivec2 size(iconRect->z, iconRect->w);

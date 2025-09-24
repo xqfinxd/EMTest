@@ -64,5 +64,7 @@ else()
 	target_compile_definitions(EMTest PRIVATE 
 		SDL_MAIN_HANDLED
 	)
+	target_compile_options(EMTest PRIVATE
+		/utf-8)
 	file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets DESTINATION ${CMAKE_BINARY_DIR})
 endif()
