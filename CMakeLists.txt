@@ -22,6 +22,7 @@ add_executable(EMTest
 	src/GLUtils.cpp
 	src/AssetUtils.cpp
 	src/GameLoop.cpp
+	src/MapFilter.cpp
 	src/MapViewer.cpp
 	src/Main.cpp
 )

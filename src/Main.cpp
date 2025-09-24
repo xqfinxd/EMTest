@@ -8,6 +8,7 @@
 
 #include "GameLoop.h"
 #include "MapViewer.h"
+#include "MapFilter.h"
 
 class MyGame : public GameLoop {
 protected:
@@ -49,8 +50,8 @@ protected:
 #endif
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        m_MapViewer.SetViewport(glm::ivec4(0, 0, m_Size.x, m_Size.y));
         m_MapViewer.Initialize();
-        m_MapViewer.SetViewport(glm::ivec4(0,0,m_Size.x,m_Size.y));
 
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
@@ -100,7 +101,7 @@ protected:
                 break;
             case SDL_MOUSEMOTION:
                 if (m_IsDrag) {
-                    m_MapViewer.vMove(-event.motion.xrel, event.motion.yrel);
+                    m_MapViewer.vMove(event.motion.xrel, event.motion.yrel);
                 }
                 break;
             }
@@ -202,8 +203,10 @@ protected:
         ImGui::Begin(UI_PROPERTY_BOX, nullptr, ImGuiWindowFlags_NoCollapse);
         {
             ImGui::ColorEdit4("背景颜色", glm::value_ptr(m_BgColor));
-
+            ImGui::Separator();
             m_MapViewer.RenderImGui();
+            ImGui::Separator();
+            m_MapFilter.RenderImGui(m_MapViewer);
         }
 
         ImGui::End();
@@ -261,6 +264,7 @@ private:
     glm::vec4 m_BgColor = { 0.8f,0.8f,0.8f,1 };
     
     MapViewer m_MapViewer;
+    MapFilter m_MapFilter;
 
     bool m_IsDrag = false;
 };

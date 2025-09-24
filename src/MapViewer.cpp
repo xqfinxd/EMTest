@@ -70,7 +70,7 @@ void MapViewer::DrawMap(const glm::mat4& vpMat) {
     glBindVertexArray(0);
 }
 
-void MapViewer::DrawIcon(const glm::mat4& vpMat, const std::string& name, glm::ivec2 pos) {
+void MapViewer::DrawIcon(const glm::mat4& vpMat, const char* name, const glm::ivec2& pos) {
     auto iconRect = m_Atlas->GetRect(Icons_::BOSS);
     if (!iconRect)
         return;
@@ -119,18 +119,20 @@ glm::vec2 MapViewer::Normalize(const glm::vec2& pos) const {
 glm::vec2 MapViewer::Screen2Map(const glm::vec2& pos) const {
     glm::vec2 vsize = GetViewSize();
     // map center to view center
-    glm::vec2 mc2vc(m_Transform.offset.x, -m_Transform.offset.y);
+    glm::vec2 vc2mc(m_Transform.offset);
     // view zero(left top) to current point
     glm::vec2 v02c = Normalize(pos);
     // view center to current point
     glm::vec2 vc2c = v02c - vsize / 2.f;
-    return vc2c + mc2vc + glm::vec2(m_MapSize) / 2.f;
+    return vc2c - vc2mc + glm::vec2(m_MapSize) / 2.f;
 }
 
 void MapViewer::OnResizeMap() {
-    float aspect = 1.f * m_Viewport.z / m_Viewport.w;
+    float vaspect = 1.f * m_Viewport.z / m_Viewport.w;
+    float maspect = 1.f * m_MapSize.x / m_MapSize.y;
     m_OriginViewSize = m_MapSize;
-    if (aspect > 1.0f)
+    float aspect = vaspect / maspect;
+    if (aspect > 1.f)
         m_OriginViewSize.x *= aspect;
     else
         m_OriginViewSize.y /= aspect;
@@ -144,7 +146,7 @@ void MapViewer::Initialize() {
         m_IconsSize.x, m_IconsSize.y, true);
     m_Atlas = CreateAtlasMgr<IconMgr>("icons.json");
 
-    ReloadMap(Maps_::ROTTED_WOODS);
+    ReloadMap("bg");
 
     vReset();
 }
@@ -161,7 +163,7 @@ void MapViewer::Render() {
     glm::vec2 offset = m_Transform.offset;
     
     glm::mat4 projMatrix = glm::ortho(
-        offset.x - viewSize.x/2.f, offset.x + viewSize.x/2.f,
+        -offset.x - viewSize.x/2.f, -offset.x + viewSize.x/2.f,
         offset.y - viewSize.y/2.f, offset.y + viewSize.y/2.f,
         -1.0f, 1.0f
     );
@@ -174,11 +176,12 @@ void MapViewer::Render() {
     glUseProgram(m_ImagePipeline);
     auto vpMat = projMatrix * viewMatrix;
     DrawMap(vpMat);
-    DrawIcon(vpMat, Icons_::ROT_BLESSING, {0, 0});
+    for (const auto& info : m_IconList) {
+        DrawIcon(vpMat, info.name.c_str(), info.pos);
+    }
 }
 
 void MapViewer::RenderImGui() {
-    ImGui::Separator();
     const auto& mpos = ImGui::GetIO().MousePos;
     auto mappos = Screen2Map(glm::vec2(mpos.x, mpos.y));
     ImGui::Text("地图坐标 : %d,%d", (int)mappos.x, (int)mappos.y);
