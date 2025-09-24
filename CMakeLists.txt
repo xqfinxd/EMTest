@@ -20,6 +20,7 @@ add_executable(EMTest
 	${IMGUI_SRC}
 	${STB_IMAGE_SRC}
 	src/GLUtils.cpp
+	src/AssetUtils.cpp
 	src/GameLoop.cpp
 	src/MapViewer.cpp
 	src/Main.cpp

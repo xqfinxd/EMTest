@@ -45,7 +45,6 @@ private:
     void DrawIcon(const glm::mat4& vpMat, const std::string& name, glm::ivec2 pos);
 
     glm::vec2 GetViewSize(const glm::ivec2& viewPort) const;
-    std::string GetMapPath(const char* mapName);
 
 public:
     void Initialize();

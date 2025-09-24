@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <string>
 #include <SDL_log.h>
+#include "AssetUtils.h"
 
 void MapViewer::InitImagePipeline() {
     float vertices[] = {
@@ -33,8 +34,8 @@ void MapViewer::InitImagePipeline() {
 
     glBindVertexArray(0);
 
-    GLuint vs = CompileShaderFile(GL_VERTEX_SHADER, "assets/image.vert");
-    GLuint fs = CompileShaderFile(GL_FRAGMENT_SHADER, "assets/image.frag");
+    GLuint vs = CompileShaderFile(GL_VERTEX_SHADER, GetDataPath("image.vert").c_str());
+    GLuint fs = CompileShaderFile(GL_FRAGMENT_SHADER, GetDataPath("image.frag").c_str());
 
     m_ImagePipeline = glCreateProgram();
     glAttachShader(m_ImagePipeline, vs);
@@ -116,29 +117,24 @@ glm::vec2 MapViewer::GetViewSize(const glm::ivec2& viewPort) const {
     return viewSize / m_View.zoom;;
 }
 
-std::string MapViewer::GetMapPath(const char* mapName) {
-    std::string name(mapName);
-    std::transform(name.begin(), name.end(), name.begin(), ::tolower);
-    return std::string("assets/") + name + ".png";
-}
-
 void MapViewer::Initialize() {
     InitImagePipeline();
 
     m_MapTexture = LoadTexture(
-        GetMapPath(Maps_::ROTTED_WOODS).c_str(),
+        GetTexPath(Maps_::ROTTED_WOODS).c_str(),
         m_MapSize.x, m_MapSize.y, true);
-    m_IconsTexture = LoadTexture("assets/icons.png",
+    m_IconsTexture = LoadTexture(
+        GetTexPath("icons").c_str(),
         m_IconsSize.x, m_IconsSize.y, true);
 
     do {
         using json = nlohmann::json;
-        const char* path = "assets/icons.json";
 
         json iconConfig;
+        auto path = GetDataPath("icons.json");
         std::ifstream jsonFile(path);
         if (!jsonFile.is_open()) {
-            SDL_Log("Could not open the file %s\n", path);
+            SDL_Log("Could not open the file %s\n", path.c_str());
             break;
         }
         jsonFile >> iconConfig;

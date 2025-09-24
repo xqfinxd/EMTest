@@ -1,0 +1,3638 @@
+{
+  "fields": [
+    {
+      "field_name": "field_0",
+      "description": ""
+    },
+    {
+      "field_name": "Nightlord",
+      "description": ""
+    },
+    {
+      "field_name": "Shifting Earth",
+      "description": ""
+    },
+    {
+      "field_name": "Spawn Point",
+      "description": ""
+    },
+    {
+      "field_name": "Special Event",
+      "description": ""
+    },
+    {
+      "field_name": "Night 1 Boss",
+      "description": ""
+    },
+    {
+      "field_name": "Night 2 Boss",
+      "description": ""
+    },
+    {
+      "field_name": "Extra Night Boss",
+      "description": ""
+    },
+    {
+      "field_name": "Night 1 Circle",
+      "description": ""
+    },
+    {
+      "field_name": "Night 2 Circle",
+      "description": ""
+    },
+    {
+      "field_name": "Castle",
+      "description": "Castle"
+    },
+    {
+      "field_name": "Major Base",
+      "description": "South Lake"
+    },
+    {
+      "field_name": "Major Base",
+      "description": "Groveside"
+    },
+    {
+      "field_name": "Major Base",
+      "description": "Gatefront"
+    },
+    {
+      "field_name": "Major Base",
+      "description": "Stormhill North of Gate"
+    },
+    {
+      "field_name": "Major Base",
+      "description": "Alexander Spot"
+    },
+    {
+      "field_name": "Major Base",
+      "description": "Northwest Stormhill"
+    },
+    {
+      "field_name": "Major Base",
+      "description": "Northeast Stormhill"
+    },
+    {
+      "field_name": "Major Base",
+      "description": "South Mistwood"
+    },
+    {
+      "field_name": "Major Base",
+      "description": "Waypoint Ruins"
+    },
+    {
+      "field_name": "Major Base",
+      "description": "Minor Erdtree"
+    },
+    {
+      "field_name": "Major Base",
+      "description": "West Mistwood"
+    },
+    {
+      "field_name": "Major Base",
+      "description": "Northwest Mistwood"
+    },
+    {
+      "field_name": "Major Base",
+      "description": "Artist's Shack"
+    },
+    {
+      "field_name": "Major Base",
+      "description": "Northeast Mistwood"
+    },
+    {
+      "field_name": "Major Base",
+      "description": "Summonwater Approach"
+    },
+    {
+      "field_name": "Major Base",
+      "description": "Summonwater"
+    },
+    {
+      "field_name": "Minor Base",
+      "description": "Far Southwest"
+    },
+    {
+      "field_name": "Minor Base",
+      "description": "Lake"
+    },
+    {
+      "field_name": "Minor Base",
+      "description": "Stormhill South of Gate"
+    },
+    {
+      "field_name": "Minor Base",
+      "description": "Above Stormhill Tunnel Entrance"
+    },
+    {
+      "field_name": "Minor Base",
+      "description": "West of Warmaster's Shack"
+    },
+    {
+      "field_name": "Minor Base",
+      "description": "Southeast of Lake"
+    },
+    {
+      "field_name": "Minor Base",
+      "description": "East of Cavalry Bridge"
+    },
+    {
+      "field_name": "Minor Base",
+      "description": "Minor Erdtree"
+    },
+    {
+      "field_name": "Minor Base",
+      "description": "Below Summonwater Hawk"
+    },
+    {
+      "field_name": "Minor Base",
+      "description": "Third Church"
+    },
+    {
+      "field_name": "Minor Base",
+      "description": "Northeast of Saintsbridge"
+    },
+    {
+      "field_name": "Evergaol",
+      "description": "Northwest of Lake"
+    },
+    {
+      "field_name": "Evergaol",
+      "description": "Murkwater Terminus"
+    },
+    {
+      "field_name": "Evergaol",
+      "description": "Stormhill"
+    },
+    {
+      "field_name": "Evergaol",
+      "description": "Highroad"
+    },
+    {
+      "field_name": "Evergaol",
+      "description": "East of Lake"
+    },
+    {
+      "field_name": "Evergaol",
+      "description": "Mistwood"
+    },
+    {
+      "field_name": "Evergaol",
+      "description": "Northeast Tunnel Entrance"
+    },
+    {
+      "field_name": "Arena Boss",
+      "description": "Castle Basement"
+    },
+    {
+      "field_name": "Field Boss",
+      "description": "Castle Rooftop"
+    },
+    {
+      "field_name": "Field Boss",
+      "description": "Far Southwest of Lake"
+    },
+    {
+      "field_name": "Field Boss",
+      "description": "Lake"
+    },
+    {
+      "field_name": "Field Boss",
+      "description": "North of Stormhill Tunnel Entrance"
+    },
+    {
+      "field_name": "Field Boss",
+      "description": "North of Murkwater Terminus"
+    },
+    {
+      "field_name": "Field Boss",
+      "description": "Stormhill Spectral Hawk"
+    },
+    {
+      "field_name": "Field Boss",
+      "description": "Northwest Stormhill Cliffside"
+    },
+    {
+      "field_name": "Field Boss",
+      "description": "Mistwood Spectral Hawk"
+    },
+    {
+      "field_name": "Field Boss",
+      "description": "North Mistwood"
+    },
+    {
+      "field_name": "Field Boss",
+      "description": "East of Murkwater Terminus"
+    },
+    {
+      "field_name": "Field Boss",
+      "description": "Northwest of Summonwater"
+    },
+    {
+      "field_name": "Rotted Woods",
+      "description": "Southwest"
+    },
+    {
+      "field_name": "Rotted Woods",
+      "description": "Southeast"
+    },
+    {
+      "field_name": "Rotted Woods",
+      "description": "Center West"
+    },
+    {
+      "field_name": "Rotted Woods",
+      "description": "Center East"
+    },
+    {
+      "field_name": "Rotted Woods",
+      "description": "Far Northwest"
+    },
+    {
+      "field_name": "Rotted Woods",
+      "description": "Northwest"
+    },
+    {
+      "field_name": "Rotted Woods",
+      "description": "Northeast"
+    },
+    {
+      "field_name": "Rotted Woods",
+      "description": "Far Northeast"
+    },
+    {
+      "field_name": "Rot Blessing",
+      "description": ""
+    },
+    {
+      "field_name": "Frenzy Tower",
+      "description": ""
+    },
+    {
+      "field_name": "Scale-Bearing Merchant",
+      "description": ""
+    }
+  ],
+  "data": [
+    {
+      "field_0": 35,
+      "Nightlord": "Gladius",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Above Stormhill Tunnel Entrance",
+      "Special Event": "Day 1 Night Horde",
+      "Night 1 Boss": "Demi-Human Queen and Swordmaster",
+      "Night 2 Boss": "Morgott",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "West Stormhill Graveyard",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Fort - Guardian Golem",
+        "Alexander Spot": "Camp - Frenzied Flame Troll",
+        "Northwest Stormhill": "Great Church - Mausoleum Knight",
+        "Northeast Stormhill": "Ruins - Depraved Perfumer",
+        "South Mistwood": "Fort - Crystalians",
+        "Waypoint Ruins": "Ruins - Depraved Perfumer",
+        "Minor Erdtree": "Camp - Banished Knights",
+        "West Mistwood": "Fort - Crystalians",
+        "Northwest Mistwood": "Ruins - Depraved Perfumer",
+        "Artist's Shack": "Ruins - Ancient Heroes of Zamor",
+        "Northeast Mistwood": "Ruins - Perfumer",
+        "Summonwater Approach": "Camp - Flame Chariots",
+        "Summonwater": "Great Church - Oracle Envoys"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Small Camp - Demi-Humans",
+        "West of Warmaster's Shack": "Church - Normal",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Small Camp - Dogs and Soldiers",
+        "Minor Erdtree": "Small Camp - Dogs",
+        "Below Summonwater Hawk": "Township - Township",
+        "Third Church": "Church - Normal",
+        "Northeast of Saintsbridge": "Sorcerer's Rise - Windy Trees"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Crucible Knight with Spear",
+        "Stormhill": "Crystalians",
+        "Highroad": "Stoneskin Lords",
+        "East of Lake": "Dragonkin Soldier",
+        "Mistwood": "Beastly Brigade",
+        "Northeast Tunnel Entrance": "Grave Warden Duelist"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Red Wolf",
+        "North of Murkwater Terminus": "Elder Lion",
+        "Stormhill Spectral Hawk": "Black Knife Assassin",
+        "Northwest Stormhill Cliffside": "Flying Dragon",
+        "Mistwood Spectral Hawk": "Ancient Hero of Zamor",
+        "North Mistwood": "Ulcerated Tree Spirit",
+        "East of Murkwater Terminus": "Erdtree Avatar",
+        "Northwest of Summonwater": "Golden Hippopotamus"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 36,
+      "Nightlord": "Gladius",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Northeast of Saintsbridge",
+      "Special Event": null,
+      "Night 1 Boss": "Bell Bearing Hunter",
+      "Night 2 Boss": "Morgott",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northeast Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Ruins - Perfumer",
+        "Alexander Spot": "Ruins - Ancient Heroes of Zamor",
+        "Northwest Stormhill": "Camp - Frenzied Flame Troll",
+        "Northeast Stormhill": "Fort - Abductor Virgin",
+        "South Mistwood": "Camp - Elder Lion",
+        "Waypoint Ruins": "Great Church - Guardian Golem",
+        "Minor Erdtree": "Great Church - Mausoleum Knight",
+        "West Mistwood": "Ruins - Beastmen of Farum Azula",
+        "Northwest Mistwood": "Fort - Abductor Virgin",
+        "Artist's Shack": "Great Church - Mausoleum Knight",
+        "Northeast Mistwood": "Camp - Leonine Misbegotten",
+        "Summonwater Approach": "Fort - Guardian Golem",
+        "Summonwater": "Camp - Leonine Misbegotten"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Sorcerer's Rise - Fleeing Stump",
+        "West of Warmaster's Shack": "Church - Normal",
+        "Southeast of Lake": "Small Camp - Dogs",
+        "East of Cavalry Bridge": "Church - Normal",
+        "Minor Erdtree": "Church - Normal",
+        "Below Summonwater Hawk": "Township - Township",
+        "Third Church": "Small Camp - Misbegotten",
+        "Northeast of Saintsbridge": "Small Camp - Rats and Demi-Humans"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Omen",
+        "Stormhill": "Stoneskin Lords",
+        "Highroad": "Grave Warden Duelist",
+        "East of Lake": "Crystalians",
+        "Mistwood": "Dragonkin Soldier",
+        "Northeast Tunnel Entrance": "Godskin Apostle"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Tree Sentinel",
+        "North of Murkwater Terminus": "Ancient Hero of Zamor",
+        "Stormhill Spectral Hawk": "Elder Lion",
+        "Northwest Stormhill Cliffside": "Royal Revenant",
+        "Mistwood Spectral Hawk": "Magma Wyrm",
+        "North Mistwood": "Grafted Scion",
+        "East of Murkwater Terminus": "Night's Cavalry",
+        "Northwest of Summonwater": "Ulcerated Tree Spirit"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": "East of Saintsbridge"
+    },
+    {
+      "field_0": 37,
+      "Nightlord": "Gladius",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "East of Cavalry Bridge",
+      "Special Event": "Day 2 Meteor Strike",
+      "Night 1 Boss": "Bell Bearing Hunter",
+      "Night 2 Boss": "Tree Sentinel and Royal Cavalrymen",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northeast Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Ruins - Ancient Heroes of Zamor",
+        "Alexander Spot": "Camp - Redmane Knights",
+        "Northwest Stormhill": "Fort - Abductor Virgin",
+        "Northeast Stormhill": "Ruins - Ancient Heroes of Zamor",
+        "South Mistwood": "Ruins - Depraved Perfumer",
+        "Waypoint Ruins": "Fort - Guardian Golem",
+        "Minor Erdtree": "Map Event - Minor Erdtree",
+        "West Mistwood": "Great Church - Guardian Golem",
+        "Northwest Mistwood": "Fort - Abductor Virgin",
+        "Artist's Shack": "Ruins - Runebear",
+        "Northeast Mistwood": "Camp - Royal Army Knights",
+        "Summonwater Approach": "Great Church - Fire Monk",
+        "Summonwater": "Camp - Frenzied Flame Troll"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Small Camp - Misbegotten",
+        "West of Warmaster's Shack": "Church - Normal",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Small Camp - Demi-Humans",
+        "Minor Erdtree": "Sorcerer's Rise - Missing Statue",
+        "Below Summonwater Hawk": "Small Camp - Soldiers",
+        "Third Church": "Church - Normal",
+        "Northeast of Saintsbridge": "Small Camp - Misbegotten"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Beastmen of Farum Azula",
+        "Stormhill": "Godskin Apostle",
+        "Highroad": "Crystalians",
+        "East of Lake": "Crucible Knight with Sword",
+        "Mistwood": "Nox Warriors",
+        "Northeast Tunnel Entrance": "Ancient Dragon"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Death Rite Bird",
+        "North of Murkwater Terminus": "Golden Hippopotamus",
+        "Stormhill Spectral Hawk": "Ancestor Spirit",
+        "Northwest Stormhill Cliffside": "Miranda Blossom",
+        "Mistwood Spectral Hawk": "Grafted Scion",
+        "North Mistwood": "Ancient Hero of Zamor",
+        "East of Murkwater Terminus": "Red Wolf",
+        "Northwest of Summonwater": "Flying Dragon"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 38,
+      "Nightlord": "Gladius",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Minor Erdtree",
+      "Special Event": null,
+      "Night 1 Boss": "Demi-Human Queen and Swordmaster",
+      "Night 2 Boss": "Tree Sentinel and Royal Cavalrymen",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northeast Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Fort - Abductor Virgin",
+        "Alexander Spot": "Great Church - Guardian Golem",
+        "Northwest Stormhill": "Ruins - Albinaurics",
+        "Northeast Stormhill": "Camp - Royal Army Knights",
+        "South Mistwood": "Fort - Lordsworn Captain",
+        "Waypoint Ruins": "Camp - Royal Army Knights",
+        "Minor Erdtree": "Great Church - Oracle Envoys",
+        "West Mistwood": "Ruins - Wormface",
+        "Northwest Mistwood": "Ruins - Depraved Perfumer",
+        "Artist's Shack": "Great Church - Oracle Envoys",
+        "Northeast Mistwood": "Camp - Banished Knights",
+        "Summonwater Approach": "Fort - Lordsworn Captain",
+        "Summonwater": "Camp - Leonine Misbegotten"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Sorcerer's Rise - Missing Statue",
+        "West of Warmaster's Shack": "Church - Normal",
+        "Southeast of Lake": "Sorcerer's Rise - Unlit Candle",
+        "East of Cavalry Bridge": "Church - Normal",
+        "Minor Erdtree": "Small Camp - Wandering Nobles",
+        "Below Summonwater Hawk": "Township - Township",
+        "Third Church": "Church - Normal",
+        "Northeast of Saintsbridge": "Small Camp - Dogs"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Beastly Brigade",
+        "Stormhill": "Nox Warriors",
+        "Highroad": "Godskin Apostle",
+        "East of Lake": "Omen",
+        "Mistwood": "Crystalians",
+        "Northeast Tunnel Entrance": "Crucible Knight with Spear"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Draconic Tree Sentinel",
+        "North of Murkwater Terminus": "Bell Bearing Hunter",
+        "Stormhill Spectral Hawk": "Grafted Scion",
+        "Northwest Stormhill Cliffside": "Miranda Blossom",
+        "Mistwood Spectral Hawk": "Death Rite Bird",
+        "North Mistwood": "Red Wolf",
+        "East of Murkwater Terminus": "Elder Lion",
+        "Northwest of Summonwater": "Black Knife Assassin"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 39,
+      "Nightlord": "Gladius",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "East of Cavalry Bridge",
+      "Special Event": null,
+      "Night 1 Boss": "Demi-Human Queen and Swordmaster",
+      "Night 2 Boss": "Morgott",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "West Stormhill Graveyard",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Great Church - Guardian Golem",
+        "Alexander Spot": "Camp - Flame Chariots",
+        "Northwest Stormhill": "Fort - Abductor Virgin",
+        "Northeast Stormhill": "Camp - Flame Chariots",
+        "South Mistwood": "Great Church - Mausoleum Knight",
+        "Waypoint Ruins": "Fort - Crystalians",
+        "Minor Erdtree": "Ruins - Perfumer",
+        "West Mistwood": "Camp - Redmane Knights",
+        "Northwest Mistwood": "Ruins - Depraved Perfumer",
+        "Artist's Shack": "Ruins - Depraved Perfumer",
+        "Northeast Mistwood": "Fort - Abductor Virgin",
+        "Summonwater Approach": "Ruins - Battlemages",
+        "Summonwater": "Camp - Royal Army Knights"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Church - Normal",
+        "West of Warmaster's Shack": "Small Camp - Dogs",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Small Camp - Wandering Nobles",
+        "Minor Erdtree": "Church - Normal",
+        "Below Summonwater Hawk": "Sorcerer's Rise - Pool Reflection",
+        "Third Church": "Township - Township",
+        "Northeast of Saintsbridge": "Small Camp - Misbegotten"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Beastly Brigade",
+        "Stormhill": "Crucible Knight with Sword",
+        "Highroad": "Stoneskin Lords",
+        "East of Lake": "Grave Warden Duelist",
+        "Mistwood": "Dragonkin Soldier",
+        "Northeast Tunnel Entrance": "Banished Knights"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Leonine Misbegotten",
+        "North of Murkwater Terminus": "Tree Sentinel",
+        "Stormhill Spectral Hawk": "Ancient Hero of Zamor",
+        "Northwest Stormhill Cliffside": "Flying Dragon",
+        "Mistwood Spectral Hawk": "Ancestor Spirit",
+        "North Mistwood": "Miranda Blossom",
+        "East of Murkwater Terminus": "Elder Lion",
+        "Northwest of Summonwater": "Black Knife Assassin"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 75,
+      "Nightlord": "Adel",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Northeast of Saintsbridge",
+      "Special Event": null,
+      "Night 1 Boss": "Valiant Gargoyle",
+      "Night 2 Boss": "Outland Commander",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northeast Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Fort - Crystalians",
+        "Alexander Spot": "Ruins - Depraved Perfumer",
+        "Northwest Stormhill": "Great Church - Oracle Envoys",
+        "Northeast Stormhill": "Camp - Royal Army Knights",
+        "South Mistwood": "Great Church - Oracle Envoys",
+        "Waypoint Ruins": "Ruins - Depraved Perfumer",
+        "Minor Erdtree": "Ruins - Depraved Perfumer",
+        "West Mistwood": "Ruins - Albinauric Archers",
+        "Northwest Mistwood": "Ruins - Runebear",
+        "Artist's Shack": "Camp - Banished Knights",
+        "Northeast Mistwood": "Camp - Flame Chariots",
+        "Summonwater Approach": "Great Church - Fire Monk",
+        "Summonwater": "Fort - Lordsworn Captain"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Church - Normal",
+        "West of Warmaster's Shack": "Small Camp - Dogs and Soldiers",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Sorcerer's Rise - Pool Reflection",
+        "Minor Erdtree": "Township - Township",
+        "Below Summonwater Hawk": "Church - Normal",
+        "Third Church": "Sorcerer's Rise - Windy Trees",
+        "Northeast of Saintsbridge": "Church - Rats"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Godskin Noble",
+        "Stormhill": "Grave Warden Duelist",
+        "Highroad": "Stoneskin Lords",
+        "East of Lake": "Beastly Brigade",
+        "Mistwood": "Bloodhound Knight",
+        "Northeast Tunnel Entrance": "Crucible Knight with Spear"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Ulcerated Tree Spirit",
+        "North of Murkwater Terminus": "Red Wolf",
+        "Stormhill Spectral Hawk": "Grafted Scion",
+        "Northwest Stormhill Cliffside": "Royal Revenant",
+        "Mistwood Spectral Hawk": "Night's Cavalry",
+        "North Mistwood": "Erdtree Avatar",
+        "East of Murkwater Terminus": "Bell Bearing Hunter",
+        "Northwest of Summonwater": "Demi-Human Queen"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 76,
+      "Nightlord": "Adel",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Northeast of Saintsbridge",
+      "Special Event": null,
+      "Night 1 Boss": "Night's Cavalry Duo",
+      "Night 2 Boss": "Ancient Dragon",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northwest Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Ruins - Sanguine Noble",
+        "Alexander Spot": "Fort - Lordsworn Captain",
+        "Northwest Stormhill": "Camp - Redmane Knights",
+        "Northeast Stormhill": "Camp - Royal Army Knights",
+        "South Mistwood": "Fort - Lordsworn Captain",
+        "Waypoint Ruins": "Camp - Banished Knights",
+        "Minor Erdtree": "Great Church - Oracle Envoys",
+        "West Mistwood": "Camp - Redmane Knights",
+        "Northwest Mistwood": "Fort - Guardian Golem",
+        "Artist's Shack": "Ruins - Erdtree Burial Watchdogs",
+        "Northeast Mistwood": "Ruins - Perfumer",
+        "Summonwater Approach": "Great Church - Guardian Golem",
+        "Summonwater": "Camp - Redmane Knights"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Small Camp - Caravans",
+        "West of Warmaster's Shack": "Church - Normal",
+        "Southeast of Lake": "Sorcerer's Rise - Windy Trees",
+        "East of Cavalry Bridge": "Church - Normal",
+        "Minor Erdtree": "Small Camp - Misbegotten",
+        "Below Summonwater Hawk": "Small Camp - Soldiers",
+        "Third Church": "Church - Normal",
+        "Northeast of Saintsbridge": "Small Camp - Shack"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Dragonkin Soldier",
+        "Stormhill": "Stoneskin Lords",
+        "Highroad": "Omen",
+        "East of Lake": "Crucible Knight with Spear",
+        "Mistwood": "Nox Warriors",
+        "Northeast Tunnel Entrance": "Beastly Brigade"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Ancient Hero of Zamor",
+        "North of Murkwater Terminus": "Magma Wyrm",
+        "Stormhill Spectral Hawk": "Black Knife Assassin",
+        "Northwest Stormhill Cliffside": "Draconic Tree Sentinel",
+        "Mistwood Spectral Hawk": "Red Wolf",
+        "North Mistwood": "Royal Carian Knight",
+        "East of Murkwater Terminus": "Royal Revenant",
+        "Northwest of Summonwater": "Golden Hippopotamus"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 77,
+      "Nightlord": "Adel",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "West of Warmaster's Shack",
+      "Special Event": null,
+      "Night 1 Boss": "The Duke's Dear Freja",
+      "Night 2 Boss": "Crucible Knight and Golden Hippopotamus",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northeast Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Great Church - Fire Monk",
+        "Alexander Spot": "Fort - Crystalians",
+        "Northwest Stormhill": "Camp - Royal Army Knights",
+        "Northeast Stormhill": "Ruins - Erdtree Burial Watchdogs",
+        "South Mistwood": "Camp - Leonine Misbegotten",
+        "Waypoint Ruins": "Great Church - Guardian Golem",
+        "Minor Erdtree": "Camp - Royal Army Knights",
+        "West Mistwood": "Fort - Crystalians",
+        "Northwest Mistwood": "Fort - Guardian Golem",
+        "Artist's Shack": "Camp - Frenzied Flame Troll",
+        "Northeast Mistwood": "Ruins - Albinauric Archers",
+        "Summonwater Approach": "Great Church - Guardian Golem",
+        "Summonwater": "Ruins - Depraved Perfumer"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Church - Normal",
+        "West of Warmaster's Shack": "Small Camp - Shack",
+        "Southeast of Lake": "Sorcerer's Rise - Fog Door",
+        "East of Cavalry Bridge": "Small Camp - Misbegotten",
+        "Minor Erdtree": "Township - Township",
+        "Below Summonwater Hawk": "Small Camp - Caravans",
+        "Third Church": "Church - Normal",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Godskin Apostle",
+        "Stormhill": "Grave Warden Duelist",
+        "Highroad": "Nox Warriors",
+        "East of Lake": "Beastmen of Farum Azula",
+        "Mistwood": "Godskin Noble",
+        "Northeast Tunnel Entrance": "Crystalians"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Ancient Hero of Zamor",
+        "North of Murkwater Terminus": "Miranda Blossom",
+        "Stormhill Spectral Hawk": "Night's Cavalry",
+        "Northwest Stormhill Cliffside": "Death Rite Bird",
+        "Mistwood Spectral Hawk": "Elder Lion",
+        "North Mistwood": "Tree Sentinel",
+        "East of Murkwater Terminus": "Royal Revenant",
+        "Northwest of Summonwater": "Erdtree Avatar"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": "Northeast Corner"
+    },
+    {
+      "field_0": 78,
+      "Nightlord": "Adel",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Minor Erdtree",
+      "Special Event": "Day 1 Morgott Invasion",
+      "Night 1 Boss": "Wormface",
+      "Night 2 Boss": "Outland Commander",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northwest Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Great Church - Fire Monk",
+        "Alexander Spot": "Great Church - Fire Monk",
+        "Northwest Stormhill": "Camp - Elder Lion",
+        "Northeast Stormhill": "Fort - Crystalians",
+        "South Mistwood": "Camp - Frenzied Flame Troll",
+        "Waypoint Ruins": "Ruins - Wormface",
+        "Minor Erdtree": "Great Church - Oracle Envoys",
+        "West Mistwood": "Camp - Leonine Misbegotten",
+        "Northwest Mistwood": "Fort - Lordsworn Captain",
+        "Artist's Shack": "Ruins - Perfumer",
+        "Northeast Mistwood": "Ruins - Wormface",
+        "Summonwater Approach": "Ruins - Albinaurics",
+        "Summonwater": "Camp - Elder Lion"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Small Camp - Dogs",
+        "West of Warmaster's Shack": "Church - Normal",
+        "Southeast of Lake": "Small Camp - Dogs",
+        "East of Cavalry Bridge": "Small Camp - Soldiers",
+        "Minor Erdtree": "Small Camp - Foot Soldiers",
+        "Below Summonwater Hawk": "Church - Normal",
+        "Third Church": "Sorcerer's Rise - Fog Door",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Beastmen of Farum Azula",
+        "Stormhill": "Godskin Apostle",
+        "Highroad": "Beastly Brigade",
+        "East of Lake": "Bloodhound Knight",
+        "Mistwood": "Crucible Knight with Spear",
+        "Northeast Tunnel Entrance": "Nox Warriors"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Ancient Hero of Zamor",
+        "North of Murkwater Terminus": "Demi-Human Queen",
+        "Stormhill Spectral Hawk": "Golden Hippopotamus",
+        "Northwest Stormhill Cliffside": "Draconic Tree Sentinel",
+        "Mistwood Spectral Hawk": "Leonine Misbegotten",
+        "North Mistwood": "Erdtree Avatar",
+        "East of Murkwater Terminus": "Grafted Scion",
+        "Northwest of Summonwater": "Death Rite Bird"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 79,
+      "Nightlord": "Adel",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Southeast of Lake",
+      "Special Event": null,
+      "Night 1 Boss": "Gaping Dragon",
+      "Night 2 Boss": "Ancient Dragon",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northwest Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Ruins - Ancient Heroes of Zamor",
+        "Alexander Spot": "Fort - Guardian Golem",
+        "Northwest Stormhill": "Camp - Frenzied Flame Troll",
+        "Northeast Stormhill": "Camp - Redmane Knights",
+        "South Mistwood": "Camp - Redmane Knights",
+        "Waypoint Ruins": "Fort - Lordsworn Captain",
+        "Minor Erdtree": "Ruins - Albinaurics",
+        "West Mistwood": "Camp - Frenzied Flame Troll",
+        "Northwest Mistwood": "Camp - Leonine Misbegotten",
+        "Artist's Shack": "Great Church - Guardian Golem",
+        "Northeast Mistwood": "Great Church - Mausoleum Knight",
+        "Summonwater Approach": "Ruins - Wormface",
+        "Summonwater": "Ruins - Ancient Heroes of Zamor"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Small Camp - Soldiers",
+        "West of Warmaster's Shack": "Church - Normal",
+        "Southeast of Lake": "Small Camp - Shack",
+        "East of Cavalry Bridge": "Sorcerer's Rise - Fleeing Stump",
+        "Minor Erdtree": "Small Camp - Dogs",
+        "Below Summonwater Hawk": "Small Camp - Soldiers",
+        "Third Church": "Church - Normal",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Beastly Brigade",
+        "Stormhill": "Banished Knights",
+        "Highroad": "Beastmen of Farum Azula",
+        "East of Lake": "Godskin Noble",
+        "Mistwood": "Bloodhound Knight",
+        "Northeast Tunnel Entrance": "Dragonkin Soldier"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Flying Dragon",
+        "North of Murkwater Terminus": "Miranda Blossom",
+        "Stormhill Spectral Hawk": "Royal Carian Knight",
+        "Northwest Stormhill Cliffside": "Grafted Scion",
+        "Mistwood Spectral Hawk": "Red Wolf",
+        "North Mistwood": "Demi-Human Queen",
+        "East of Murkwater Terminus": "Death Rite Bird",
+        "Northwest of Summonwater": "Night's Cavalry"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": "Northwest Corner"
+    },
+    {
+      "field_0": 115,
+      "Nightlord": "Gnoster",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Below Summonwater Hawk",
+      "Special Event": "Day 2 Maris Bubbles",
+      "Night 1 Boss": "Ulcerated Tree Spirit",
+      "Night 2 Boss": "Draconic Tree Sentinel and Royal Cavalrymen",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "West Stormhill Graveyard",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Ruins - Battlemages",
+        "Alexander Spot": "Ruins - Depraved Perfumer",
+        "Northwest Stormhill": "Camp - Banished Knights",
+        "Northeast Stormhill": "Camp - Banished Knights",
+        "South Mistwood": "Fort - Lordsworn Captain",
+        "Waypoint Ruins": "Camp - Flame Chariots",
+        "Minor Erdtree": "Great Church - Guardian Golem",
+        "West Mistwood": "Ruins - Perfumer",
+        "Northwest Mistwood": "Great Church - Mausoleum Knight",
+        "Artist's Shack": "Great Church - Guardian Golem",
+        "Northeast Mistwood": "Camp - Elder Lion",
+        "Summonwater Approach": "Fort - Guardian Golem",
+        "Summonwater": "Camp - Banished Knights"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Small Camp - Soldiers",
+        "West of Warmaster's Shack": "Church - Normal",
+        "Southeast of Lake": "Small Camp - Soldiers",
+        "East of Cavalry Bridge": "Small Camp - Misbegotten",
+        "Minor Erdtree": "Sorcerer's Rise - Unlit Candle",
+        "Below Summonwater Hawk": "Church - Rats",
+        "Third Church": "Church - Normal",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Omen",
+        "Stormhill": "Bloodhound Knight",
+        "Highroad": "Beastmen of Farum Azula",
+        "East of Lake": "Godskin Noble",
+        "Mistwood": "Dragonkin Soldier",
+        "Northeast Tunnel Entrance": "Stoneskin Lords"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Erdtree Avatar",
+        "North of Murkwater Terminus": "Night's Cavalry",
+        "Stormhill Spectral Hawk": "Black Blade Kindred",
+        "Northwest Stormhill Cliffside": "Ancient Hero of Zamor",
+        "Mistwood Spectral Hawk": "Flying Dragon",
+        "North Mistwood": "Leonine Misbegotten",
+        "East of Murkwater Terminus": "Golden Hippopotamus",
+        "Northwest of Summonwater": "Grafted Scion"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": "Ruins North of Castle"
+    },
+    {
+      "field_0": 116,
+      "Nightlord": "Gnoster",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Below Summonwater Hawk",
+      "Special Event": null,
+      "Night 1 Boss": "Centipede Demon",
+      "Night 2 Boss": "Dragonkin Soldier",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northeast Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Ruins - Runebear",
+        "Alexander Spot": "Ruins - Depraved Perfumer",
+        "Northwest Stormhill": "Ruins - Depraved Perfumer",
+        "Northeast Stormhill": "Great Church - Fire Monk",
+        "South Mistwood": "Ruins - Runebear",
+        "Waypoint Ruins": "Camp - Royal Army Knights",
+        "Minor Erdtree": "Camp - Redmane Knights",
+        "West Mistwood": "Great Church - Fire Monk",
+        "Northwest Mistwood": "Fort - Guardian Golem",
+        "Artist's Shack": "Camp - Elder Lion",
+        "Northeast Mistwood": "Fort - Crystalians",
+        "Summonwater Approach": "Ruins - Albinauric Archers",
+        "Summonwater": "Great Church - Oracle Envoys"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Church - Normal",
+        "West of Warmaster's Shack": "Township - Township",
+        "Southeast of Lake": "Sorcerer's Rise - Unlit Candle",
+        "East of Cavalry Bridge": "Church - Normal",
+        "Minor Erdtree": "Church - Normal",
+        "Below Summonwater Hawk": "Small Camp - Demi-Humans",
+        "Third Church": "Small Camp - Dogs",
+        "Northeast of Saintsbridge": "Small Camp - Caravans"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Crystalians",
+        "Stormhill": "Grave Warden Duelist",
+        "Highroad": "Crucible Knight with Sword",
+        "East of Lake": "Nox Warriors",
+        "Mistwood": "Godskin Noble",
+        "Northeast Tunnel Entrance": "Beastmen of Farum Azula"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Red Wolf",
+        "North of Murkwater Terminus": "Leonine Misbegotten",
+        "Stormhill Spectral Hawk": "Bell Bearing Hunter",
+        "Northwest Stormhill Cliffside": "Night's Cavalry",
+        "Mistwood Spectral Hawk": "Royal Carian Knight",
+        "North Mistwood": "Golden Hippopotamus",
+        "East of Murkwater Terminus": "Demi-Human Queen",
+        "Northwest of Summonwater": "Black Blade Kindred"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 117,
+      "Nightlord": "Gnoster",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "East of Cavalry Bridge",
+      "Special Event": "Day 2 Morgott Invasion",
+      "Night 1 Boss": "Battlefield Commander",
+      "Night 2 Boss": "Great Wyrm",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "West Stormhill Graveyard",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Ruins - Depraved Perfumer",
+        "Alexander Spot": "Fort - Abductor Virgin",
+        "Northwest Stormhill": "Camp - Flame Chariots",
+        "Northeast Stormhill": "Camp - Elder Lion",
+        "South Mistwood": "Camp - Elder Lion",
+        "Waypoint Ruins": "Great Church - Mausoleum Knight",
+        "Minor Erdtree": "Ruins - Albinaurics",
+        "West Mistwood": "Fort - Lordsworn Captain",
+        "Northwest Mistwood": "Ruins - Depraved Perfumer",
+        "Artist's Shack": "Great Church - Mausoleum Knight",
+        "Northeast Mistwood": "Camp - Redmane Knights",
+        "Summonwater Approach": "Great Church - Fire Monk",
+        "Summonwater": "Ruins - Erdtree Burial Watchdogs"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Church - Normal",
+        "West of Warmaster's Shack": "Sorcerer's Rise - Windy Trees",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Small Camp - Demi-Humans",
+        "Minor Erdtree": "Church - Normal",
+        "Below Summonwater Hawk": "Township - Township",
+        "Third Church": "Small Camp - Guilty",
+        "Northeast of Saintsbridge": "Sorcerer's Rise - Fog Door"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Banished Knights",
+        "Stormhill": "Beastly Brigade",
+        "Highroad": "Godskin Noble",
+        "East of Lake": "Bloodhound Knight",
+        "Mistwood": "Beastmen of Farum Azula",
+        "Northeast Tunnel Entrance": "Crucible Knight with Spear"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Miranda Blossom",
+        "North of Murkwater Terminus": "Royal Revenant",
+        "Stormhill Spectral Hawk": "Draconic Tree Sentinel",
+        "Northwest Stormhill Cliffside": "Demi-Human Queen",
+        "Mistwood Spectral Hawk": "Tree Sentinel",
+        "North Mistwood": "Black Knife Assassin",
+        "East of Murkwater Terminus": "Grafted Scion",
+        "Northwest of Summonwater": "Ulcerated Tree Spirit"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 118,
+      "Nightlord": "Gnoster",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "West of Warmaster's Shack",
+      "Special Event": null,
+      "Night 1 Boss": "Tibia Mariner",
+      "Night 2 Boss": "Great Wyrm",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "West Stormhill Graveyard",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Great Church - Oracle Envoys",
+        "Alexander Spot": "Ruins - Beastmen of Farum Azula",
+        "Northwest Stormhill": "Camp - Elder Lion",
+        "Northeast Stormhill": "Camp - Leonine Misbegotten",
+        "South Mistwood": "Fort - Lordsworn Captain",
+        "Waypoint Ruins": "Ruins - Albinauric Archers",
+        "Minor Erdtree": "Ruins - Battlemages",
+        "West Mistwood": "Ruins - Beastmen of Farum Azula",
+        "Northwest Mistwood": "Great Church - Mausoleum Knight",
+        "Artist's Shack": "Fort - Abductor Virgin",
+        "Northeast Mistwood": "Camp - Redmane Knights",
+        "Summonwater Approach": "Camp - Redmane Knights",
+        "Summonwater": "Ruins - Albinauric Archers"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Sorcerer's Rise - Withered Trees",
+        "West of Warmaster's Shack": "Small Camp - Shack",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Small Camp - Caravans",
+        "Minor Erdtree": "Small Camp - Soldiers",
+        "Below Summonwater Hawk": "Sorcerer's Rise - Windy Trees",
+        "Third Church": "Church - Normal",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Godskin Duo",
+        "Stormhill": "Nox Warriors",
+        "Highroad": "Grave Warden Duelist",
+        "East of Lake": "Crucible Knight with Sword",
+        "Mistwood": "Banished Knights",
+        "Northeast Tunnel Entrance": "Godskin Noble"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Demi-Human Queen",
+        "North of Murkwater Terminus": "Flying Dragon",
+        "Stormhill Spectral Hawk": "Golden Hippopotamus",
+        "Northwest Stormhill Cliffside": "Draconic Tree Sentinel",
+        "Mistwood Spectral Hawk": "Elder Lion",
+        "North Mistwood": "Night's Cavalry",
+        "East of Murkwater Terminus": "Black Blade Kindred",
+        "Northwest of Summonwater": "Leonine Misbegotten"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 119,
+      "Nightlord": "Gnoster",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Southeast of Lake",
+      "Special Event": null,
+      "Night 1 Boss": "Smelter Demon",
+      "Night 2 Boss": "Dragonkin Soldier",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "West Stormhill Graveyard",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Great Church - Fire Monk",
+        "Alexander Spot": "Ruins - Wormface",
+        "Northwest Stormhill": "Camp - Flame Chariots",
+        "Northeast Stormhill": "Ruins - Albinaurics",
+        "South Mistwood": "Fort - Crystalians",
+        "Waypoint Ruins": "Fort - Abductor Virgin",
+        "Minor Erdtree": "Ruins - Albinaurics",
+        "West Mistwood": "Camp - Frenzied Flame Troll",
+        "Northwest Mistwood": "Fort - Abductor Virgin",
+        "Artist's Shack": "Ruins - Sanguine Noble",
+        "Northeast Mistwood": "Great Church - Oracle Envoys",
+        "Summonwater Approach": "Camp - Leonine Misbegotten",
+        "Summonwater": "Great Church - Fire Monk"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Small Camp - Caravans",
+        "West of Warmaster's Shack": "Church - Normal",
+        "Southeast of Lake": "Small Camp - Demi-Humans",
+        "East of Cavalry Bridge": "Church - Normal",
+        "Minor Erdtree": "Sorcerer's Rise - Imp Statue",
+        "Below Summonwater Hawk": "Small Camp - Soldiers",
+        "Third Church": "Sorcerer's Rise - Windy Trees",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Beastly Brigade",
+        "Stormhill": "Nox Warriors",
+        "Highroad": "Crucible Knight with Sword",
+        "East of Lake": "Beastmen of Farum Azula",
+        "Mistwood": "Godskin Noble",
+        "Northeast Tunnel Entrance": "Bloodhound Knight"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Flying Dragon",
+        "North of Murkwater Terminus": "Grafted Scion",
+        "Stormhill Spectral Hawk": "Death Rite Bird",
+        "Northwest Stormhill Cliffside": "Miranda Blossom",
+        "Mistwood Spectral Hawk": "Leonine Misbegotten",
+        "North Mistwood": "Royal Revenant",
+        "East of Murkwater Terminus": "Night's Cavalry",
+        "Northwest of Summonwater": "Ulcerated Tree Spirit"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 155,
+      "Nightlord": "Maris",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "West of Warmaster's Shack",
+      "Special Event": null,
+      "Night 1 Boss": "Grafted Monarch",
+      "Night 2 Boss": "Godskin Duo",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northeast Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Great Church - Oracle Envoys",
+        "Alexander Spot": "Camp - Redmane Knights",
+        "Northwest Stormhill": "Ruins - Battlemages",
+        "Northeast Stormhill": "Fort - Guardian Golem",
+        "South Mistwood": "Ruins - Albinaurics",
+        "Waypoint Ruins": "Camp - Royal Army Knights",
+        "Minor Erdtree": "Camp - Royal Army Knights",
+        "West Mistwood": "Ruins - Sanguine Noble",
+        "Northwest Mistwood": "Ruins - Sanguine Noble",
+        "Artist's Shack": "Fort - Abductor Virgin",
+        "Northeast Mistwood": "Great Church - Mausoleum Knight",
+        "Summonwater Approach": "Ruins - Sanguine Noble",
+        "Summonwater": "Camp - Leonine Misbegotten"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Church - Normal",
+        "West of Warmaster's Shack": "Small Camp - Foot Soldiers",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Sorcerer's Rise - Fleeing Stump",
+        "Minor Erdtree": "Small Camp - Dogs and Soldiers",
+        "Below Summonwater Hawk": "Church - Normal",
+        "Third Church": "Sorcerer's Rise - Unlit Candle",
+        "Northeast of Saintsbridge": "Small Camp - Caravans"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Godskin Noble",
+        "Stormhill": "Banished Knights",
+        "Highroad": "Crystalians",
+        "East of Lake": "Beastmen of Farum Azula",
+        "Mistwood": "Dragonkin Soldier",
+        "Northeast Tunnel Entrance": "Beastly Brigade"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Elder Lion",
+        "North of Murkwater Terminus": "Black Knife Assassin",
+        "Stormhill Spectral Hawk": "Night's Cavalry",
+        "Northwest Stormhill Cliffside": "Ulcerated Tree Spirit",
+        "Mistwood Spectral Hawk": "Tree Sentinel",
+        "North Mistwood": "Grafted Scion",
+        "East of Murkwater Terminus": "Bell Bearing Hunter",
+        "Northwest of Summonwater": "Miranda Blossom"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 156,
+      "Nightlord": "Maris",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Above Stormhill Tunnel Entrance",
+      "Special Event": "Day 2 Night Horde",
+      "Night 1 Boss": "Gaping Dragon",
+      "Night 2 Boss": "Fallingstar Beast",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "West Stormhill Graveyard",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Great Church - Oracle Envoys",
+        "Alexander Spot": "Camp - Banished Knights",
+        "Northwest Stormhill": "Ruins - Albinauric Archers",
+        "Northeast Stormhill": "Fort - Abductor Virgin",
+        "South Mistwood": "Great Church - Mausoleum Knight",
+        "Waypoint Ruins": "Ruins - Erdtree Burial Watchdogs",
+        "Minor Erdtree": "Fort - Abductor Virgin",
+        "West Mistwood": "Camp - Royal Army Knights",
+        "Northwest Mistwood": "Great Church - Oracle Envoys",
+        "Artist's Shack": "Ruins - Erdtree Burial Watchdogs",
+        "Northeast Mistwood": "Ruins - Runebear",
+        "Summonwater Approach": "Camp - Leonine Misbegotten",
+        "Summonwater": "Fort - Guardian Golem"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Small Camp - Shack",
+        "West of Warmaster's Shack": "Church - Normal",
+        "Southeast of Lake": "Sorcerer's Rise - Unlit Candle",
+        "East of Cavalry Bridge": "Small Camp - Caravans",
+        "Minor Erdtree": "Sorcerer's Rise - Fog Door",
+        "Below Summonwater Hawk": "Church - Normal",
+        "Third Church": "Small Camp - Guilty",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Beastmen of Farum Azula",
+        "Stormhill": "Beastly Brigade",
+        "Highroad": "Stoneskin Lords",
+        "East of Lake": "Crucible Knight with Sword",
+        "Mistwood": "Godskin Noble",
+        "Northeast Tunnel Entrance": "Nox Warriors"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Leonine Misbegotten",
+        "North of Murkwater Terminus": "Golden Hippopotamus",
+        "Stormhill Spectral Hawk": "Miranda Blossom",
+        "Northwest Stormhill Cliffside": "Royal Carian Knight",
+        "Mistwood Spectral Hawk": "Demi-Human Queen",
+        "North Mistwood": "Bell Bearing Hunter",
+        "East of Murkwater Terminus": "Red Wolf",
+        "Northwest of Summonwater": "Magma Wyrm"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 157,
+      "Nightlord": "Maris",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Southeast of Lake",
+      "Special Event": null,
+      "Night 1 Boss": "Valiant Gargoyle",
+      "Night 2 Boss": "Tree Sentinel and Royal Cavalrymen",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northeast Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Ruins - Ancient Heroes of Zamor",
+        "Alexander Spot": "Ruins - Ancient Heroes of Zamor",
+        "Northwest Stormhill": "Camp - Elder Lion",
+        "Northeast Stormhill": "Ruins - Runebear",
+        "South Mistwood": "Ruins - Ancient Heroes of Zamor",
+        "Waypoint Ruins": "Fort - Crystalians",
+        "Minor Erdtree": "Great Church - Guardian Golem",
+        "West Mistwood": "Camp - Flame Chariots",
+        "Northwest Mistwood": "Camp - Banished Knights",
+        "Artist's Shack": "Fort - Lordsworn Captain",
+        "Northeast Mistwood": "Ruins - Sanguine Noble",
+        "Summonwater Approach": "Camp - Banished Knights",
+        "Summonwater": "Great Church - Mausoleum Knight"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Church - Normal",
+        "West of Warmaster's Shack": "Small Camp - Soldiers",
+        "Southeast of Lake": "Small Camp - Demi-Humans",
+        "East of Cavalry Bridge": "Township - Township",
+        "Minor Erdtree": "Small Camp - Caravans",
+        "Below Summonwater Hawk": "Church - Normal",
+        "Third Church": "Sorcerer's Rise - Above Door",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Grave Warden Duelist",
+        "Stormhill": "Godskin Noble",
+        "Highroad": "Nox Warriors",
+        "East of Lake": "Stoneskin Lords",
+        "Mistwood": "Crucible Knight with Spear",
+        "Northeast Tunnel Entrance": "Beastmen of Farum Azula"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Bell Bearing Hunter",
+        "North of Murkwater Terminus": "Flying Dragon",
+        "Stormhill Spectral Hawk": "Ancient Hero of Zamor",
+        "Northwest Stormhill Cliffside": "Night's Cavalry",
+        "Mistwood Spectral Hawk": "Ulcerated Tree Spirit",
+        "North Mistwood": "Grafted Scion",
+        "East of Murkwater Terminus": "Miranda Blossom",
+        "Northwest of Summonwater": "Demi-Human Queen"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": "Northwest Corner"
+    },
+    {
+      "field_0": 158,
+      "Nightlord": "Maris",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Northeast of Saintsbridge",
+      "Special Event": "Day 1 Gnoster Plague",
+      "Night 1 Boss": "Smelter Demon",
+      "Night 2 Boss": "Fallingstar Beast",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "West Stormhill Graveyard",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Great Church - Oracle Envoys",
+        "Alexander Spot": "Ruins - Battlemages",
+        "Northwest Stormhill": "Camp - Redmane Knights",
+        "Northeast Stormhill": "Camp - Flame Chariots",
+        "South Mistwood": "Ruins - Albinauric Archers",
+        "Waypoint Ruins": "Fort - Abductor Virgin",
+        "Minor Erdtree": "Camp - Royal Army Knights",
+        "West Mistwood": "Great Church - Mausoleum Knight",
+        "Northwest Mistwood": "Fort - Lordsworn Captain",
+        "Artist's Shack": "Ruins - Albinauric Archers",
+        "Northeast Mistwood": "Ruins - Ancient Heroes of Zamor",
+        "Summonwater Approach": "Great Church - Oracle Envoys",
+        "Summonwater": "Camp - Royal Army Knights"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Church - Normal",
+        "West of Warmaster's Shack": "Small Camp - Caravans",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Small Camp - Dogs and Soldiers",
+        "Minor Erdtree": "Sorcerer's Rise - Above Door",
+        "Below Summonwater Hawk": "Church - Normal",
+        "Third Church": "Sorcerer's Rise - Fog Door",
+        "Northeast of Saintsbridge": "Church - Rats"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Beastmen of Farum Azula",
+        "Stormhill": "Dragonkin Soldier",
+        "Highroad": "Nox Warriors",
+        "East of Lake": "Stoneskin Lords",
+        "Mistwood": "Omen",
+        "Northeast Tunnel Entrance": "Godskin Apostle"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Erdtree Avatar",
+        "North of Murkwater Terminus": "Black Knife Assassin",
+        "Stormhill Spectral Hawk": "Ancestor Spirit",
+        "Northwest Stormhill Cliffside": "Royal Revenant",
+        "Mistwood Spectral Hawk": "Miranda Blossom",
+        "North Mistwood": "Royal Carian Knight",
+        "East of Murkwater Terminus": "Red Wolf",
+        "Northwest of Summonwater": "Night's Cavalry"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": "Southeast Lakeshore"
+    },
+    {
+      "field_0": 159,
+      "Nightlord": "Maris",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "West of Warmaster's Shack",
+      "Special Event": null,
+      "Night 1 Boss": "Wormface",
+      "Night 2 Boss": "Godskin Duo",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "West Stormhill Graveyard",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Fort - Guardian Golem",
+        "Alexander Spot": "Great Church - Fire Monk",
+        "Northwest Stormhill": "Camp - Royal Army Knights",
+        "Northeast Stormhill": "Camp - Elder Lion",
+        "South Mistwood": "Ruins - Battlemages",
+        "Waypoint Ruins": "Fort - Guardian Golem",
+        "Minor Erdtree": "Great Church - Oracle Envoys",
+        "West Mistwood": "Camp - Royal Army Knights",
+        "Northwest Mistwood": "Fort - Lordsworn Captain",
+        "Artist's Shack": "Ruins - Albinauric Archers",
+        "Northeast Mistwood": "Ruins - Albinauric Archers",
+        "Summonwater Approach": "Camp - Redmane Knights",
+        "Summonwater": "Ruins - Runebear"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Church - Normal",
+        "West of Warmaster's Shack": "Small Camp - Rats and Demi-Humans",
+        "Southeast of Lake": "Sorcerer's Rise - Missing Statue",
+        "East of Cavalry Bridge": "Township - Township",
+        "Minor Erdtree": "Church - Normal",
+        "Below Summonwater Hawk": "Small Camp - Soldiers",
+        "Third Church": "Small Camp - Guilty",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Omen",
+        "Stormhill": "Godskin Apostle",
+        "Highroad": "Bloodhound Knight",
+        "East of Lake": "Dragonkin Soldier",
+        "Mistwood": "Stoneskin Lords",
+        "Northeast Tunnel Entrance": "Death Rite Bird"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Royal Revenant",
+        "North of Murkwater Terminus": "Miranda Blossom",
+        "Stormhill Spectral Hawk": "Leonine Misbegotten",
+        "Northwest Stormhill Cliffside": "Royal Carian Knight",
+        "Mistwood Spectral Hawk": "Ulcerated Tree Spirit",
+        "North Mistwood": "Night's Cavalry",
+        "East of Murkwater Terminus": "Bell Bearing Hunter",
+        "Northwest of Summonwater": "Elder Lion"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 195,
+      "Nightlord": "Libra",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Below Summonwater Hawk",
+      "Special Event": "Frenzy Tower",
+      "Night 1 Boss": "Battlefield Commander",
+      "Night 2 Boss": "Godskin Duo",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northwest Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Camp - Leonine Misbegotten",
+        "Alexander Spot": "Camp - Banished Knights",
+        "Northwest Stormhill": "Ruins - Wormface",
+        "Northeast Stormhill": "Ruins - Depraved Perfumer",
+        "South Mistwood": "Great Church - Oracle Envoys",
+        "Waypoint Ruins": "Camp - Banished Knights",
+        "Minor Erdtree": "Ruins - Battlemages",
+        "West Mistwood": "Great Church - Mausoleum Knight",
+        "Northwest Mistwood": "Fort - Lordsworn Captain",
+        "Artist's Shack": "Ruins - Wormface",
+        "Northeast Mistwood": "Camp - Elder Lion",
+        "Summonwater Approach": "Camp - Elder Lion",
+        "Summonwater": "Fort - Guardian Golem"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Small Camp - Misbegotten",
+        "West of Warmaster's Shack": "Church - Normal",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Small Camp - Caravans",
+        "Minor Erdtree": "Township - Township",
+        "Below Summonwater Hawk": "Small Camp - Rats and Demi-Humans",
+        "Third Church": "Church - Normal",
+        "Northeast of Saintsbridge": "Sorcerer's Rise - Fake Building"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Nox Warriors",
+        "Stormhill": "Godskin Apostle",
+        "Highroad": "Beastly Brigade",
+        "East of Lake": "Grave Warden Duelist",
+        "Mistwood": "Banished Knights",
+        "Northeast Tunnel Entrance": "Crucible Knight with Sword"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Flying Dragon",
+        "North of Murkwater Terminus": "Draconic Tree Sentinel",
+        "Stormhill Spectral Hawk": "Night's Cavalry",
+        "Northwest Stormhill Cliffside": "Royal Revenant",
+        "Mistwood Spectral Hawk": "Royal Carian Knight",
+        "North Mistwood": "Golden Hippopotamus",
+        "East of Murkwater Terminus": "Demi-Human Queen",
+        "Northwest of Summonwater": "Elder Lion"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": "North",
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 196,
+      "Nightlord": "Libra",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "East of Cavalry Bridge",
+      "Special Event": "Day 1 Gnoster Plague",
+      "Night 1 Boss": "The Duke's Dear Freja",
+      "Night 2 Boss": "Crucible Knight and Golden Hippopotamus",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northeast Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Ruins - Perfumer",
+        "Alexander Spot": "Ruins - Wormface",
+        "Northwest Stormhill": "Camp - Royal Army Knights",
+        "Northeast Stormhill": "Camp - Redmane Knights",
+        "South Mistwood": "Fort - Abductor Virgin",
+        "Waypoint Ruins": "Great Church - Fire Monk",
+        "Minor Erdtree": "Camp - Flame Chariots",
+        "West Mistwood": "Great Church - Guardian Golem",
+        "Northwest Mistwood": "Great Church - Fire Monk",
+        "Artist's Shack": "Camp - Redmane Knights",
+        "Northeast Mistwood": "Fort - Abductor Virgin",
+        "Summonwater Approach": "Fort - Crystalians",
+        "Summonwater": "Ruins - Sanguine Noble"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Small Camp - Caravans",
+        "West of Warmaster's Shack": "Church - Normal",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Small Camp - Rats and Demi-Humans",
+        "Minor Erdtree": "Small Camp - Dogs",
+        "Below Summonwater Hawk": "Sorcerer's Rise - Withered Trees",
+        "Third Church": "Church - Normal",
+        "Northeast of Saintsbridge": "Small Camp - Guilty"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Ancient Dragon",
+        "Stormhill": "Crucible Knight with Spear",
+        "Highroad": "Bloodhound Knight",
+        "East of Lake": "Nox Warriors",
+        "Mistwood": "Omen",
+        "Northeast Tunnel Entrance": "Crucible Knight with Sword"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Magma Wyrm",
+        "North of Murkwater Terminus": "Death Rite Bird",
+        "Stormhill Spectral Hawk": "Ancient Hero of Zamor",
+        "Northwest Stormhill Cliffside": "Leonine Misbegotten",
+        "Mistwood Spectral Hawk": "Red Wolf",
+        "North Mistwood": "Black Blade Kindred",
+        "East of Murkwater Terminus": "Black Knife Assassin",
+        "Northwest of Summonwater": "Elder Lion"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 197,
+      "Nightlord": "Libra",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "West of Warmaster's Shack",
+      "Special Event": null,
+      "Night 1 Boss": "Centipede Demon",
+      "Night 2 Boss": "Crucible Knight and Golden Hippopotamus",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "West Stormhill Graveyard",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Great Church - Mausoleum Knight",
+        "Alexander Spot": "Great Church - Mausoleum Knight",
+        "Northwest Stormhill": "Fort - Crystalians",
+        "Northeast Stormhill": "Ruins - Runebear",
+        "South Mistwood": "Fort - Guardian Golem",
+        "Waypoint Ruins": "Camp - Royal Army Knights",
+        "Minor Erdtree": "Camp - Frenzied Flame Troll",
+        "West Mistwood": "Ruins - Wormface",
+        "Northwest Mistwood": "Great Church - Guardian Golem",
+        "Artist's Shack": "Fort - Guardian Golem",
+        "Northeast Mistwood": "Camp - Redmane Knights",
+        "Summonwater Approach": "Camp - Frenzied Flame Troll",
+        "Summonwater": "Ruins - Perfumer"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Church - Normal",
+        "West of Warmaster's Shack": "Church - Rats",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Sorcerer's Rise - Missing Statue",
+        "Minor Erdtree": "Small Camp - Dogs and Soldiers",
+        "Below Summonwater Hawk": "Church - Normal",
+        "Third Church": "Small Camp - Dogs",
+        "Northeast of Saintsbridge": "Sorcerer's Rise - Above Door"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Crystalians",
+        "Stormhill": "Godskin Duo",
+        "Highroad": "Godskin Apostle",
+        "East of Lake": "Bloodhound Knight",
+        "Mistwood": "Omen",
+        "Northeast Tunnel Entrance": "Godskin Noble"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Grafted Scion",
+        "North of Murkwater Terminus": "Ancestor Spirit",
+        "Stormhill Spectral Hawk": "Royal Revenant",
+        "Northwest Stormhill Cliffside": "Flying Dragon",
+        "Mistwood Spectral Hawk": "Elder Lion",
+        "North Mistwood": "Draconic Tree Sentinel",
+        "East of Murkwater Terminus": "Leonine Misbegotten",
+        "Northwest of Summonwater": "Ancient Hero of Zamor"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 198,
+      "Nightlord": "Libra",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Southeast of Lake",
+      "Special Event": null,
+      "Night 1 Boss": "Tibia Mariner",
+      "Night 2 Boss": "Death Rite Bird",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northwest Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Ruins - Beastmen of Farum Azula",
+        "Alexander Spot": "Camp - Royal Army Knights",
+        "Northwest Stormhill": "Great Church - Fire Monk",
+        "Northeast Stormhill": "Fort - Abductor Virgin",
+        "South Mistwood": "Camp - Leonine Misbegotten",
+        "Waypoint Ruins": "Great Church - Guardian Golem",
+        "Minor Erdtree": "Ruins - Wormface",
+        "West Mistwood": "Fort - Abductor Virgin",
+        "Northwest Mistwood": "Camp - Leonine Misbegotten",
+        "Artist's Shack": "Camp - Frenzied Flame Troll",
+        "Northeast Mistwood": "Great Church - Fire Monk",
+        "Summonwater Approach": "Ruins - Albinauric Archers",
+        "Summonwater": "Fort - Guardian Golem"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Sorcerer's Rise - Above Door",
+        "West of Warmaster's Shack": "Church - Normal",
+        "Southeast of Lake": "Small Camp - Shack",
+        "East of Cavalry Bridge": "Small Camp - Caravans",
+        "Minor Erdtree": "Church - Normal",
+        "Below Summonwater Hawk": "Small Camp - Soldiers",
+        "Third Church": "Township - Township",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Beastmen of Farum Azula",
+        "Stormhill": "Godskin Apostle",
+        "Highroad": "Beastly Brigade",
+        "East of Lake": "Nox Warriors",
+        "Mistwood": "Stoneskin Lords",
+        "Northeast Tunnel Entrance": "Crucible Knight with Sword"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Miranda Blossom",
+        "North of Murkwater Terminus": "Elder Lion",
+        "Stormhill Spectral Hawk": "Ancestor Spirit",
+        "Northwest Stormhill Cliffside": "Demi-Human Queen",
+        "Mistwood Spectral Hawk": "Flying Dragon",
+        "North Mistwood": "Night's Cavalry",
+        "East of Murkwater Terminus": "Magma Wyrm",
+        "Northwest of Summonwater": "Red Wolf"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 199,
+      "Nightlord": "Libra",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Above Stormhill Tunnel Entrance",
+      "Special Event": null,
+      "Night 1 Boss": "Royal Revenant",
+      "Night 2 Boss": "Death Rite Bird",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northeast Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Great Church - Guardian Golem",
+        "Alexander Spot": "Ruins - Depraved Perfumer",
+        "Northwest Stormhill": "Fort - Lordsworn Captain",
+        "Northeast Stormhill": "Ruins - Albinauric Archers",
+        "South Mistwood": "Great Church - Mausoleum Knight",
+        "Waypoint Ruins": "Camp - Redmane Knights",
+        "Minor Erdtree": "Camp - Frenzied Flame Troll",
+        "West Mistwood": "Ruins - Runebear",
+        "Northwest Mistwood": "Ruins - Depraved Perfumer",
+        "Artist's Shack": "Fort - Crystalians",
+        "Northeast Mistwood": "Fort - Crystalians",
+        "Summonwater Approach": "Camp - Flame Chariots",
+        "Summonwater": "Ruins - Runebear"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Church - Rats",
+        "West of Warmaster's Shack": "Small Camp - Dogs and Soldiers",
+        "Southeast of Lake": "Small Camp - Dogs",
+        "East of Cavalry Bridge": "Church - Normal",
+        "Minor Erdtree": "Sorcerer's Rise - Windy Trees",
+        "Below Summonwater Hawk": "Township - Township",
+        "Third Church": "Church - Normal",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Grave Warden Duelist",
+        "Stormhill": "Bloodhound Knight",
+        "Highroad": "Crucible Knight with Spear",
+        "East of Lake": "Stoneskin Lords",
+        "Mistwood": "Godskin Noble",
+        "Northeast Tunnel Entrance": "Omen"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Leonine Misbegotten",
+        "North of Murkwater Terminus": "Golden Hippopotamus",
+        "Stormhill Spectral Hawk": "Ancestor Spirit",
+        "Northwest Stormhill Cliffside": "Grafted Scion",
+        "Mistwood Spectral Hawk": "Demi-Human Queen",
+        "North Mistwood": "Black Blade Kindred",
+        "East of Murkwater Terminus": "Elder Lion",
+        "Northwest of Summonwater": "Bell Bearing Hunter"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 235,
+      "Nightlord": "Fulghor",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "East of Cavalry Bridge",
+      "Special Event": "Day 1 Night Horde",
+      "Night 1 Boss": "Wormface",
+      "Night 2 Boss": "Dragonkin Soldier",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northwest Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Ruins - Battlemages",
+        "Alexander Spot": "Ruins - Perfumer",
+        "Northwest Stormhill": "Fort - Crystalians",
+        "Northeast Stormhill": "Camp - Leonine Misbegotten",
+        "South Mistwood": "Great Church - Mausoleum Knight",
+        "Waypoint Ruins": "Fort - Abductor Virgin",
+        "Minor Erdtree": "Great Church - Guardian Golem",
+        "West Mistwood": "Camp - Banished Knights",
+        "Northwest Mistwood": "Camp - Frenzied Flame Troll",
+        "Artist's Shack": "Ruins - Sanguine Noble",
+        "Northeast Mistwood": "Ruins - Perfumer",
+        "Summonwater Approach": "Ruins - Sanguine Noble",
+        "Summonwater": "Ruins - Battlemages"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Township - Township",
+        "West of Warmaster's Shack": "Church - Normal",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Small Camp - Foot Soldiers",
+        "Minor Erdtree": "Small Camp - Dogs",
+        "Below Summonwater Hawk": "Sorcerer's Rise - Pool Reflection",
+        "Third Church": "Small Camp - Caravans",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Crucible Knight with Spear",
+        "Stormhill": "Banished Knights",
+        "Highroad": "Crystalians",
+        "East of Lake": "Godskin Apostle",
+        "Mistwood": "Beastly Brigade",
+        "Northeast Tunnel Entrance": "Omen"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Tree Sentinel",
+        "North of Murkwater Terminus": "Golden Hippopotamus",
+        "Stormhill Spectral Hawk": "Draconic Tree Sentinel",
+        "Northwest Stormhill Cliffside": "Grafted Scion",
+        "Mistwood Spectral Hawk": "Royal Revenant",
+        "North Mistwood": "Black Blade Kindred",
+        "East of Murkwater Terminus": "Miranda Blossom",
+        "Northwest of Summonwater": "Elder Lion"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 236,
+      "Nightlord": "Fulghor",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "West of Warmaster's Shack",
+      "Special Event": null,
+      "Night 1 Boss": "Gaping Dragon",
+      "Night 2 Boss": "Nameless King",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "West Stormhill Graveyard",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Great Church - Oracle Envoys",
+        "Alexander Spot": "Ruins - Runebear",
+        "Northwest Stormhill": "Camp - Elder Lion",
+        "Northeast Stormhill": "Fort - Crystalians",
+        "South Mistwood": "Camp - Redmane Knights",
+        "Waypoint Ruins": "Ruins - Erdtree Burial Watchdogs",
+        "Minor Erdtree": "Ruins - Erdtree Burial Watchdogs",
+        "West Mistwood": "Fort - Abductor Virgin",
+        "Northwest Mistwood": "Ruins - Perfumer",
+        "Artist's Shack": "Camp - Flame Chariots",
+        "Northeast Mistwood": "Great Church - Oracle Envoys",
+        "Summonwater Approach": "Great Church - Mausoleum Knight",
+        "Summonwater": "Fort - Crystalians"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Small Camp - Misbegotten",
+        "West of Warmaster's Shack": "Small Camp - Rats and Demi-Humans",
+        "Southeast of Lake": "Township - Township",
+        "East of Cavalry Bridge": "Church - Normal",
+        "Minor Erdtree": "Sorcerer's Rise - Fog Door",
+        "Below Summonwater Hawk": "Sorcerer's Rise - Imp Statue",
+        "Third Church": "Church - Normal",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Nox Warriors",
+        "Stormhill": "Dragonkin Soldier",
+        "Highroad": "Omen",
+        "East of Lake": "Stoneskin Lords",
+        "Mistwood": "Beastmen of Farum Azula",
+        "Northeast Tunnel Entrance": "Crucible Knight with Spear"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Red Wolf",
+        "North of Murkwater Terminus": "Ancient Hero of Zamor",
+        "Stormhill Spectral Hawk": "Tree Sentinel",
+        "Northwest Stormhill Cliffside": "Miranda Blossom",
+        "Mistwood Spectral Hawk": "Death Rite Bird",
+        "North Mistwood": "Black Knife Assassin",
+        "East of Murkwater Terminus": "Magma Wyrm",
+        "Northwest of Summonwater": "Night's Cavalry"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": "East of Saintsbridge"
+    },
+    {
+      "field_0": 237,
+      "Nightlord": "Fulghor",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "West of Warmaster's Shack",
+      "Special Event": null,
+      "Night 1 Boss": "Royal Revenant",
+      "Night 2 Boss": "Outland Commander",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northeast Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Great Church - Mausoleum Knight",
+        "Alexander Spot": "Camp - Leonine Misbegotten",
+        "Northwest Stormhill": "Ruins - Erdtree Burial Watchdogs",
+        "Northeast Stormhill": "Camp - Elder Lion",
+        "South Mistwood": "Fort - Guardian Golem",
+        "Waypoint Ruins": "Camp - Elder Lion",
+        "Minor Erdtree": "Great Church - Oracle Envoys",
+        "West Mistwood": "Ruins - Runebear",
+        "Northwest Mistwood": "Ruins - Beastmen of Farum Azula",
+        "Artist's Shack": "Fort - Lordsworn Captain",
+        "Northeast Mistwood": "Camp - Frenzied Flame Troll",
+        "Summonwater Approach": "Ruins - Beastmen of Farum Azula",
+        "Summonwater": "Camp - Elder Lion"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Small Camp - Dogs and Soldiers",
+        "West of Warmaster's Shack": "Small Camp - Foot Soldiers",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Sorcerer's Rise - Windy Trees",
+        "Minor Erdtree": "Small Camp - Guilty",
+        "Below Summonwater Hawk": "Small Camp - Caravans",
+        "Third Church": "Church - Normal",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Crucible Knight with Sword",
+        "Stormhill": "Beastly Brigade",
+        "Highroad": "Stoneskin Lords",
+        "East of Lake": "Crucible Knight with Spear",
+        "Mistwood": "Godskin Duo",
+        "Northeast Tunnel Entrance": "Nox Warriors"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Flying Dragon",
+        "North of Murkwater Terminus": "Miranda Blossom",
+        "Stormhill Spectral Hawk": "Ancestor Spirit",
+        "Northwest Stormhill Cliffside": "Leonine Misbegotten",
+        "Mistwood Spectral Hawk": "Elder Lion",
+        "North Mistwood": "Night's Cavalry",
+        "East of Murkwater Terminus": "Grafted Scion",
+        "Northwest of Summonwater": "Draconic Tree Sentinel"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 238,
+      "Nightlord": "Fulghor",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "East of Cavalry Bridge",
+      "Special Event": null,
+      "Night 1 Boss": "Night's Cavalry Duo",
+      "Night 2 Boss": "Nameless King",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "West Stormhill Graveyard",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Fort - Abductor Virgin",
+        "Alexander Spot": "Camp - Royal Army Knights",
+        "Northwest Stormhill": "Ruins - Depraved Perfumer",
+        "Northeast Stormhill": "Great Church - Oracle Envoys",
+        "South Mistwood": "Fort - Lordsworn Captain",
+        "Waypoint Ruins": "Great Church - Guardian Golem",
+        "Minor Erdtree": "Camp - Elder Lion",
+        "West Mistwood": "Camp - Elder Lion",
+        "Northwest Mistwood": "Great Church - Oracle Envoys",
+        "Artist's Shack": "Ruins - Erdtree Burial Watchdogs",
+        "Northeast Mistwood": "Ruins - Albinaurics",
+        "Summonwater Approach": "Camp - Leonine Misbegotten",
+        "Summonwater": "Camp - Royal Army Knights"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Church - Normal",
+        "West of Warmaster's Shack": "Small Camp - Guilty",
+        "Southeast of Lake": "Sorcerer's Rise - Unlit Candle",
+        "East of Cavalry Bridge": "Small Camp - Rats and Demi-Humans",
+        "Minor Erdtree": "Church - Normal",
+        "Below Summonwater Hawk": "Small Camp - Caravans",
+        "Third Church": "Township - Township",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Godskin Apostle",
+        "Stormhill": "Banished Knights",
+        "Highroad": "Dragonkin Soldier",
+        "East of Lake": "Stoneskin Lords",
+        "Mistwood": "Godskin Duo",
+        "Northeast Tunnel Entrance": "Beastly Brigade"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Erdtree Avatar",
+        "North of Murkwater Terminus": "Leonine Misbegotten",
+        "Stormhill Spectral Hawk": "Ancient Hero of Zamor",
+        "Northwest Stormhill Cliffside": "Miranda Blossom",
+        "Mistwood Spectral Hawk": "Royal Revenant",
+        "North Mistwood": "Tree Sentinel",
+        "East of Murkwater Terminus": "Black Blade Kindred",
+        "Northwest of Summonwater": "Elder Lion"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 239,
+      "Nightlord": "Fulghor",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "East of Cavalry Bridge",
+      "Special Event": "Day 2 Libra Curse",
+      "Night 1 Boss": "Centipede Demon",
+      "Night 2 Boss": "Outland Commander",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northeast Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Fort - Crystalians",
+        "Alexander Spot": "Camp - Frenzied Flame Troll",
+        "Northwest Stormhill": "Great Church - Oracle Envoys",
+        "Northeast Stormhill": "Camp - Banished Knights",
+        "South Mistwood": "Ruins - Wormface",
+        "Waypoint Ruins": "Fort - Abductor Virgin",
+        "Minor Erdtree": "Great Church - Fire Monk",
+        "West Mistwood": "Fort - Abductor Virgin",
+        "Northwest Mistwood": "Camp - Redmane Knights",
+        "Artist's Shack": "Camp - Frenzied Flame Troll",
+        "Northeast Mistwood": "Ruins - Erdtree Burial Watchdogs",
+        "Summonwater Approach": "Camp - Redmane Knights",
+        "Summonwater": "Ruins - Beastmen of Farum Azula"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Small Camp - Soldiers",
+        "West of Warmaster's Shack": "Church - Normal",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Small Camp - Shack",
+        "Minor Erdtree": "Small Camp - Dogs and Soldiers",
+        "Below Summonwater Hawk": "Township - Township",
+        "Third Church": "Sorcerer's Rise - Pool Reflection",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Crystalians",
+        "Stormhill": "Godskin Noble",
+        "Highroad": "Beastmen of Farum Azula",
+        "East of Lake": "Grave Warden Duelist",
+        "Mistwood": "Nox Warriors",
+        "Northeast Tunnel Entrance": "Crucible Knight with Spear"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Black Knife Assassin",
+        "North of Murkwater Terminus": "Ancestor Spirit",
+        "Stormhill Spectral Hawk": "Golden Hippopotamus",
+        "Northwest Stormhill Cliffside": "Ulcerated Tree Spirit",
+        "Mistwood Spectral Hawk": "Night's Cavalry",
+        "North Mistwood": "Demi-Human Queen",
+        "East of Murkwater Terminus": "Erdtree Avatar",
+        "Northwest of Summonwater": "Elder Lion"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 275,
+      "Nightlord": "Caligo",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Minor Erdtree",
+      "Special Event": "Day 2 Maris Bubbles",
+      "Night 1 Boss": "Grafted Monarch",
+      "Night 2 Boss": "Godskin Duo",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northwest Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Great Church - Fire Monk",
+        "Alexander Spot": "Fort - Abductor Virgin",
+        "Northwest Stormhill": "Camp - Leonine Misbegotten",
+        "Northeast Stormhill": "Ruins - Erdtree Burial Watchdogs",
+        "South Mistwood": "Camp - Leonine Misbegotten",
+        "Waypoint Ruins": "Camp - Elder Lion",
+        "Minor Erdtree": "Fort - Lordsworn Captain",
+        "West Mistwood": "Great Church - Fire Monk",
+        "Northwest Mistwood": "Camp - Royal Army Knights",
+        "Artist's Shack": "Camp - Royal Army Knights",
+        "Northeast Mistwood": "Ruins - Ancient Heroes of Zamor",
+        "Summonwater Approach": "Great Church - Mausoleum Knight",
+        "Summonwater": "Ruins - Wormface"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Church - Normal",
+        "West of Warmaster's Shack": "Sorcerer's Rise - Withered Trees",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Church - Normal",
+        "Minor Erdtree": "Church - Rats",
+        "Below Summonwater Hawk": "Small Camp - Soldiers",
+        "Third Church": "Small Camp - Guilty",
+        "Northeast of Saintsbridge": "Small Camp - Soldiers"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Nox Warriors",
+        "Stormhill": "Beastly Brigade",
+        "Highroad": "Crystalians",
+        "East of Lake": "Grave Warden Duelist",
+        "Mistwood": "Godskin Apostle",
+        "Northeast Tunnel Entrance": "Crucible Knight with Spear"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Grafted Scion",
+        "North of Murkwater Terminus": "Demi-Human Queen",
+        "Stormhill Spectral Hawk": "Elder Lion",
+        "Northwest Stormhill Cliffside": "Black Blade Kindred",
+        "Mistwood Spectral Hawk": "Red Wolf",
+        "North Mistwood": "Royal Carian Knight",
+        "East of Murkwater Terminus": "Royal Revenant",
+        "Northwest of Summonwater": "Ulcerated Tree Spirit"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 276,
+      "Nightlord": "Caligo",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "West of Warmaster's Shack",
+      "Special Event": null,
+      "Night 1 Boss": "The Duke's Dear Freja",
+      "Night 2 Boss": "Dancer of the Boreal Valley",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northeast Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Fort - Guardian Golem",
+        "Alexander Spot": "Great Church - Fire Monk",
+        "Northwest Stormhill": "Camp - Frenzied Flame Troll",
+        "Northeast Stormhill": "Ruins - Albinauric Archers",
+        "South Mistwood": "Fort - Crystalians",
+        "Waypoint Ruins": "Camp - Banished Knights",
+        "Minor Erdtree": "Ruins - Sanguine Noble",
+        "West Mistwood": "Great Church - Guardian Golem",
+        "Northwest Mistwood": "Camp - Leonine Misbegotten",
+        "Artist's Shack": "Ruins - Erdtree Burial Watchdogs",
+        "Northeast Mistwood": "Great Church - Guardian Golem",
+        "Summonwater Approach": "Ruins - Sanguine Noble",
+        "Summonwater": "Fort - Guardian Golem"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Church - Normal",
+        "West of Warmaster's Shack": "Small Camp - Shack",
+        "Southeast of Lake": "Small Camp - Dogs and Soldiers",
+        "East of Cavalry Bridge": "Small Camp - Guilty",
+        "Minor Erdtree": "Church - Normal",
+        "Below Summonwater Hawk": "Sorcerer's Rise - Imp Statue",
+        "Third Church": "Small Camp - Dogs and Soldiers",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Beastmen of Farum Azula",
+        "Stormhill": "Nox Warriors",
+        "Highroad": "Dragonkin Soldier",
+        "East of Lake": "Grave Warden Duelist",
+        "Mistwood": "Godskin Apostle",
+        "Northeast Tunnel Entrance": "Bloodhound Knight"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Red Wolf",
+        "North of Murkwater Terminus": "Flying Dragon",
+        "Stormhill Spectral Hawk": "Miranda Blossom",
+        "Northwest Stormhill Cliffside": "Ulcerated Tree Spirit",
+        "Mistwood Spectral Hawk": "Leonine Misbegotten",
+        "North Mistwood": "Royal Carian Knight",
+        "East of Murkwater Terminus": "Night's Cavalry",
+        "Northwest of Summonwater": "Golden Hippopotamus"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": "East of Saintsbridge"
+    },
+    {
+      "field_0": 277,
+      "Nightlord": "Caligo",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "East of Cavalry Bridge",
+      "Special Event": null,
+      "Night 1 Boss": "Tibia Mariner",
+      "Night 2 Boss": "Draconic Tree Sentinel and Royal Cavalrymen",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northeast Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Camp - Royal Army Knights",
+        "Alexander Spot": "Camp - Royal Army Knights",
+        "Northwest Stormhill": "Fort - Abductor Virgin",
+        "Northeast Stormhill": "Ruins - Albinaurics",
+        "South Mistwood": "Camp - Frenzied Flame Troll",
+        "Waypoint Ruins": "Great Church - Mausoleum Knight",
+        "Minor Erdtree": "Ruins - Battlemages",
+        "West Mistwood": "Fort - Crystalians",
+        "Northwest Mistwood": "Fort - Crystalians",
+        "Artist's Shack": "Camp - Frenzied Flame Troll",
+        "Northeast Mistwood": "Camp - Redmane Knights",
+        "Summonwater Approach": "Ruins - Wormface",
+        "Summonwater": "Great Church - Guardian Golem"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Township - Township",
+        "West of Warmaster's Shack": "Church - Normal",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Church - Rats",
+        "Minor Erdtree": "Church - Normal",
+        "Below Summonwater Hawk": "Small Camp - Caravans",
+        "Third Church": "Small Camp - Dogs and Soldiers",
+        "Northeast of Saintsbridge": "Sorcerer's Rise - Above Door"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Grave Warden Duelist",
+        "Stormhill": "Dragonkin Soldier",
+        "Highroad": "Banished Knights",
+        "East of Lake": "Crucible Knight with Spear",
+        "Mistwood": "Nox Warriors",
+        "Northeast Tunnel Entrance": "Beastly Brigade"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Black Blade Kindred",
+        "North of Murkwater Terminus": "Grafted Scion",
+        "Stormhill Spectral Hawk": "Ancient Hero of Zamor",
+        "Northwest Stormhill Cliffside": "Miranda Blossom",
+        "Mistwood Spectral Hawk": "Death Rite Bird",
+        "North Mistwood": "Black Knife Assassin",
+        "East of Murkwater Terminus": "Bell Bearing Hunter",
+        "Northwest of Summonwater": "Elder Lion"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 278,
+      "Nightlord": "Caligo",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Minor Erdtree",
+      "Special Event": "Day 2 Meteor Strike",
+      "Night 1 Boss": "Ulcerated Tree Spirit",
+      "Night 2 Boss": "Draconic Tree Sentinel and Royal Cavalrymen",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northeast Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Ruins - Battlemages",
+        "Alexander Spot": "Fort - Lordsworn Captain",
+        "Northwest Stormhill": "Camp - Banished Knights",
+        "Northeast Stormhill": "Camp - Leonine Misbegotten",
+        "South Mistwood": "Great Church - Mausoleum Knight",
+        "Waypoint Ruins": "Ruins - Erdtree Burial Watchdogs",
+        "Minor Erdtree": "Fort - Crystalians",
+        "West Mistwood": "Fort - Lordsworn Captain",
+        "Northwest Mistwood": "Camp - Flame Chariots",
+        "Artist's Shack": "Great Church - Fire Monk",
+        "Northeast Mistwood": "Map Event - Northeast Mistwood",
+        "Summonwater Approach": "Great Church - Mausoleum Knight",
+        "Summonwater": "Ruins - Wormface"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Small Camp - Caravans",
+        "West of Warmaster's Shack": "Church - Normal",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Sorcerer's Rise - Imp Statue",
+        "Minor Erdtree": "Small Camp - Demi-Humans",
+        "Below Summonwater Hawk": "Sorcerer's Rise - Pool Reflection",
+        "Third Church": "Church - Normal",
+        "Northeast of Saintsbridge": "Small Camp - Misbegotten"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Banished Knights",
+        "Stormhill": "Godskin Apostle",
+        "Highroad": "Bloodhound Knight",
+        "East of Lake": "Omen",
+        "Mistwood": "Ancient Dragon",
+        "Northeast Tunnel Entrance": "Dragonkin Soldier"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Black Knife Assassin",
+        "North of Murkwater Terminus": "Magma Wyrm",
+        "Stormhill Spectral Hawk": "Night's Cavalry",
+        "Northwest Stormhill Cliffside": "Black Blade Kindred",
+        "Mistwood Spectral Hawk": "Demi-Human Queen",
+        "North Mistwood": "Royal Carian Knight",
+        "East of Murkwater Terminus": "Elder Lion",
+        "Northwest of Summonwater": "Golden Hippopotamus"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 279,
+      "Nightlord": "Caligo",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Northeast of Saintsbridge",
+      "Special Event": null,
+      "Night 1 Boss": "Smelter Demon",
+      "Night 2 Boss": "Dancer of the Boreal Valley",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northeast Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Camp - Banished Knights",
+        "Alexander Spot": "Camp - Royal Army Knights",
+        "Northwest Stormhill": "Ruins - Erdtree Burial Watchdogs",
+        "Northeast Stormhill": "Ruins - Erdtree Burial Watchdogs",
+        "South Mistwood": "Great Church - Mausoleum Knight",
+        "Waypoint Ruins": "Fort - Guardian Golem",
+        "Minor Erdtree": "Fort - Crystalians",
+        "West Mistwood": "Ruins - Runebear",
+        "Northwest Mistwood": "Ruins - Erdtree Burial Watchdogs",
+        "Artist's Shack": "Ruins - Beastmen of Farum Azula",
+        "Northeast Mistwood": "Camp - Frenzied Flame Troll",
+        "Summonwater Approach": "Great Church - Guardian Golem",
+        "Summonwater": "Ruins - Beastmen of Farum Azula"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Church - Normal",
+        "West of Warmaster's Shack": "Sorcerer's Rise - Unlit Candle",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Township - Township",
+        "Minor Erdtree": "Small Camp - Soldiers",
+        "Below Summonwater Hawk": "Church - Normal",
+        "Third Church": "Small Camp - Misbegotten",
+        "Northeast of Saintsbridge": "Small Camp - Demi-Humans"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Death Rite Bird",
+        "Stormhill": "Godskin Apostle",
+        "Highroad": "Crucible Knight with Spear",
+        "East of Lake": "Omen",
+        "Mistwood": "Crystalians",
+        "Northeast Tunnel Entrance": "Nox Warriors"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Grafted Scion",
+        "North of Murkwater Terminus": "Black Knife Assassin",
+        "Stormhill Spectral Hawk": "Red Wolf",
+        "Northwest Stormhill Cliffside": "Draconic Tree Sentinel",
+        "Mistwood Spectral Hawk": "Miranda Blossom",
+        "North Mistwood": "Death Rite Bird",
+        "East of Murkwater Terminus": "Magma Wyrm",
+        "Northwest of Summonwater": "Demi-Human Queen"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 315,
+      "Nightlord": "Heolstor",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Minor Erdtree",
+      "Special Event": null,
+      "Night 1 Boss": "Valiant Gargoyle",
+      "Night 2 Boss": "Dancer of the Boreal Valley",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northeast Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Camp - Banished Knights",
+        "Alexander Spot": "Great Church - Fire Monk",
+        "Northwest Stormhill": "Ruins - Runebear",
+        "Northeast Stormhill": "Ruins - Wormface",
+        "South Mistwood": "Ruins - Perfumer",
+        "Waypoint Ruins": "Fort - Abductor Virgin",
+        "Minor Erdtree": "Fort - Crystalians",
+        "West Mistwood": "Camp - Frenzied Flame Troll",
+        "Northwest Mistwood": "Fort - Crystalians",
+        "Artist's Shack": "Great Church - Fire Monk",
+        "Northeast Mistwood": "Camp - Frenzied Flame Troll",
+        "Summonwater Approach": "Great Church - Oracle Envoys",
+        "Summonwater": "Camp - Leonine Misbegotten"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Small Camp - Soldiers",
+        "West of Warmaster's Shack": "Church - Normal",
+        "Southeast of Lake": "Small Camp - Guilty",
+        "East of Cavalry Bridge": "Sorcerer's Rise - Withered Trees",
+        "Minor Erdtree": "Small Camp - Nobles and Soldiers",
+        "Below Summonwater Hawk": "Church - Normal",
+        "Third Church": "Sorcerer's Rise - Fleeing Stump",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Dragonkin Soldier",
+        "Stormhill": "Beastmen of Farum Azula",
+        "Highroad": "Stoneskin Lords",
+        "East of Lake": "Banished Knights",
+        "Mistwood": "Godskin Duo",
+        "Northeast Tunnel Entrance": "Crucible Knight with Sword"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Royal Revenant",
+        "North of Murkwater Terminus": "Miranda Blossom",
+        "Stormhill Spectral Hawk": "Grafted Scion",
+        "Northwest Stormhill Cliffside": "Draconic Tree Sentinel",
+        "Mistwood Spectral Hawk": "Demi-Human Queen",
+        "North Mistwood": "Royal Carian Knight",
+        "East of Murkwater Terminus": "Ulcerated Tree Spirit",
+        "Northwest of Summonwater": "Red Wolf"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 316,
+      "Nightlord": "Heolstor",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Minor Erdtree",
+      "Special Event": "Day 2 Maris Bubbles",
+      "Night 1 Boss": "Royal Revenant",
+      "Night 2 Boss": "Ancient Dragon",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northeast Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Great Church - Mausoleum Knight",
+        "Alexander Spot": "Great Church - Mausoleum Knight",
+        "Northwest Stormhill": "Fort - Abductor Virgin",
+        "Northeast Stormhill": "Ruins - Beastmen of Farum Azula",
+        "South Mistwood": "Camp - Frenzied Flame Troll",
+        "Waypoint Ruins": "Great Church - Fire Monk",
+        "Minor Erdtree": "Fort - Lordsworn Captain",
+        "West Mistwood": "Ruins - Wormface",
+        "Northwest Mistwood": "Ruins - Battlemages",
+        "Artist's Shack": "Fort - Abductor Virgin",
+        "Northeast Mistwood": "Camp - Royal Army Knights",
+        "Summonwater Approach": "Camp - Banished Knights",
+        "Summonwater": "Ruins - Battlemages"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Small Camp - Caravans",
+        "West of Warmaster's Shack": "Sorcerer's Rise - Fleeing Stump",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Church - Normal",
+        "Minor Erdtree": "Small Camp - Caravans and Nobles",
+        "Below Summonwater Hawk": "Sorcerer's Rise - Windy Trees",
+        "Third Church": "Church - Normal",
+        "Northeast of Saintsbridge": "Small Camp - Dogs and Soldiers"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Beastly Brigade",
+        "Stormhill": "Dragonkin Soldier",
+        "Highroad": "Bloodhound Knight",
+        "East of Lake": "Beastmen of Farum Azula",
+        "Mistwood": "Crucible Knight with Sword",
+        "Northeast Tunnel Entrance": "Stoneskin Lords"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Elder Lion",
+        "North of Murkwater Terminus": "Miranda Blossom",
+        "Stormhill Spectral Hawk": "Leonine Misbegotten",
+        "Northwest Stormhill Cliffside": "Royal Carian Knight",
+        "Mistwood Spectral Hawk": "Black Knife Assassin",
+        "North Mistwood": "Magma Wyrm",
+        "East of Murkwater Terminus": "Night's Cavalry",
+        "Northwest of Summonwater": "Ancestor Spirit"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 317,
+      "Nightlord": "Heolstor",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Below Summonwater Hawk",
+      "Special Event": null,
+      "Night 1 Boss": "Bell Bearing Hunter",
+      "Night 2 Boss": "Fallingstar Beast",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northwest Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Camp - Elder Lion",
+        "Alexander Spot": "Fort - Guardian Golem",
+        "Northwest Stormhill": "Great Church - Mausoleum Knight",
+        "Northeast Stormhill": "Ruins - Wormface",
+        "South Mistwood": "Fort - Abductor Virgin",
+        "Waypoint Ruins": "Camp - Flame Chariots",
+        "Minor Erdtree": "Camp - Leonine Misbegotten",
+        "West Mistwood": "Ruins - Perfumer",
+        "Northwest Mistwood": "Great Church - Mausoleum Knight",
+        "Artist's Shack": "Ruins - Albinaurics",
+        "Northeast Mistwood": "Great Church - Guardian Golem",
+        "Summonwater Approach": "Ruins - Albinaurics",
+        "Summonwater": "Fort - Guardian Golem"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Small Camp - Caravans",
+        "West of Warmaster's Shack": "Church - Normal",
+        "Southeast of Lake": "Small Camp - Dogs and Soldiers",
+        "East of Cavalry Bridge": "Township - Township",
+        "Minor Erdtree": "Sorcerer's Rise - Fake Building",
+        "Below Summonwater Hawk": "Small Camp - Wandering Nobles",
+        "Third Church": "Church - Normal",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Beastly Brigade",
+        "Stormhill": "Grave Warden Duelist",
+        "Highroad": "Crucible Knight with Spear",
+        "East of Lake": "Godskin Apostle",
+        "Mistwood": "Banished Knights",
+        "Northeast Tunnel Entrance": "Crystalians"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Death Rite Bird",
+        "North of Murkwater Terminus": "Black Knife Assassin",
+        "Stormhill Spectral Hawk": "Red Wolf",
+        "Northwest Stormhill Cliffside": "Elder Lion",
+        "Mistwood Spectral Hawk": "Ulcerated Tree Spirit",
+        "North Mistwood": "Royal Revenant",
+        "East of Murkwater Terminus": "Draconic Tree Sentinel",
+        "Northwest of Summonwater": "Night's Cavalry"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": "Ruins North of Castle"
+    },
+    {
+      "field_0": 318,
+      "Nightlord": "Heolstor",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Northeast of Saintsbridge",
+      "Special Event": null,
+      "Night 1 Boss": "Ulcerated Tree Spirit",
+      "Night 2 Boss": "Death Rite Bird",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "Northeast Corner",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Ruins - Wormface",
+        "Alexander Spot": "Ruins - Wormface",
+        "Northwest Stormhill": "Great Church - Mausoleum Knight",
+        "Northeast Stormhill": "Camp - Flame Chariots",
+        "South Mistwood": "Camp - Banished Knights",
+        "Waypoint Ruins": "Great Church - Mausoleum Knight",
+        "Minor Erdtree": "Fort - Guardian Golem",
+        "West Mistwood": "Ruins - Albinauric Archers",
+        "Northwest Mistwood": "Camp - Flame Chariots",
+        "Artist's Shack": "Camp - Redmane Knights",
+        "Northeast Mistwood": "Great Church - Guardian Golem",
+        "Summonwater Approach": "Fort - Abductor Virgin",
+        "Summonwater": "Ruins - Erdtree Burial Watchdogs"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Church - Normal",
+        "West of Warmaster's Shack": "Small Camp - Soldiers",
+        "Southeast of Lake": "Church - Normal",
+        "East of Cavalry Bridge": "Township - Township",
+        "Minor Erdtree": "Church - Normal",
+        "Below Summonwater Hawk": "Sorcerer's Rise - Above Door",
+        "Third Church": "Sorcerer's Rise - Fog Door",
+        "Northeast of Saintsbridge": "Small Camp - Rats and Demi-Humans"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Bloodhound Knight",
+        "Stormhill": "Dragonkin Soldier",
+        "Highroad": "Beastmen of Farum Azula",
+        "East of Lake": "Godskin Apostle",
+        "Mistwood": "Grave Warden Duelist",
+        "Northeast Tunnel Entrance": "Nox Warriors"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Erdtree Avatar",
+        "North of Murkwater Terminus": "Tree Sentinel",
+        "Stormhill Spectral Hawk": "Red Wolf",
+        "Northwest Stormhill Cliffside": "Leonine Misbegotten",
+        "Mistwood Spectral Hawk": "Night's Cavalry",
+        "North Mistwood": "Demi-Human Queen",
+        "East of Murkwater Terminus": "Magma Wyrm",
+        "Northwest of Summonwater": "Miranda Blossom"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    },
+    {
+      "field_0": 319,
+      "Nightlord": "Heolstor",
+      "Shifting Earth": "Noklateo",
+      "Spawn Point": "Below Summonwater Hawk",
+      "Special Event": "Day 2 Libra Curse",
+      "Night 1 Boss": "Grafted Monarch",
+      "Night 2 Boss": "Nameless King",
+      "Extra Night Boss": null,
+      "Night 1 Circle": "West Stormhill Graveyard",
+      "Night 2 Circle": "Noklateo Entrance",
+      "Castle": {
+        "Castle": null
+      },
+      "Major Base": {
+        "South Lake": null,
+        "Groveside": null,
+        "Gatefront": null,
+        "Stormhill North of Gate": "Ruins - Erdtree Burial Watchdogs",
+        "Alexander Spot": "Camp - Royal Army Knights",
+        "Northwest Stormhill": "Camp - Leonine Misbegotten",
+        "Northeast Stormhill": "Camp - Flame Chariots",
+        "South Mistwood": "Camp - Royal Army Knights",
+        "Waypoint Ruins": "Ruins - Sanguine Noble",
+        "Minor Erdtree": "Ruins - Battlemages",
+        "West Mistwood": "Camp - Flame Chariots",
+        "Northwest Mistwood": "Great Church - Oracle Envoys",
+        "Artist's Shack": "Fort - Lordsworn Captain",
+        "Northeast Mistwood": "Fort - Lordsworn Captain",
+        "Summonwater Approach": "Fort - Guardian Golem",
+        "Summonwater": "Great Church - Fire Monk"
+      },
+      "Minor Base": {
+        "Far Southwest": null,
+        "Lake": null,
+        "Stormhill South of Gate": null,
+        "Above Stormhill Tunnel Entrance": "Church - Normal",
+        "West of Warmaster's Shack": "Small Camp - Dogs",
+        "Southeast of Lake": "Small Camp - Soldiers",
+        "East of Cavalry Bridge": "Township - Township",
+        "Minor Erdtree": "Sorcerer's Rise - Unlit Candle",
+        "Below Summonwater Hawk": "Small Camp - Caravans and Nobles",
+        "Third Church": "Church - Normal",
+        "Northeast of Saintsbridge": "Church - Normal"
+      },
+      "Evergaol": {
+        "Northwest of Lake": null,
+        "Murkwater Terminus": "Crucible Knight with Sword",
+        "Stormhill": "Nox Warriors",
+        "Highroad": "Crucible Knight with Spear",
+        "East of Lake": "Grave Warden Duelist",
+        "Mistwood": "Beastly Brigade",
+        "Northeast Tunnel Entrance": "Crystalians"
+      },
+      "Arena Boss": {
+        "Castle Basement": null
+      },
+      "Field Boss": {
+        "Castle Rooftop": null,
+        "Far Southwest of Lake": null,
+        "Lake": null,
+        "North of Stormhill Tunnel Entrance": "Magma Wyrm",
+        "North of Murkwater Terminus": "Leonine Misbegotten",
+        "Stormhill Spectral Hawk": "Black Blade Kindred",
+        "Northwest Stormhill Cliffside": "Red Wolf",
+        "Mistwood Spectral Hawk": "Golden Hippopotamus",
+        "North Mistwood": "Ancient Hero of Zamor",
+        "East of Murkwater Terminus": "Bell Bearing Hunter",
+        "Northwest of Summonwater": "Grafted Scion"
+      },
+      "Rotted Woods": {
+        "Southwest": null,
+        "Southeast": null,
+        "Center West": null,
+        "Center East": null,
+        "Far Northwest": null,
+        "Northwest": null,
+        "Northeast": null,
+        "Far Northeast": null
+      },
+      "Rot Blessing": null,
+      "Frenzy Tower": null,
+      "Scale-Bearing Merchant": null
+    }
+  ]
+}
