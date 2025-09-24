@@ -1,3 +1,5 @@
+#pragma once
+
 #ifdef WIN32
 #include <glad/glad.h>
 #elif defined(__EMSCRIPTEN__)

@@ -1,11 +1,10 @@
 #include "MapViewer.h"
 #include "GLUtils.h"
-#include "nlohmann/json.hpp"
-#include <fstream>
 #include <algorithm>
 #include <string>
-#include <SDL_log.h>
-#include "AssetUtils.h"
+#include <imgui.h>
+
+static constexpr glm::vec2 ZOOM_RANGE(1, 5);
 
 void MapViewer::InitImagePipeline() {
     float vertices[] = {
@@ -72,10 +71,10 @@ void MapViewer::DrawMap(const glm::mat4& vpMat) {
 }
 
 void MapViewer::DrawIcon(const glm::mat4& vpMat, const std::string& name, glm::ivec2 pos) {
-    auto iter = m_IconMap.find(name);
-    if (iter == m_IconMap.end())
+    auto iconRect = m_Atlas->GetRect(Icons_::BOSS);
+    if (!iconRect)
         return;
-    glm::ivec2 size(iter->second.z, iter->second.w);
+    glm::ivec2 size(iconRect->z, iconRect->w);
 
     glm::mat4 modelMatrix = glm::mat4(1.f);
     modelMatrix = glm::scale(modelMatrix, glm::vec3(size, 1.f));
@@ -85,7 +84,7 @@ void MapViewer::DrawIcon(const glm::mat4& vpMat, const std::string& name, glm::i
     GLint mvpLoc = glGetUniformLocation(m_ImagePipeline, "mvp");
     glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(mvpMatrix));
 
-    glm::vec2 texOffset(iter->second.x, iter->second.y);
+    glm::vec2 texOffset(iconRect->x, iconRect->y);
     texOffset /= m_IconsSize;
     glm::vec2 texSize(size);
     texSize /= m_IconsSize;
@@ -106,52 +105,48 @@ void MapViewer::DrawIcon(const glm::mat4& vpMat, const std::string& name, glm::i
     glBindVertexArray(0);
 }
 
-glm::vec2 MapViewer::GetViewSize(const glm::ivec2& viewPort) const {
-    float aspect = 1.f * viewPort.x / viewPort.y;
-    glm::vec2 viewSize(m_MapSize);
-    if (aspect > 1.0f)
-        viewSize.x *= aspect;
-    else
-        viewSize.y /= aspect;
+glm::vec2 MapViewer::GetViewSize() const {
+    return m_OriginViewSize / m_Transform.zoom;;
+}
 
-    return viewSize / m_View.zoom;;
+glm::vec2 MapViewer::Normalize(const glm::vec2& pos) const {
+    glm::vec2 vsize = GetViewSize();
+    float mapdeltax = (pos.x - m_Viewport.x) * (vsize.x / m_Viewport.z);
+    float mapdeltay = (pos.y - m_Viewport.y) * (vsize.y / m_Viewport.w);
+    return glm::vec2(mapdeltax, mapdeltay);
+}
+
+glm::vec2 MapViewer::Screen2Map(const glm::vec2& pos) const {
+    glm::vec2 vsize = GetViewSize();
+    // map center to view center
+    glm::vec2 mc2vc(m_Transform.offset.x, -m_Transform.offset.y);
+    // view zero(left top) to current point
+    glm::vec2 v02c = Normalize(pos);
+    // view center to current point
+    glm::vec2 vc2c = v02c - vsize / 2.f;
+    return vc2c + mc2vc + glm::vec2(m_MapSize) / 2.f;
+}
+
+void MapViewer::OnResizeMap() {
+    float aspect = 1.f * m_Viewport.z / m_Viewport.w;
+    m_OriginViewSize = m_MapSize;
+    if (aspect > 1.0f)
+        m_OriginViewSize.x *= aspect;
+    else
+        m_OriginViewSize.y /= aspect;
 }
 
 void MapViewer::Initialize() {
     InitImagePipeline();
 
-    m_MapTexture = LoadTexture(
-        GetTexPath(Maps_::ROTTED_WOODS).c_str(),
-        m_MapSize.x, m_MapSize.y, true);
     m_IconsTexture = LoadTexture(
         GetTexPath("icons").c_str(),
         m_IconsSize.x, m_IconsSize.y, true);
+    m_Atlas = CreateAtlasMgr<IconMgr>("icons.json");
 
-    do {
-        using json = nlohmann::json;
+    ReloadMap(Maps_::ROTTED_WOODS);
 
-        json iconConfig;
-        auto path = GetDataPath("icons.json");
-        std::ifstream jsonFile(path);
-        if (!jsonFile.is_open()) {
-            SDL_Log("Could not open the file %s\n", path.c_str());
-            break;
-        }
-        jsonFile >> iconConfig;
-
-        if (!iconConfig.is_array())
-            break;
-
-        for (size_t i = 0; i < iconConfig.size(); i++) {
-            auto name = iconConfig[i].at("type").get<std::string>();
-            glm::ivec4 rect;
-            auto offsetField = iconConfig[i].at("offset").get<std::string>();
-            auto sizeField = iconConfig[i].at("size").get<std::string>();
-            sscanf(offsetField.c_str(), "%d,%d", &rect.x, &rect.y);
-            sscanf(sizeField.c_str(), "%d,%d", &rect.z, &rect.w);
-            m_IconMap[name] = rect;
-        }
-    } while (false);
+    vReset();
 }
 
 void MapViewer::Cleanup() {
@@ -159,17 +154,11 @@ void MapViewer::Cleanup() {
     glDeleteBuffers(1, &m_ImageVBO);
     glDeleteBuffers(1, &m_ImageEBO);
     glDeleteProgram(m_ImagePipeline);
-
-    glDeleteTextures(1, &m_MapTexture);
 }
 
-void MapViewer::Render(const glm::vec2& viewPort) {
-    glm::vec2 viewSize = GetViewSize(viewPort);
-
-    glm::vec2 pos(0, 0);
-    glm::vec2 offset(0, 0);
-    offset.x = viewSize.x * m_View.offset.x / viewPort.x;
-    offset.y = viewSize.y * m_View.offset.y / viewPort.y;
+void MapViewer::Render() {
+    glm::vec2 viewSize = GetViewSize();
+    glm::vec2 offset = m_Transform.offset;
     
     glm::mat4 projMatrix = glm::ortho(
         offset.x - viewSize.x/2.f, offset.x + viewSize.x/2.f,
@@ -188,10 +177,59 @@ void MapViewer::Render(const glm::vec2& viewPort) {
     DrawIcon(vpMat, Icons_::ROT_BLESSING, {0, 0});
 }
 
-void MapViewer::Constrain(const glm::vec2& viewPort) {
-    m_View.zoom = glm::clamp(m_View.zoom, 1.f, 5.f);
+void MapViewer::RenderImGui() {
+    ImGui::Separator();
+    const auto& mpos = ImGui::GetIO().MousePos;
+    auto mappos = Screen2Map(glm::vec2(mpos.x, mpos.y));
+    ImGui::Text("地图坐标 : %d,%d", (int)mappos.x, (int)mappos.y);
+    auto& view = m_Transform;
+    ImGui::SliderFloat("缩放", &view.zoom, ZOOM_RANGE.x, ZOOM_RANGE.y);
+    ImGui::DragFloat2("偏移", glm::value_ptr(view.offset), 2);
+}
 
-    glm::vec2 viewSize = GetViewSize(viewPort);
-    glm::ivec2 range = m_MapSize - glm::ivec2(viewSize);
-    m_View.offset = glm::clamp(m_View.offset, -range / 2, range / 2);
+void MapViewer::Constrain() {
+    m_Transform.zoom = glm::clamp(m_Transform.zoom,
+        ZOOM_RANGE.x, ZOOM_RANGE.y);
+
+    glm::vec2 viewOffset = glm::vec2(m_MapSize) - GetViewSize();
+    glm::vec2 range = glm::abs(viewOffset) / 2.f;
+    m_Transform.offset = glm::clamp(m_Transform.offset, -range, range);
+}
+
+void MapViewer::SetViewport(const glm::ivec4& viewport) {
+    m_Viewport = viewport;
+    vReset();
+    OnResizeMap();
+}
+
+void MapViewer::ReloadMap(const char* mapName) {
+    if (m_MapTexture != 0) {
+        glDeleteTextures(1, &m_MapTexture);
+        m_MapTexture = 0;
+    }
+    m_MapTexture = LoadTexture(
+        GetTexPath(mapName).c_str(),
+        m_MapSize.x, m_MapSize.y, true);
+    vReset();
+    OnResizeMap();
+}
+
+void MapViewer::vZoom(float value) {
+    m_Transform.zoom += value;
+}
+
+void MapViewer::vMove(int x, int y) {
+    glm::vec2 offset(x, y);
+    m_Transform.offset += Normalize(offset);
+}
+
+void MapViewer::vReset() {
+    m_Transform.zoom = 1.f;
+    m_Transform.offset = glm::vec2(0, 0);
+}
+
+bool MapViewer::TestPoint(int x, int y) const {
+    const auto& vp = m_Viewport;
+    return x > vp.x && x < vp.x + vp.z
+        && y > vp.y && y < vp.y + vp.w;
 }

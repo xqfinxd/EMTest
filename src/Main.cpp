@@ -50,6 +50,7 @@ protected:
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         m_MapViewer.Initialize();
+        m_MapViewer.SetViewport(glm::ivec4(0,0,m_Size.x,m_Size.y));
 
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
@@ -58,14 +59,10 @@ protected:
 
         auto& io = ImGui::GetIO();
         io.IniFilename = nullptr;
-        //io.Fonts->AddFontFromFileTTF("assets/DroidSans.ttf", 16);
-        //io.Fonts->AddFontDefault();
+        io.Fonts->AddFontFromFileTTF(GetDataPath("msyh.ttc").c_str(), 14,
+            nullptr, io.Fonts->GetGlyphRangesChineseFull());
+        io.Fonts->Build();
         io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-    }
-
-    bool MouseInMap(int x, int y) const {
-        return x > 0 && x < m_ViewPort.x
-            && y > 0 && y < m_ViewPort.y;
     }
 
     void ProcessInput() override {
@@ -73,42 +70,44 @@ protected:
         while (SDL_PollEvent(&event)) {
             ImGui_ImplSDL2_ProcessEvent(&event);
 
-            auto& view = m_MapViewer.GetView();
             switch (event.type) {
             case SDL_QUIT:
                 Stop();
                 break;
             case SDL_MOUSEWHEEL:
-                if (MouseInMap(event.wheel.mouseX, event.wheel.mouseY)) {
+                if (m_MapViewer.TestPoint(event.wheel.mouseX,
+                    event.wheel.mouseY)) {
                     if (event.wheel.y > 0)
-                        view.zoom += 1.f;
+                        m_MapViewer.vZoom(1.f);
                     else if (event.wheel.y < 0)
-                        view.zoom -= 1.f;
+                        m_MapViewer.vZoom(-1.f);
                 }
                 break;
             case SDL_MOUSEBUTTONDOWN:
                 if (event.button.button == SDL_BUTTON_LEFT
                     && event.button.clicks == 1
-                    && MouseInMap(event.button.x, event.button.y))
+                    && m_MapViewer.TestPoint(event.button.x,
+                        event.button.y)) {
                     m_IsDrag = true;
+                }
+                    
                 break;
             case SDL_MOUSEBUTTONUP:
                 if (event.button.button == SDL_BUTTON_MIDDLE)
-                    view.Reset();
+                    m_MapViewer.vReset();
                 if (event.button.button == SDL_BUTTON_LEFT)
                     m_IsDrag = false;
                 break;
             case SDL_MOUSEMOTION:
                 if (m_IsDrag) {
-                    view.offset += glm::ivec2(
-                        -event.motion.xrel, event.motion.yrel);
+                    m_MapViewer.vMove(-event.motion.xrel, event.motion.yrel);
                 }
                 break;
             }
         }
     }
     void Update(float deltaTime) override {
-        m_MapViewer.Constrain(m_ViewPort);
+        m_MapViewer.Constrain();
     }
 
     void RenderImGui() {
@@ -120,7 +119,7 @@ protected:
         // 窗口的 ID 和 标题
         ImGuiID dockID = ImGui::GetID("##ui.dock_space");
         const char* UI_ROOT_WINDOW = "##ui.root";
-        const char* UI_PROPERTY_BOX = "Property##ui.property";
+        const char* UI_PROPERTY_BOX = "视图##ui.property";
         const char* UI_VIEW_BOX = "##ui.view";
 
         const ImGuiViewport* viewport = ImGui::GetMainViewport();
@@ -195,18 +194,16 @@ protected:
         ImGui::PopStyleVar(3); // 弹出样式设置
         {
             auto framerate = ImGui::GetIO().Framerate;
-            ImGui::Text("FPS: %.1f", framerate);
+            ImGui::TextColored(ImVec4(0,1,0,1), "帧率: %.1f", framerate);
         }
         ImGui::End();
         
         // 右侧边栏
         ImGui::Begin(UI_PROPERTY_BOX, nullptr, ImGuiWindowFlags_NoCollapse);
         {
-            ImGui::ColorEdit4("bg color", glm::value_ptr(m_BgColor));
+            ImGui::ColorEdit4("背景颜色", glm::value_ptr(m_BgColor));
 
-            auto& view = m_MapViewer.GetView();
-            ImGui::SliderFloat("zoom", &view.zoom, m_ZoomRange.x, m_ZoomRange.y);
-            ImGui::DragInt2("offset", glm::value_ptr(view.offset), 2);
+            m_MapViewer.RenderImGui();
         }
 
         ImGui::End();
@@ -216,9 +213,7 @@ protected:
     }
 
     void RenderGL() {
-        glViewport(0, 0, m_ViewPort.x, m_ViewPort.y);
-        m_MapViewer.Render(m_ViewPort);
-        glViewport(0, 0, m_Size.x, m_Size.y);
+        m_MapViewer.Render();
     }
 
     void Render() override {
@@ -261,7 +256,7 @@ private:
     SDL_GLContext m_Context = nullptr;
 
     glm::ivec2 m_Size = { 800, 600 };
-    glm::ivec2 m_ViewPort = { 600, 600 };
+    glm::ivec2 m_ViewPort = { 800, 600 };
     glm::vec2 m_ZoomRange = { 1.f, 5.f };
     glm::vec4 m_BgColor = { 0.8f,0.8f,0.8f,1 };
     

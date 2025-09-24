@@ -1,3 +1,5 @@
+#pragma once
+
 #ifdef WIN32
 #include <glad/glad.h>
 #elif defined(__EMSCRIPTEN__)
@@ -8,52 +10,57 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <vector>
 #include <iostream>
-#include <unordered_map>
+#include <memory>
 
 #include "MapDefines.h"
+#include "AssetUtils.h"
 
 class MapViewer {
 public:
-    struct View {
-        glm::ivec2 offset;
+    struct Transform {
+        glm::vec2 offset{ 0,0 };
         float zoom = 1.0f;
-
-        void Reset() {
-            zoom = 1.f;
-            offset = glm::vec2(0, 0);
-        }
     };
 
 private:
-    using IconMap = std::unordered_map<std::string, glm::ivec4>;
-    GLuint m_ImagePipeline;
+    GLuint m_ImagePipeline = 0;
     GLuint m_ImageVAO = 0;
     GLuint m_ImageVBO = 0;
     GLuint m_ImageEBO = 0;
 
     GLuint m_MapTexture = 0;
-    glm::ivec2 m_MapSize;
+    glm::ivec2 m_MapSize{};
 
     GLuint m_IconsTexture = 0;
     glm::ivec2 m_IconsSize;
-    IconMap m_IconMap;
 
-    View m_View;
+    Transform m_Transform;
+    glm::ivec4 m_Viewport{};
+    glm::vec2 m_OriginViewSize{};
+
+    std::unique_ptr<IconMgr> m_Atlas;
 
     void InitImagePipeline();
     void DrawMap(const glm::mat4& vpMat);
     void DrawIcon(const glm::mat4& vpMat, const std::string& name, glm::ivec2 pos);
 
-    glm::vec2 GetViewSize(const glm::ivec2& viewPort) const;
+    glm::vec2 GetViewSize() const;
+    glm::vec2 Normalize(const glm::vec2& pos) const;
+    glm::vec2 Screen2Map(const glm::vec2& pos) const;
+    void OnResizeMap();
 
 public:
     void Initialize();
     void Cleanup();
-    void Render(const glm::vec2& viewPort);
-    void Constrain(const glm::vec2& viewPort);
+    void Render();
+    void RenderImGui();
+    void Constrain();
 
-    View& GetView() { return m_View; }
-    const View& GetView() const {
-        return const_cast<MapViewer*>(this)->GetView();
-    }
+    void SetViewport(const glm::ivec4& viewport);
+    void ReloadMap(const char* mapName);
+
+    void vZoom(float value);
+    void vMove(int x, int y);
+    void vReset();
+    bool TestPoint(int x, int y) const;
 };

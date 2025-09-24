@@ -1,3 +1,4 @@
+#pragma once
 
 struct Icons_ {
     constexpr static const char* SPAWN_POINT = "Spawn Point";
