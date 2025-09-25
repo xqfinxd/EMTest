@@ -1,281 +1,6 @@
-{
-  "fields": [
+[
     {
-      "field_name": "field_0",
-      "description": ""
-    },
-    {
-      "field_name": "Nightlord",
-      "description": ""
-    },
-    {
-      "field_name": "Shifting Earth",
-      "description": ""
-    },
-    {
-      "field_name": "Spawn Point",
-      "description": ""
-    },
-    {
-      "field_name": "Special Event",
-      "description": ""
-    },
-    {
-      "field_name": "Night 1 Boss",
-      "description": ""
-    },
-    {
-      "field_name": "Night 2 Boss",
-      "description": ""
-    },
-    {
-      "field_name": "Extra Night Boss",
-      "description": ""
-    },
-    {
-      "field_name": "Night 1 Circle",
-      "description": ""
-    },
-    {
-      "field_name": "Night 2 Circle",
-      "description": ""
-    },
-    {
-      "field_name": "Castle",
-      "description": "Castle"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "South Lake"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Groveside"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Gatefront"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Stormhill North of Gate"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Alexander Spot"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Northwest Stormhill"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Northeast Stormhill"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "South Mistwood"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Waypoint Ruins"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Minor Erdtree"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "West Mistwood"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Northwest Mistwood"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Artist's Shack"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Northeast Mistwood"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Summonwater Approach"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Summonwater"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "Far Southwest"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "Lake"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "Stormhill South of Gate"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "Above Stormhill Tunnel Entrance"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "West of Warmaster's Shack"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "Southeast of Lake"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "East of Cavalry Bridge"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "Minor Erdtree"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "Below Summonwater Hawk"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "Third Church"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "Northeast of Saintsbridge"
-    },
-    {
-      "field_name": "Evergaol",
-      "description": "Northwest of Lake"
-    },
-    {
-      "field_name": "Evergaol",
-      "description": "Murkwater Terminus"
-    },
-    {
-      "field_name": "Evergaol",
-      "description": "Stormhill"
-    },
-    {
-      "field_name": "Evergaol",
-      "description": "Highroad"
-    },
-    {
-      "field_name": "Evergaol",
-      "description": "East of Lake"
-    },
-    {
-      "field_name": "Evergaol",
-      "description": "Mistwood"
-    },
-    {
-      "field_name": "Evergaol",
-      "description": "Northeast Tunnel Entrance"
-    },
-    {
-      "field_name": "Arena Boss",
-      "description": "Castle Basement"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "Castle Rooftop"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "Far Southwest of Lake"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "Lake"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "North of Stormhill Tunnel Entrance"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "North of Murkwater Terminus"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "Stormhill Spectral Hawk"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "Northwest Stormhill Cliffside"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "Mistwood Spectral Hawk"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "North Mistwood"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "East of Murkwater Terminus"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "Northwest of Summonwater"
-    },
-    {
-      "field_name": "Rotted Woods",
-      "description": "Southwest"
-    },
-    {
-      "field_name": "Rotted Woods",
-      "description": "Southeast"
-    },
-    {
-      "field_name": "Rotted Woods",
-      "description": "Center West"
-    },
-    {
-      "field_name": "Rotted Woods",
-      "description": "Center East"
-    },
-    {
-      "field_name": "Rotted Woods",
-      "description": "Far Northwest"
-    },
-    {
-      "field_name": "Rotted Woods",
-      "description": "Northwest"
-    },
-    {
-      "field_name": "Rotted Woods",
-      "description": "Northeast"
-    },
-    {
-      "field_name": "Rotted Woods",
-      "description": "Far Northeast"
-    },
-    {
-      "field_name": "Rot Blessing",
-      "description": ""
-    },
-    {
-      "field_name": "Frenzy Tower",
-      "description": ""
-    },
-    {
-      "field_name": "Scale-Bearing Merchant",
-      "description": ""
-    }
-  ],
-  "data": [
-    {
-      "field_0": 30,
+      "index": 30,
       "Nightlord": "Gladius",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Below Summonwater Hawk",
@@ -359,7 +84,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 31,
+      "index": 31,
       "Nightlord": "Gladius",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "West of Warmaster's Shack",
@@ -443,7 +168,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 32,
+      "index": 32,
       "Nightlord": "Gladius",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Below Summonwater Hawk",
@@ -527,7 +252,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 33,
+      "index": 33,
       "Nightlord": "Gladius",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Below Summonwater Hawk",
@@ -611,7 +336,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 34,
+      "index": 34,
       "Nightlord": "Gladius",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Stormhill South of Gate",
@@ -695,7 +420,7 @@
       "Scale-Bearing Merchant": "Northwest Corner"
     },
     {
-      "field_0": 70,
+      "index": 70,
       "Nightlord": "Adel",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -779,7 +504,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 71,
+      "index": 71,
       "Nightlord": "Adel",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Below Summonwater Hawk",
@@ -863,7 +588,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 72,
+      "index": 72,
       "Nightlord": "Adel",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Stormhill South of Gate",
@@ -947,7 +672,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 73,
+      "index": 73,
       "Nightlord": "Adel",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Below Summonwater Hawk",
@@ -1031,7 +756,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 74,
+      "index": 74,
       "Nightlord": "Adel",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Stormhill South of Gate",
@@ -1115,7 +840,7 @@
       "Scale-Bearing Merchant": "East of Saintsbridge"
     },
     {
-      "field_0": 110,
+      "index": 110,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Far Southwest",
@@ -1199,7 +924,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 111,
+      "index": 111,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Far Southwest",
@@ -1283,7 +1008,7 @@
       "Scale-Bearing Merchant": "South of Castle"
     },
     {
-      "field_0": 112,
+      "index": 112,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -1367,7 +1092,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 113,
+      "index": 113,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -1451,7 +1176,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 114,
+      "index": 114,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "West of Warmaster's Shack",
@@ -1535,7 +1260,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 150,
+      "index": 150,
       "Nightlord": "Maris",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Far Southwest",
@@ -1619,7 +1344,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 151,
+      "index": 151,
       "Nightlord": "Maris",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "West of Warmaster's Shack",
@@ -1703,7 +1428,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 152,
+      "index": 152,
       "Nightlord": "Maris",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Far Southwest",
@@ -1787,7 +1512,7 @@
       "Scale-Bearing Merchant": "Southwest Corner"
     },
     {
-      "field_0": 153,
+      "index": 153,
       "Nightlord": "Maris",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Below Summonwater Hawk",
@@ -1871,7 +1596,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 154,
+      "index": 154,
       "Nightlord": "Maris",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Stormhill South of Gate",
@@ -1955,7 +1680,7 @@
       "Scale-Bearing Merchant": "Northeast Corner"
     },
     {
-      "field_0": 190,
+      "index": 190,
       "Nightlord": "Libra",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Far Southwest",
@@ -2039,7 +1764,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 191,
+      "index": 191,
       "Nightlord": "Libra",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Far Southwest",
@@ -2123,7 +1848,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 192,
+      "index": 192,
       "Nightlord": "Libra",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -2207,7 +1932,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 193,
+      "index": 193,
       "Nightlord": "Libra",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "West of Warmaster's Shack",
@@ -2291,7 +2016,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 194,
+      "index": 194,
       "Nightlord": "Libra",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Below Summonwater Hawk",
@@ -2375,7 +2100,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 230,
+      "index": 230,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Stormhill South of Gate",
@@ -2459,7 +2184,7 @@
       "Scale-Bearing Merchant": "Northwest Corner"
     },
     {
-      "field_0": 231,
+      "index": 231,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -2543,7 +2268,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 232,
+      "index": 232,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Below Summonwater Hawk",
@@ -2627,7 +2352,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 233,
+      "index": 233,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -2711,7 +2436,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 234,
+      "index": 234,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Stormhill South of Gate",
@@ -2795,7 +2520,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 270,
+      "index": 270,
       "Nightlord": "Caligo",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -2879,7 +2604,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 271,
+      "index": 271,
       "Nightlord": "Caligo",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Stormhill South of Gate",
@@ -2963,7 +2688,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 272,
+      "index": 272,
       "Nightlord": "Caligo",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -3047,7 +2772,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 273,
+      "index": 273,
       "Nightlord": "Caligo",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -3131,7 +2856,7 @@
       "Scale-Bearing Merchant": "Southwest Corner"
     },
     {
-      "field_0": 274,
+      "index": 274,
       "Nightlord": "Caligo",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "West of Warmaster's Shack",
@@ -3215,7 +2940,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 310,
+      "index": 310,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Below Summonwater Hawk",
@@ -3299,7 +3024,7 @@
       "Scale-Bearing Merchant": "East of Saintsbridge"
     },
     {
-      "field_0": 311,
+      "index": 311,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "West of Warmaster's Shack",
@@ -3383,7 +3108,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 312,
+      "index": 312,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "West of Warmaster's Shack",
@@ -3467,7 +3192,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 313,
+      "index": 313,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -3551,7 +3276,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 314,
+      "index": 314,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Rotted Woods",
       "Spawn Point": "Stormhill South of Gate",
@@ -3634,5 +3359,4 @@
       "Frenzy Tower": null,
       "Scale-Bearing Merchant": null
     }
-  ]
-}
+]

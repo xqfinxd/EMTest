@@ -1,72 +1,58 @@
-[
-	{
-		"type": "Spawn Point",
+{
+	"Spawn Point": {
 		"offset": "651,463",
 		"size": "61,61"
 	},
-	{
-		"type": "Buried Treasure",
+	"Buried Treasure": {
 		"offset": "228,246",
 		"size": "99,98"
 	},
-	{
-		"type": "Rot Blessing",
+	"Rot Blessing": {
 		"offset": "113,240",
 		"size": "106,107"
 	},
-	{
-		"type": "BOSS",
+	"BOSS": {
 		"offset": "785,235",
 		"size": "76,73"
 	},
-	{
-		"type": "Scarab",
+	"Scarab": {
 		"offset": "391,233",
 		"size": "94,106"
 	},
-	{
-		"type": "Grace of Site",
+	"Grace of Site": {
 		"offset": "391,126",
 		"size": "94,94"
 	},
-	{
-		"type": "Evergaol",
+	"Evergaol": {
 		"offset": "499,123",
 		"size": "103,102"
 	},
-	{
-		"type": "Camp",
+	"Camp": {
 		"offset": "1,122",
 		"size": "182,111"
 	},
-	{
-		"type": "Great Church",
+	"Great Church": {
 		"offset": "221,121",
 		"size": "128,117"
 	},
-	{
-		"type": "Township",
+	"Township": {
 		"offset": "385,37",
 		"size": "189,74"
 	},
-	{
-		"type": "Sorcerer's Rise",
+	"Sorcerer's Rise": {
 		"offset": "645,9",
 		"size": "50,104"
 	},
-	{
-		"type": "Ruins",
+	"Ruins": {
 		"offset": "190,6",
 		"size": "192,102"
 	},
-	{
-		"type": "Fort",
+	"Fort": {
 		"offset": "786,1",
 		"size": "149,111"
 	},
-	{
-		"type": "Church",
+	"Church": {
 		"offset": "53,0",
 		"size": "81,112"
 	}
-]
+}

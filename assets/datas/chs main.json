@@ -1,578 +1,146 @@
-[
-  {
-    "text": "Adel",
-    "chs": "艾德雷"
-  },
-  {
-    "text": "Omen",
-    "chs": "征兆"
-  },
-  {
-    "text": "Libra",
-    "chs": "利普拉"
-  },
-  {
-    "text": "Maris",
-    "chs": "玛利斯"
-  },
-  {
-    "text": "Caligo",
-    "chs": "卡莉果"
-  },
-  {
-    "text": "Crater",
-    "chs": "火山"
-  },
-  {
-    "text": "Trolls",
-    "chs": "山妖"
-  },
-  {
-    "text": "Default",
-    "chs": "无地形"
-  },
-  {
-    "text": "Fulghor",
-    "chs": "弗格尔"
-  },
-  {
-    "text": "Gladius",
-    "chs": "格拉狄乌斯"
-  },
-  {
-    "text": "Gnoster",
-    "chs": "格诺斯塔"
-  },
-  {
-    "text": "Morgott",
-    "chs": "蒙格特"
-  },
-  {
-    "text": "Heolstor",
-    "chs": "黑夜王"
-  },
-  {
-    "text": "Noklateo",
-    "chs": "诺克拉缇欧"
-  },
-  {
-    "text": "Red Wolf",
-    "chs": "红狼"
-  },
-  {
-    "text": "Wormface",
-    "chs": "蚯蚓脸"
-  },
-  {
-    "text": "Elder Lion",
-    "chs": "老狮子"
-  },
-  {
-    "text": "Great Wyrm",
-    "chs": "熔岩土龙"
-  },
-  {
-    "text": "Magma Wyrm",
-    "chs": "熔岩土龙"
-  },
-  {
-    "text": "Crystalians",
-    "chs": "结晶人"
-  },
-  {
-    "text": "Godskin Duo",
-    "chs": "双神皮"
-  },
-  {
-    "text": "Mountaintop",
-    "chs": "雪山"
-  },
-  {
-    "text": "Nox Warriors",
-    "chs": "诺克斯战士"
-  },
-  {
-    "text": "Rotted Woods",
-    "chs": "腐败森林"
-  },
-  {
-    "text": "Church - Rats",
-    "chs": "教堂-老鼠"
-  },
-  {
-    "text": "Flying Dragon",
-    "chs": "飞龙"
-  },
-  {
-    "text": "Gaping Dragon",
-    "chs": "贪食魔龙"
-  },
-  {
-    "text": "Godskin Noble",
-    "chs": "神皮贵族"
-  },
-  {
-    "text": "Grafted Scion",
-    "chs": "接肢贵族"
-  },
-  {
-    "text": "Nameless King",
-    "chs": "无名王者"
-  },
-  {
-    "text": "Smelter Demon",
-    "chs": "熔铁恶魔"
-  },
-  {
-    "text": "Tibia Mariner",
-    "chs": "提比亚的唤声船"
-  },
-  {
-    "text": "Tree Sentinel",
-    "chs": "大树守卫"
-  },
-  {
-    "text": "Ancient Dragon",
-    "chs": "古龙"
-  },
-  {
-    "text": "Erdtree Avatar",
-    "chs": "黄金树化身"
-  },
-  {
-    "text": "Royal Revenant",
-    "chs": "王室幽魂"
-  },
-  {
-    "text": "Ancestor Spirit",
-    "chs": "祖灵"
-  },
-  {
-    "text": "Beastly Brigade",
-    "chs": "混种"
-  },
-  {
-    "text": "Centipede Demon",
-    "chs": "百足恶魔"
-  },
-  {
-    "text": "Church - Normal",
-    "chs": "教堂-普通"
-  },
-  {
-    "text": "Death Rite Bird",
-    "chs": "死亡仪式鸟"
-  },
-  {
-    "text": "Godskin Apostle",
-    "chs": "神皮使徒"
-  },
-  {
-    "text": "Grafted Monarch",
-    "chs": "接肢君王"
-  },
-  {
-    "text": "Miranda Blossom",
-    "chs": "米兰达花朵"
-  },
-  {
-    "text": "Night's Cavalry",
-    "chs": "黑夜骑兵"
-  },
-  {
-    "text": "Stoneskin Lords",
-    "chs": "石肤王们"
-  },
-  {
-    "text": "Banished Knights",
-    "chs": "失乡骑士"
-  },
-  {
-    "text": "Crucible Knights",
-    "chs": "熔炉骑士"
-  },
-  {
-    "text": "Demi-Human Queen",
-    "chs": "亚人女王"
-  },
-  {
-    "text": "Ruins - Perfumer",
-    "chs": "废墟-调香师"
-  },
-  {
-    "text": "Ruins - Runebear",
-    "chs": "废墟-卢恩熊"
-  },
-  {
-    "text": "Ruins - Wormface",
-    "chs": "废墟-蚯蚓脸"
-  },
-  {
-    "text": "Valiant Gargoyle",
-    "chs": "英雄石像鬼"
-  },
-  {
-    "text": "Bloodhound Knight",
-    "chs": "猎犬骑士"
-  },
-  {
-    "text": "Camp - Elder Lion",
-    "chs": "营地-老狮子"
-  },
-  {
-    "text": "Dragonkin Soldier",
-    "chs": "龙人士兵"
-  },
-  {
-    "text": "Fallingstar Beast",
-    "chs": "坠星成兽"
-  },
-  {
-    "text": "Outland Commander",
-    "chs": "偏地老将"
-  },
-  {
-    "text": "Small Camp - Dogs",
-    "chs": "小营地-狗"
-  },
-  {
-    "text": "Fort - Crystalians",
-    "chs": "要塞-结晶人"
-  },
-  {
-    "text": "Small Camp - Shack",
-    "chs": "小营地-祷告"
-  },
-  {
-    "text": "Bell Bearing Hunter",
-    "chs": "铃珠猎人"
-  },
-  {
-    "text": "Black Blade Kindred",
-    "chs": "黑剑眷属"
-  },
-  {
-    "text": "Golden Hippopotamus",
-    "chs": "黄金河马"
-  },
-  {
-    "text": "Leonine Misbegotten",
-    "chs": "狮子混种"
-  },
-  {
-    "text": "Night's Cavalry Duo",
-    "chs": "黑夜骑兵组"
-  },
-  {
-    "text": "Royal Carian Knight",
-    "chs": "卡利亚骑士"
-  },
-  {
-    "text": "Ruins - Albinaurics",
-    "chs": "废墟-白金之子"
-  },
-  {
-    "text": "Ruins - Battlemages",
-    "chs": "废墟-战斗法师"
-  },
-  {
-    "text": "Small Camp - Guilty",
-    "chs": "小营地-罪人"
-  },
-  {
-    "text": "Township - Township",
-    "chs": "乡镇商人"
-  },
-  {
-    "text": "Black Knife Assassin",
-    "chs": "黑刀刺客"
-  },
-  {
-    "text": "Grave Warden Duelist",
-    "chs": "守墓斗士"
-  },
-  {
-    "text": "Ancient Hero of Zamor",
-    "chs": "萨米尔古英雄"
-  },
-  {
-    "text": "Battlefield Commander",
-    "chs": "战场老将"
-  },
-  {
-    "text": "Camp - Flame Chariots",
-    "chs": "营地-火焰战车"
-  },
-  {
-    "text": "Fort - Guardian Golem",
-    "chs": "要塞-魔像"
-  },
-  {
-    "text": "Map Event - Gatefront",
-    "chs": NaN
-  },
-  {
-    "text": "Small Camp - Caravans",
-    "chs": "小营地-棺材车"
-  },
-  {
-    "text": "Small Camp - Soldiers",
-    "chs": "小营地-弓箭士兵"
-  },
-  {
-    "text": "The Duke's Dear Freja",
-    "chs": "蜘蛛公爵"
-  },
-  {
-    "text": "Ulcerated Tree Spirit",
-    "chs": "腐败树灵"
-  },
-  {
-    "text": "Camp - Redmane Knights",
-    "chs": "营地-红狮子骑士"
-  },
-  {
-    "text": "Draconic Tree Sentinel",
-    "chs": "龙装大树守卫"
-  },
-  {
-    "text": "Fort - Abductor Virgin",
-    "chs": "要塞-掳人少女人偶"
-  },
-  {
-    "text": "Map Event - South Lake",
-    "chs": NaN
-  },
-  {
-    "text": "Ruins - Sanguine Noble",
-    "chs": "废墟-鲜血贵族"
-  },
-  {
-    "text": "Beastmen of Farum Azula",
-    "chs": "法姆亚兹拉的兽人"
-  },
-  {
-    "text": "Camp - Banished Knights",
-    "chs": "营地-失乡骑士"
-  },
-  {
-    "text": "Map Event - Summonwater",
-    "chs": NaN
-  },
-  {
-    "text": "Fort - Lordsworn Captain",
-    "chs": "要塞-骑士队长"
-  },
-  {
-    "text": "Great Church - Fire Monk",
-    "chs": "大教堂-火焰习武修士"
-  },
-  {
-    "text": "Small Camp - Demi-Humans",
-    "chs": "小营地-亚人"
-  },
-  {
-    "text": "Small Camp - Misbegotten",
-    "chs": "小营地-混种"
-  },
-  {
-    "text": "Camp - Royal Army Knights",
-    "chs": "营地-王城骑士"
-  },
-  {
-    "text": "Map Event - Minor Erdtree",
-    "chs": NaN
-  },
-  {
-    "text": "Map Event - West Mistwood",
-    "chs": NaN
-  },
-  {
-    "text": "Ruins - Depraved Perfumer",
-    "chs": "废墟-堕落调香师"
-  },
-  {
-    "text": "Camp - Leonine Misbegotten",
-    "chs": "营地-狮子混种"
-  },
-  {
-    "text": "Crucible Knight with Spear",
-    "chs": "熔炉骑士（大矛）"
-  },
-  {
-    "text": "Crucible Knight with Sword",
-    "chs": "熔炉骑士（剑盾）"
-  },
-  {
-    "text": "Map Event - Artist's Shack",
-    "chs": NaN
-  },
-  {
-    "text": "Map Event - South Mistwood",
-    "chs": NaN
-  },
-  {
-    "text": "Putrid Ancestral Followers",
-    "chs": "腐败祖灵之民"
-  },
-  {
-    "text": "Ruins - Albinauric Archers",
-    "chs": "废墟-白金之子射手"
-  },
-  {
-    "text": "Small Camp - Foot Soldiers",
-    "chs": "小营地-士兵"
-  },
-  {
-    "text": "Sorcerer's Rise - Fog Door",
-    "chs": "魔法塔-假封印"
-  },
-  {
-    "text": "Camp - Frenzied Flame Troll",
-    "chs": "营地-癫火山妖"
-  },
-  {
-    "text": "Dancer of the Boreal Valley",
-    "chs": "冷冽谷的舞娘"
-  },
-  {
-    "text": "Great Church - Oracle Envoys",
-    "chs": "大教堂-神谕使者"
-  },
-  {
-    "text": "Sorcerer's Rise - Above Door",
-    "chs": "魔法塔-门上方"
-  },
-  {
-    "text": "Sorcerer's Rise - Imp Statue",
-    "chs": "魔法塔-小恶魔雕像"
-  },
-  {
-    "text": "Great Church - Guardian Golem",
-    "chs": "大教堂-魔像"
-  },
-  {
-    "text": "Small Camp - Wandering Nobles",
-    "chs": "小营地-流浪贵族"
-  },
-  {
-    "text": "Sorcerer's Rise - Windy Trees",
-    "chs": "魔法塔-草丛"
-  },
-  {
-    "text": "Map Event - Northeast Mistwood",
-    "chs": NaN
-  },
-  {
-    "text": "Map Event - Northwest Mistwood",
-    "chs": NaN
-  },
-  {
-    "text": "Small Camp - Dogs and Soldiers",
-    "chs": "小营地-士兵和狗"
-  },
-  {
-    "text": "Sorcerer's Rise - Unlit Candle",
-    "chs": "魔法塔-蜡烛"
-  },
-  {
-    "text": "Great Church - Mausoleum Knight",
-    "chs": "大教堂-灵庙骑士"
-  },
-  {
-    "text": "Map Event - Northeast Stormhill",
-    "chs": NaN
-  },
-  {
-    "text": "Map Event - Northwest Stormhill",
-    "chs": NaN
-  },
-  {
-    "text": "Ruins - Ancient Heroes of Zamor",
-    "chs": "废墟-萨米尔古英雄"
-  },
-  {
-    "text": "Ruins - Beastmen of Farum Azula",
-    "chs": "废墟-法姆亚兹拉的兽人"
-  },
-  {
-    "text": "Sorcerer's Rise - Fake Building",
-    "chs": "魔法塔-木平台"
-  },
-  {
-    "text": "Sorcerer's Rise - Fleeing Stump",
-    "chs": "魔法塔-树桩"
-  },
-  {
-    "text": "Demi-Human Queen and Swordmaster",
-    "chs": "亚人女王和亚人剑圣"
-  },
-  {
-    "text": "Map Event - Summonwater Approach",
-    "chs": NaN
-  },
-  {
-    "text": "Ruins - Erdtree Burial Watchdogs",
-    "chs": "废墟-归树看门犬"
-  },
-  {
-    "text": "Small Camp - Caravans and Nobles",
-    "chs": "小营地-商队和贵族"
-  },
-  {
-    "text": "Small Camp - Nobles and Soldiers",
-    "chs": "小营地-贵族和士兵"
-  },
-  {
-    "text": "Sorcerer's Rise - Missing Statue",
-    "chs": "魔法塔-雕像处隐藏墙"
-  },
-  {
-    "text": "Sorcerer's Rise - Withered Trees",
-    "chs": "魔法塔-外侧枯树"
-  },
-  {
-    "text": "Small Camp - Rats and Demi-Humans",
-    "chs": "小营地-老鼠和亚人"
-  },
-  {
-    "text": "Sorcerer's Rise - Pool Reflection",
-    "chs": "魔法塔-水池倒影"
-  },
-  {
-    "text": "Tree Sentinel and Royal Cavalrymen",
-    "chs": "大树守卫和王城骑兵"
-  },
-  {
-    "text": "Crucible Knight and Golden Hippopotamus",
-    "chs": "熔炉骑士和河马"
-  },
-  {
-    "text": "Draconic Tree Sentinel and Royal Cavalrymen",
-    "chs": "龙装大树守卫和王城骑兵"
-  },
-  {
-    "text": "Difficult Sorcerer's Rise - Imp Statue, Windy Trees, Second Floor",
-    "chs": "远古魔法塔-小恶魔雕像、草丛、二楼"
-  },
-  {
-    "text": "Difficult Sorcerer's Rise - Fake Building, Right of Door, Unlit Candle",
-    "chs": "远古魔法塔-木平台、右侧墙外、蜡烛"
-  },
-  {
-    "text": "Difficult Sorcerer's Rise - Fake Building, Pool Reflection, Second Floor",
-    "chs": "远古魔法塔-木平台、水池倒影、二楼、塔外"
-  },
-  {
-    "text": "Difficult Sorcerer's Rise - Imp Statue, Teleporting Trees, Fleeing Stump",
-    "chs": "远古魔法塔-小恶魔雕像、右侧墙外、木桩"
-  },
-  {
-    "text": "Difficult Sorcerer's Rise - Above Door, Teleporting Trees, Missing Statue",
-    "chs": "远古魔法塔-门上方、右侧墙外、雕像处隐藏墙"
-  },
-  {
-    "text": "Difficult Sorcerer's Rise - Rear Withered Trees, Right of Door, Missing Statue",
-    "chs": "远古魔法塔-枯树、右侧墙外、雕像处隐藏墙"
-  }
-]
+{
+  "Adel": "艾德雷",
+  "Omen": "征兆",
+  "Libra": "利普拉",
+  "Maris": "玛利斯",
+  "Caligo": "卡莉果",
+  "Crater": "火山",
+  "Trolls": "山妖",
+  "Default": "无地形",
+  "Fulghor": "弗格尔",
+  "Gladius": "格拉狄乌斯",
+  "Gnoster": "格诺斯塔",
+  "Morgott": "蒙格特",
+  "Heolstor": "黑夜王",
+  "Noklateo": "诺克拉缇欧",
+  "Red Wolf": "红狼",
+  "Wormface": "蚯蚓脸",
+  "Elder Lion": "老狮子",
+  "Great Wyrm": "熔岩土龙",
+  "Magma Wyrm": "熔岩土龙",
+  "Crystalians": "结晶人",
+  "Godskin Duo": "双神皮",
+  "Mountaintop": "雪山",
+  "Nox Warriors": "诺克斯战士",
+  "Rotted Woods": "腐败森林",
+  "Church - Rats": "教堂-老鼠",
+  "Flying Dragon": "飞龙",
+  "Gaping Dragon": "贪食魔龙",
+  "Godskin Noble": "神皮贵族",
+  "Grafted Scion": "接肢贵族",
+  "Nameless King": "无名王者",
+  "Smelter Demon": "熔铁恶魔",
+  "Tibia Mariner": "提比亚的唤声船",
+  "Tree Sentinel": "大树守卫",
+  "Ancient Dragon": "古龙",
+  "Erdtree Avatar": "黄金树化身",
+  "Royal Revenullt": "王室幽魂",
+  "Ancestor Spirit": "祖灵",
+  "Beastly Brigade": "混种",
+  "Centipede Demon": "百足恶魔",
+  "Church - Normal": "教堂-普通",
+  "Death Rite Bird": "死亡仪式鸟",
+  "Godskin Apostle": "神皮使徒",
+  "Grafted Monarch": "接肢君王",
+  "Miranda Blossom": "米兰达花朵",
+  "Night's Cavalry": "黑夜骑兵",
+  "Stoneskin Lords": "石肤王们",
+  "Banished Knights": "失乡骑士",
+  "Crucible Knights": "熔炉骑士",
+  "Demi-Human Queen": "亚人女王",
+  "Ruins - Perfumer": "废墟-调香师",
+  "Ruins - Runebear": "废墟-卢恩熊",
+  "Ruins - Wormface": "废墟-蚯蚓脸",
+  "Valiant Gargoyle": "英雄石像鬼",
+  "Bloodhound Knight": "猎犬骑士",
+  "Camp - Elder Lion": "营地-老狮子",
+  "Dragonkin Soldier": "龙人士兵",
+  "Fallingstar Beast": "坠星成兽",
+  "Outland Commander": "偏地老将",
+  "Small Camp - Dogs": "小营地-狗",
+  "Fort - Crystalians": "要塞-结晶人",
+  "Small Camp - Shack": "小营地-祷告",
+  "Bell Bearing Hunter": "铃珠猎人",
+  "Black Blade Kindred": "黑剑眷属",
+  "Golden Hippopotamus": "黄金河马",
+  "Leonine Misbegotten": "狮子混种",
+  "Night's Cavalry Duo": "黑夜骑兵组",
+  "Royal Carian Knight": "卡利亚骑士",
+  "Ruins - Albinaurics": "废墟-白金之子",
+  "Ruins - Battlemages": "废墟-战斗法师",
+  "Small Camp - Guilty": "小营地-罪人",
+  "Township - Township": "乡镇商人",
+  "Black Knife Assassin": "黑刀刺客",
+  "Grave Warden Duelist": "守墓斗士",
+  "Ancient Hero of Zamor": "萨米尔古英雄",
+  "Battlefield Commander": "战场老将",
+  "Camp - Flame Chariots": "营地-火焰战车",
+  "Fort - Guardian Golem": "要塞-魔像",
+  "Map Event - Gatefront": null,
+  "Small Camp - Caravans": "小营地-棺材车",
+  "Small Camp - Soldiers": "小营地-弓箭士兵",
+  "The Duke's Dear Freja": "蜘蛛公爵",
+  "Ulcerated Tree Spirit": "腐败树灵",
+  "Camp - Redmane Knights": "营地-红狮子骑士",
+  "Draconic Tree Sentinel": "龙装大树守卫",
+  "Fort - Abductor Virgin": "要塞-掳人少女人偶",
+  "Map Event - South Lake": null,
+  "Ruins - Sanguine Noble": "废墟-鲜血贵族",
+  "Beastmen of Farum Azula": "法姆亚兹拉的兽人",
+  "Camp - Banished Knights": "营地-失乡骑士",
+  "Map Event - Summonwater": null,
+  "Fort - Lordsworn Captain": "要塞-骑士队长",
+  "Great Church - Fire Monk": "大教堂-火焰习武修士",
+  "Small Camp - Demi-Humans": "小营地-亚人",
+  "Small Camp - Misbegotten": "小营地-混种",
+  "Camp - Royal Army Knights": "营地-王城骑士",
+  "Map Event - Minor Erdtree": null,
+  "Map Event - West Mistwood": null,
+  "Ruins - Depraved Perfumer": "废墟-堕落调香师",
+  "Camp - Leonine Misbegotten": "营地-狮子混种",
+  "Crucible Knight with Spear": "熔炉骑士（大矛）",
+  "Crucible Knight with Sword": "熔炉骑士（剑盾）",
+  "Map Event - Artist's Shack": null,
+  "Map Event - South Mistwood": null,
+  "Putrid Ancestral Followers": "腐败祖灵之民",
+  "Ruins - Albinauric Archers": "废墟-白金之子射手",
+  "Small Camp - Foot Soldiers": "小营地-士兵",
+  "Sorcerer's Rise - Fog Door": "魔法塔-假封印",
+  "Camp - Frenzied Flame Troll": "营地-癫火山妖",
+  "Dancer of the Boreal Valley": "冷冽谷的舞娘",
+  "Great Church - Oracle Envoys": "大教堂-神谕使者",
+  "Sorcerer's Rise - Above Door": "魔法塔-门上方",
+  "Sorcerer's Rise - Imp Statue": "魔法塔-小恶魔雕像",
+  "Great Church - Guardian Golem": "大教堂-魔像",
+  "Small Camp - Wandering Nobles": "小营地-流浪贵族",
+  "Sorcerer's Rise - Windy Trees": "魔法塔-草丛",
+  "Map Event - Northeast Mistwood": null,
+  "Map Event - Northwest Mistwood": null,
+  "Small Camp - Dogs and Soldiers": "小营地-士兵和狗",
+  "Sorcerer's Rise - Unlit Candle": "魔法塔-蜡烛",
+  "Great Church - Mausoleum Knight": "大教堂-灵庙骑士",
+  "Map Event - Northeast Stormhill": null,
+  "Map Event - Northwest Stormhill": null,
+  "Ruins - Ancient Heroes of Zamor": "废墟-萨米尔古英雄",
+  "Ruins - Beastmen of Farum Azula": "废墟-法姆亚兹拉的兽人",
+  "Sorcerer's Rise - Fake Building": "魔法塔-木平台",
+  "Sorcerer's Rise - Fleeing Stump": "魔法塔-树桩",
+  "Demi-Human Queen and Swordmaster": "亚人女王和亚人剑圣",
+  "Map Event - Summonwater Approach": null,
+  "Ruins - Erdtree Burial Watchdogs": "废墟-归树看门犬",
+  "Small Camp - Caravans and Nobles": "小营地-商队和贵族",
+  "Small Camp - Nobles and Soldiers": "小营地-贵族和士兵",
+  "Sorcerer's Rise - Missing Statue": "魔法塔-雕像处隐藏墙",
+  "Sorcerer's Rise - Withered Trees": "魔法塔-外侧枯树",
+  "Small Camp - Rats and Demi-Humans": "小营地-老鼠和亚人",
+  "Sorcerer's Rise - Pool Reflection": "魔法塔-水池倒影",
+  "Tree Sentinel and Royal Cavalrymen": "大树守卫和王城骑兵",
+  "Crucible Knight and Golden Hippopotamus": "熔炉骑士和河马",
+  "Draconic Tree Sentinel and Royal Cavalrymen": "龙装大树守卫和王城骑兵",
+  "Difficult Sorcerer's Rise - Imp Statue, Windy Trees, Second Floor": "远古魔法塔-小恶魔雕像、草丛、二楼",
+  "Difficult Sorcerer's Rise - Fake Building, Right of Door, Unlit Candle": "远古魔法塔-木平台、右侧墙外、蜡烛",
+  "Difficult Sorcerer's Rise - Fake Building, Pool Reflection, Second Floor": "远古魔法塔-木平台、水池倒影、二楼、塔外",
+  "Difficult Sorcerer's Rise - Imp Statue, Teleporting Trees, Fleeing Stump": "远古魔法塔-小恶魔雕像、右侧墙外、木桩",
+  "Difficult Sorcerer's Rise - Above Door, Teleporting Trees, Missing Statue": "远古魔法塔-门上方、右侧墙外、雕像处隐藏墙",
+  "Difficult Sorcerer's Rise - Rear Withered Trees, Right of Door, Missing Statue": "远古魔法塔-枯树、右侧墙外、雕像处隐藏墙"
+}

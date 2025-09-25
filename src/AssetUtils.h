@@ -2,41 +2,75 @@
 
 #include <string>
 #include <unordered_map>
+#include <map>
+#include <vector>
 #include <memory>
+
 #include <glm/glm.hpp>
-#include "nlohmann/json.hpp"
+#include <rapidjson/document.h>
 
-std::string GetTexPath(const char* name);
-std::string GetDataPath(const char* name);
+std::string TEX_DIR(const std::string& fname);
+std::string DATA_DIR(const std::string& fname);
 
-class AtlasMgr {
+bool LoadJson(const char* fname, rapidjson::Document& doc);
+
+class JsonAsset {
 public:
-	AtlasMgr() = default;
-	virtual ~AtlasMgr() {}
-	static bool LoadImpl(const char* jsonFn, AtlasMgr* ptr);
-
-protected:
-	virtual bool LoadJson(const nlohmann::json& data) = 0;
-};
-
-template<class T>
-std::unique_ptr<T> CreateAtlasMgr(const char* jsonFn) {
-	std::unique_ptr<T> uptr(new T);
-	if (AtlasMgr::LoadImpl(jsonFn, uptr.get()))
-		return uptr;
-	return nullptr;
-}
-
-class IconMgr : public AtlasMgr {
-public:
-	IconMgr() = default;
-	~IconMgr() = default;
-
-	const glm::ivec4* GetRect(const char* name) const;
-
-protected:
-    bool LoadJson(const nlohmann::json& data) override;
+	~JsonAsset();
+	void Cleanup();
+	bool Load(const char* fname);
+	const rapidjson::Document& GetDoc() const {
+		return m_Document;
+	}
 
 private:
-	std::unordered_map<std::string, glm::ivec4> m_Map;
+	rapidjson::Document m_Document;
+};
+
+class Variables {
+public:
+	using NameList = std::vector<std::string_view>;
+	void Initialize();
+	const NameList& GetTerrains() const {
+		return m_Terrains;
+	}
+	const NameList& GetNightlords() const {
+		return m_Nightlords;
+	}
+
+private:
+	JsonAsset m_Json;
+    NameList m_Terrains;
+    NameList m_Nightlords;
+};
+
+class IconAtlas {
+public:
+	void Initialize();
+	const glm::ivec4* QueryIcon(const char* name) const;
+
+private:
+	JsonAsset m_Json;
+	std::unordered_map<std::string_view, glm::ivec4> m_Icons;
+};
+
+struct MapLocation {
+	std::string name;
+	glm::ivec2 pos;
+	std::map<int, std::string> diff;
+};
+
+class MapThumbnail {
+public:
+	void LoadMap(const char* mapName);
+	const std::vector<MapLocation>& GetSpawnPoints() const {
+		return m_SpawnPoints;
+	}
+	const std::vector<MapLocation>& GetAllPoints() const {
+		return m_AllPoints;
+	}
+
+private:
+	std::vector<MapLocation> m_SpawnPoints;
+	std::vector<MapLocation> m_AllPoints;
 };

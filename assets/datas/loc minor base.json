@@ -1,46 +1,13 @@
-[
-  {
-    "name": "Stormhill South of Gate",
-    "coordinates": "309,870"
-  },
-  {
-    "name": "Above Stormhill Tunnel Entrance",
-    "coordinates": "561,625"
-  },
-  {
-    "name": "West of Warmaster's Shack",
-    "coordinates": "336,539"
-  },
-  {
-    "name": "Southeast of Lake",
-    "coordinates": "869,1252"
-  },
-  {
-    "name": "Far Southwest",
-    "coordinates": "303,1108"
-  },
-  {
-    "name": "Lake",
-    "coordinates": "719,1065"
-  },
-  {
-    "name": "East of Cavalry Bridge",
-    "coordinates": "835,983"
-  },
-  {
-    "name": "Minor Erdtree",
-    "coordinates": "1234,903"
-  },
-  {
-    "name": "Below Summonwater Hawk",
-    "coordinates": "1071,568"
-  },
-  {
-    "name": "Third Church",
-    "coordinates": "1209,557"
-  },
-  {
-    "name": "Northeast of Saintsbridge",
-    "coordinates": "820,355"
-  }
-]
+{
+  "Stormhill South of Gate": "309,870",
+  "Above Stormhill Tunnel Entrance": "561,625",
+  "West of Warmaster's Shack": "336,539",
+  "Southeast of Lake": "869,1252",
+  "Far Southwest": "303,1108",
+  "Lake": "719,1065",
+  "East of Cavalry Bridge": "835,983",
+  "Minor Erdtree": "1234,903",
+  "Below Summonwater Hawk": "1071,568",
+  "Third Church": "1209,557",
+  "Northeast of Saintsbridge": "820,355"
+}

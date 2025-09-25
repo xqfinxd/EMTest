@@ -5,14 +5,12 @@
 #elif defined(__EMSCRIPTEN__)
 #include <GLES3/gl3.h>
 #endif
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 #include <vector>
 #include <iostream>
 #include <memory>
-
-#include "MapDefines.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include "AssetUtils.h"
 
 class MapViewer {
@@ -43,7 +41,7 @@ private:
     glm::ivec4 m_Viewport{};
     glm::vec2 m_OriginViewSize{};
 
-    std::unique_ptr<IconMgr> m_Atlas;
+    IconAtlas m_Atlas;
     std::vector<IconInfo> m_IconList;
 
     void InitImagePipeline();

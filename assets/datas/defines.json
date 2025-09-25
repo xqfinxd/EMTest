@@ -1,0 +1,19 @@
+{
+	"Maps" : [
+		"Default",
+		"Noklateo",
+		"Rotted Woods",
+		"Crater",
+		"Mountaintop"
+	],
+	"Nightloads":[
+		"Gladius",
+		"Adel",
+		"Gnoster",
+		"Maris",
+		"Libra",
+		"Fulghor",
+		"Caligo",
+		"Heolstor"
+	]
+}

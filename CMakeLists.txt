@@ -32,7 +32,7 @@ target_include_directories(EMTest PRIVATE
 	3rdparty/IMGUI
 	3rdparty/IMGUI/backends
 	3rdparty/stb_image
-	3rdparty/json
+	3rdparty/rapidjson
 )
 
 if(EMSCRIPTEN)

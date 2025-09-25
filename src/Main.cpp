@@ -53,6 +53,8 @@ protected:
         m_MapViewer.SetViewport(glm::ivec4(0, 0, m_Size.x, m_Size.y));
         m_MapViewer.Initialize();
 
+        m_MapFilter.Initialize();
+
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
         ImGui_ImplSDL2_InitForOpenGL(m_Window, m_Context);
@@ -60,7 +62,7 @@ protected:
 
         auto& io = ImGui::GetIO();
         io.IniFilename = nullptr;
-        io.Fonts->AddFontFromFileTTF(GetDataPath("msyh.ttc").c_str(), 14,
+        io.Fonts->AddFontFromFileTTF(DATA_DIR("msyh.ttc").c_str(), 14,
             nullptr, io.Fonts->GetGlyphRangesChineseFull());
         io.Fonts->Build();
         io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;

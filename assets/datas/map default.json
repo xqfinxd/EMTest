@@ -1,281 +1,6 @@
-{
-  "fields": [
+[
     {
-      "field_name": "field_0",
-      "description": ""
-    },
-    {
-      "field_name": "Nightlord",
-      "description": ""
-    },
-    {
-      "field_name": "Shifting Earth",
-      "description": ""
-    },
-    {
-      "field_name": "Spawn Point",
-      "description": ""
-    },
-    {
-      "field_name": "Special Event",
-      "description": ""
-    },
-    {
-      "field_name": "Night 1 Boss",
-      "description": ""
-    },
-    {
-      "field_name": "Night 2 Boss",
-      "description": ""
-    },
-    {
-      "field_name": "Extra Night Boss",
-      "description": ""
-    },
-    {
-      "field_name": "Night 1 Circle",
-      "description": ""
-    },
-    {
-      "field_name": "Night 2 Circle",
-      "description": ""
-    },
-    {
-      "field_name": "Castle",
-      "description": "Castle"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "South Lake"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Groveside"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Gatefront"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Stormhill North of Gate"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Alexander Spot"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Northwest Stormhill"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Northeast Stormhill"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "South Mistwood"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Waypoint Ruins"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Minor Erdtree"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "West Mistwood"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Northwest Mistwood"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Artist's Shack"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Northeast Mistwood"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Summonwater Approach"
-    },
-    {
-      "field_name": "Major Base",
-      "description": "Summonwater"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "Far Southwest"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "Lake"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "Stormhill South of Gate"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "Above Stormhill Tunnel Entrance"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "West of Warmaster's Shack"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "Southeast of Lake"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "East of Cavalry Bridge"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "Minor Erdtree"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "Below Summonwater Hawk"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "Third Church"
-    },
-    {
-      "field_name": "Minor Base",
-      "description": "Northeast of Saintsbridge"
-    },
-    {
-      "field_name": "Evergaol",
-      "description": "Northwest of Lake"
-    },
-    {
-      "field_name": "Evergaol",
-      "description": "Murkwater Terminus"
-    },
-    {
-      "field_name": "Evergaol",
-      "description": "Stormhill"
-    },
-    {
-      "field_name": "Evergaol",
-      "description": "Highroad"
-    },
-    {
-      "field_name": "Evergaol",
-      "description": "East of Lake"
-    },
-    {
-      "field_name": "Evergaol",
-      "description": "Mistwood"
-    },
-    {
-      "field_name": "Evergaol",
-      "description": "Northeast Tunnel Entrance"
-    },
-    {
-      "field_name": "Arena Boss",
-      "description": "Castle Basement"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "Castle Rooftop"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "Far Southwest of Lake"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "Lake"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "North of Stormhill Tunnel Entrance"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "North of Murkwater Terminus"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "Stormhill Spectral Hawk"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "Northwest Stormhill Cliffside"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "Mistwood Spectral Hawk"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "North Mistwood"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "East of Murkwater Terminus"
-    },
-    {
-      "field_name": "Field Boss",
-      "description": "Northwest of Summonwater"
-    },
-    {
-      "field_name": "Rotted Woods",
-      "description": "Southwest"
-    },
-    {
-      "field_name": "Rotted Woods",
-      "description": "Southeast"
-    },
-    {
-      "field_name": "Rotted Woods",
-      "description": "Center West"
-    },
-    {
-      "field_name": "Rotted Woods",
-      "description": "Center East"
-    },
-    {
-      "field_name": "Rotted Woods",
-      "description": "Far Northwest"
-    },
-    {
-      "field_name": "Rotted Woods",
-      "description": "Northwest"
-    },
-    {
-      "field_name": "Rotted Woods",
-      "description": "Northeast"
-    },
-    {
-      "field_name": "Rotted Woods",
-      "description": "Far Northeast"
-    },
-    {
-      "field_name": "Rot Blessing",
-      "description": ""
-    },
-    {
-      "field_name": "Frenzy Tower",
-      "description": ""
-    },
-    {
-      "field_name": "Scale-Bearing Merchant",
-      "description": ""
-    }
-  ],
-  "data": [
-    {
-      "field_0": 0,
+      "index": 0,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "East of Cavalry Bridge",
@@ -359,7 +84,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 1,
+      "index": 1,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -443,7 +168,7 @@
       "Scale-Bearing Merchant": "South of Castle"
     },
     {
-      "field_0": 2,
+      "index": 2,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "Stormhill South of Gate",
@@ -527,7 +252,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 3,
+      "index": 3,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "Below Summonwater Hawk",
@@ -611,7 +336,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 4,
+      "index": 4,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "Southeast of Lake",
@@ -695,7 +420,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 5,
+      "index": 5,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "East of Cavalry Bridge",
@@ -779,7 +504,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 6,
+      "index": 6,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -863,7 +588,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 7,
+      "index": 7,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "Minor Erdtree",
@@ -947,7 +672,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 8,
+      "index": 8,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -1031,7 +756,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 9,
+      "index": 9,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "East of Cavalry Bridge",
@@ -1115,7 +840,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 10,
+      "index": 10,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -1199,7 +924,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 11,
+      "index": 11,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "Minor Erdtree",
@@ -1283,7 +1008,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 12,
+      "index": 12,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "Stormhill South of Gate",
@@ -1367,7 +1092,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 13,
+      "index": 13,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -1451,7 +1176,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 14,
+      "index": 14,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -1535,7 +1260,7 @@
       "Scale-Bearing Merchant": "Ruins North of Castle"
     },
     {
-      "field_0": 15,
+      "index": 15,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -1619,7 +1344,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 16,
+      "index": 16,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -1703,7 +1428,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 17,
+      "index": 17,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "Below Summonwater Hawk",
@@ -1787,7 +1512,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 18,
+      "index": 18,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -1871,7 +1596,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 19,
+      "index": 19,
       "Nightlord": "Gladius",
       "Shifting Earth": "Default",
       "Spawn Point": "West of Warmaster's Shack",
@@ -1955,7 +1680,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 40,
+      "index": 40,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "Southeast of Lake",
@@ -2039,7 +1764,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 41,
+      "index": 41,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "West of Warmaster's Shack",
@@ -2123,7 +1848,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 42,
+      "index": 42,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "Stormhill South of Gate",
@@ -2207,7 +1932,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 43,
+      "index": 43,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "Below Summonwater Hawk",
@@ -2291,7 +2016,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 44,
+      "index": 44,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "Below Summonwater Hawk",
@@ -2375,7 +2100,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 45,
+      "index": 45,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "Southeast of Lake",
@@ -2459,7 +2184,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 46,
+      "index": 46,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "Southeast of Lake",
@@ -2543,7 +2268,7 @@
       "Scale-Bearing Merchant": "Northeast Corner"
     },
     {
-      "field_0": 47,
+      "index": 47,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "West of Warmaster's Shack",
@@ -2627,7 +2352,7 @@
       "Scale-Bearing Merchant": "Ruins North of Castle"
     },
     {
-      "field_0": 48,
+      "index": 48,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -2711,7 +2436,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 49,
+      "index": 49,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -2795,7 +2520,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 50,
+      "index": 50,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "Minor Erdtree",
@@ -2879,7 +2604,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 51,
+      "index": 51,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "East of Cavalry Bridge",
@@ -2963,7 +2688,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 52,
+      "index": 52,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "Minor Erdtree",
@@ -3047,7 +2772,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 53,
+      "index": 53,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "Stormhill South of Gate",
@@ -3131,7 +2856,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 54,
+      "index": 54,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -3215,7 +2940,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 55,
+      "index": 55,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -3299,7 +3024,7 @@
       "Scale-Bearing Merchant": "Northeast Corner"
     },
     {
-      "field_0": 56,
+      "index": 56,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "Minor Erdtree",
@@ -3383,7 +3108,7 @@
       "Scale-Bearing Merchant": "Castle Front"
     },
     {
-      "field_0": 57,
+      "index": 57,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -3467,7 +3192,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 58,
+      "index": 58,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -3551,7 +3276,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 59,
+      "index": 59,
       "Nightlord": "Adel",
       "Shifting Earth": "Default",
       "Spawn Point": "Below Summonwater Hawk",
@@ -3635,7 +3360,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 80,
+      "index": 80,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "East of Cavalry Bridge",
@@ -3719,7 +3444,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 81,
+      "index": 81,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "West of Warmaster's Shack",
@@ -3803,7 +3528,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 82,
+      "index": 82,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -3887,7 +3612,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 83,
+      "index": 83,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -3971,7 +3696,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 84,
+      "index": 84,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "Minor Erdtree",
@@ -4055,7 +3780,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 85,
+      "index": 85,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "Minor Erdtree",
@@ -4139,7 +3864,7 @@
       "Scale-Bearing Merchant": "Northeast Corner"
     },
     {
-      "field_0": 86,
+      "index": 86,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "East of Cavalry Bridge",
@@ -4223,7 +3948,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 87,
+      "index": 87,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "East of Cavalry Bridge",
@@ -4307,7 +4032,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 88,
+      "index": 88,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "Southeast of Lake",
@@ -4391,7 +4116,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 89,
+      "index": 89,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "Southeast of Lake",
@@ -4475,7 +4200,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 90,
+      "index": 90,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "Stormhill South of Gate",
@@ -4559,7 +4284,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 91,
+      "index": 91,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "Southeast of Lake",
@@ -4643,7 +4368,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 92,
+      "index": 92,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "Below Summonwater Hawk",
@@ -4727,7 +4452,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 93,
+      "index": 93,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "Below Summonwater Hawk",
@@ -4811,7 +4536,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 94,
+      "index": 94,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "Minor Erdtree",
@@ -4895,7 +4620,7 @@
       "Scale-Bearing Merchant": "Southwest Corner"
     },
     {
-      "field_0": 95,
+      "index": 95,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "Below Summonwater Hawk",
@@ -4979,7 +4704,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 96,
+      "index": 96,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -5063,7 +4788,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 97,
+      "index": 97,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "Below Summonwater Hawk",
@@ -5147,7 +4872,7 @@
       "Scale-Bearing Merchant": "East of Saintsbridge"
     },
     {
-      "field_0": 98,
+      "index": 98,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "Stormhill South of Gate",
@@ -5231,7 +4956,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 99,
+      "index": 99,
       "Nightlord": "Gnoster",
       "Shifting Earth": "Default",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -5315,7 +5040,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 120,
+      "index": 120,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "Southeast of Lake",
@@ -5399,7 +5124,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 121,
+      "index": 121,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -5483,7 +5208,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 122,
+      "index": 122,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "Southeast of Lake",
@@ -5567,7 +5292,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 123,
+      "index": 123,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -5651,7 +5376,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 124,
+      "index": 124,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "Minor Erdtree",
@@ -5735,7 +5460,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 125,
+      "index": 125,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -5819,7 +5544,7 @@
       "Scale-Bearing Merchant": "South of Castle"
     },
     {
-      "field_0": 126,
+      "index": 126,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "Southeast of Lake",
@@ -5903,7 +5628,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 127,
+      "index": 127,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -5987,7 +5712,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 128,
+      "index": 128,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "Stormhill South of Gate",
@@ -6071,7 +5796,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 129,
+      "index": 129,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "West of Warmaster's Shack",
@@ -6155,7 +5880,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 130,
+      "index": 130,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "East of Cavalry Bridge",
@@ -6239,7 +5964,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 131,
+      "index": 131,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "Below Summonwater Hawk",
@@ -6323,7 +6048,7 @@
       "Scale-Bearing Merchant": "Southeast Lakeshore"
     },
     {
-      "field_0": 132,
+      "index": 132,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "West of Warmaster's Shack",
@@ -6407,7 +6132,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 133,
+      "index": 133,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -6491,7 +6216,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 134,
+      "index": 134,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -6575,7 +6300,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 135,
+      "index": 135,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "West of Warmaster's Shack",
@@ -6659,7 +6384,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 136,
+      "index": 136,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -6743,7 +6468,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 137,
+      "index": 137,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "Below Summonwater Hawk",
@@ -6827,7 +6552,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 138,
+      "index": 138,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -6911,7 +6636,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 139,
+      "index": 139,
       "Nightlord": "Maris",
       "Shifting Earth": "Default",
       "Spawn Point": "Minor Erdtree",
@@ -6995,7 +6720,7 @@
       "Scale-Bearing Merchant": "Southeast Lakeshore"
     },
     {
-      "field_0": 160,
+      "index": 160,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "Stormhill South of Gate",
@@ -7079,7 +6804,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 161,
+      "index": 161,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "Stormhill South of Gate",
@@ -7163,7 +6888,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 162,
+      "index": 162,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -7247,7 +6972,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 163,
+      "index": 163,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "Southeast of Lake",
@@ -7331,7 +7056,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 164,
+      "index": 164,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "Stormhill South of Gate",
@@ -7415,7 +7140,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 165,
+      "index": 165,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "East of Cavalry Bridge",
@@ -7499,7 +7224,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 166,
+      "index": 166,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "West of Warmaster's Shack",
@@ -7583,7 +7308,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 167,
+      "index": 167,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "Minor Erdtree",
@@ -7667,7 +7392,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 168,
+      "index": 168,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -7751,7 +7476,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 169,
+      "index": 169,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -7835,7 +7560,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 170,
+      "index": 170,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -7919,7 +7644,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 171,
+      "index": 171,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "Southeast of Lake",
@@ -8003,7 +7728,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 172,
+      "index": 172,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -8087,7 +7812,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 173,
+      "index": 173,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "East of Cavalry Bridge",
@@ -8171,7 +7896,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 174,
+      "index": 174,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "Minor Erdtree",
@@ -8255,7 +7980,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 175,
+      "index": 175,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "East of Cavalry Bridge",
@@ -8339,7 +8064,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 176,
+      "index": 176,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "Below Summonwater Hawk",
@@ -8423,7 +8148,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 177,
+      "index": 177,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -8507,7 +8232,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 178,
+      "index": 178,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -8591,7 +8316,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 179,
+      "index": 179,
       "Nightlord": "Libra",
       "Shifting Earth": "Default",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -8675,7 +8400,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 200,
+      "index": 200,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "Southeast of Lake",
@@ -8759,7 +8484,7 @@
       "Scale-Bearing Merchant": "Southwest Corner"
     },
     {
-      "field_0": 201,
+      "index": 201,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -8843,7 +8568,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 202,
+      "index": 202,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -8927,7 +8652,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 203,
+      "index": 203,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -9011,7 +8736,7 @@
       "Scale-Bearing Merchant": "Northwest Corner"
     },
     {
-      "field_0": 204,
+      "index": 204,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "Southeast of Lake",
@@ -9095,7 +8820,7 @@
       "Scale-Bearing Merchant": "Castle Front"
     },
     {
-      "field_0": 205,
+      "index": 205,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "West of Warmaster's Shack",
@@ -9179,7 +8904,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 206,
+      "index": 206,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -9263,7 +8988,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 207,
+      "index": 207,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "Stormhill South of Gate",
@@ -9347,7 +9072,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 208,
+      "index": 208,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "Below Summonwater Hawk",
@@ -9431,7 +9156,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 209,
+      "index": 209,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "Below Summonwater Hawk",
@@ -9515,7 +9240,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 210,
+      "index": 210,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "West of Warmaster's Shack",
@@ -9599,7 +9324,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 211,
+      "index": 211,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -9683,7 +9408,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 212,
+      "index": 212,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -9767,7 +9492,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 213,
+      "index": 213,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "Minor Erdtree",
@@ -9851,7 +9576,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 214,
+      "index": 214,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "Stormhill South of Gate",
@@ -9935,7 +9660,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 215,
+      "index": 215,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "Minor Erdtree",
@@ -10019,7 +9744,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 216,
+      "index": 216,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "Southeast of Lake",
@@ -10103,7 +9828,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 217,
+      "index": 217,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "Below Summonwater Hawk",
@@ -10187,7 +9912,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 218,
+      "index": 218,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -10271,7 +9996,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 219,
+      "index": 219,
       "Nightlord": "Fulghor",
       "Shifting Earth": "Default",
       "Spawn Point": "Southeast of Lake",
@@ -10355,7 +10080,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 240,
+      "index": 240,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -10439,7 +10164,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 241,
+      "index": 241,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -10523,7 +10248,7 @@
       "Scale-Bearing Merchant": "Northwest Corner"
     },
     {
-      "field_0": 242,
+      "index": 242,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "Stormhill South of Gate",
@@ -10607,7 +10332,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 243,
+      "index": 243,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -10691,7 +10416,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 244,
+      "index": 244,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "East of Cavalry Bridge",
@@ -10775,7 +10500,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 245,
+      "index": 245,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -10859,7 +10584,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 246,
+      "index": 246,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "East of Cavalry Bridge",
@@ -10943,7 +10668,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 247,
+      "index": 247,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "East of Cavalry Bridge",
@@ -11027,7 +10752,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 248,
+      "index": 248,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "East of Cavalry Bridge",
@@ -11111,7 +10836,7 @@
       "Scale-Bearing Merchant": "Southwest Corner"
     },
     {
-      "field_0": 249,
+      "index": 249,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "Below Summonwater Hawk",
@@ -11195,7 +10920,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 250,
+      "index": 250,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "Minor Erdtree",
@@ -11279,7 +11004,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 251,
+      "index": 251,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "Minor Erdtree",
@@ -11363,7 +11088,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 252,
+      "index": 252,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "Minor Erdtree",
@@ -11447,7 +11172,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 253,
+      "index": 253,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "Stormhill South of Gate",
@@ -11531,7 +11256,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 254,
+      "index": 254,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "West of Warmaster's Shack",
@@ -11615,7 +11340,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 255,
+      "index": 255,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -11699,7 +11424,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 256,
+      "index": 256,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "West of Warmaster's Shack",
@@ -11783,7 +11508,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 257,
+      "index": 257,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "Southeast of Lake",
@@ -11867,7 +11592,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 258,
+      "index": 258,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -11951,7 +11676,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 259,
+      "index": 259,
       "Nightlord": "Caligo",
       "Shifting Earth": "Default",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -12035,7 +11760,7 @@
       "Scale-Bearing Merchant": "Northwest Corner"
     },
     {
-      "field_0": 280,
+      "index": 280,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "East of Cavalry Bridge",
@@ -12119,7 +11844,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 281,
+      "index": 281,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -12203,7 +11928,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 282,
+      "index": 282,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "Minor Erdtree",
@@ -12287,7 +12012,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 283,
+      "index": 283,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -12371,7 +12096,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 284,
+      "index": 284,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -12455,7 +12180,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 285,
+      "index": 285,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "East of Cavalry Bridge",
@@ -12539,7 +12264,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 286,
+      "index": 286,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "Minor Erdtree",
@@ -12623,7 +12348,7 @@
       "Scale-Bearing Merchant": "Northwest Corner"
     },
     {
-      "field_0": 287,
+      "index": 287,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "East of Cavalry Bridge",
@@ -12707,7 +12432,7 @@
       "Scale-Bearing Merchant": "South of Castle"
     },
     {
-      "field_0": 288,
+      "index": 288,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "West of Warmaster's Shack",
@@ -12791,7 +12516,7 @@
       "Scale-Bearing Merchant": "Southeast Lakeshore"
     },
     {
-      "field_0": 289,
+      "index": 289,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -12875,7 +12600,7 @@
       "Scale-Bearing Merchant": "Northeast Corner"
     },
     {
-      "field_0": 290,
+      "index": 290,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "Southeast of Lake",
@@ -12959,7 +12684,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 291,
+      "index": 291,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "Far Southwest",
@@ -13043,7 +12768,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 292,
+      "index": 292,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -13127,7 +12852,7 @@
       "Scale-Bearing Merchant": "Northwest Corner"
     },
     {
-      "field_0": 293,
+      "index": 293,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "West of Warmaster's Shack",
@@ -13211,7 +12936,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 294,
+      "index": 294,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "Below Summonwater Hawk",
@@ -13295,7 +13020,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 295,
+      "index": 295,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "Stormhill South of Gate",
@@ -13379,7 +13104,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 296,
+      "index": 296,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -13463,7 +13188,7 @@
       "Scale-Bearing Merchant": "South of Castle"
     },
     {
-      "field_0": 297,
+      "index": 297,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "Stormhill South of Gate",
@@ -13547,7 +13272,7 @@
       "Scale-Bearing Merchant": "Southwest Corner"
     },
     {
-      "field_0": 298,
+      "index": 298,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "Above Stormhill Tunnel Entrance",
@@ -13631,7 +13356,7 @@
       "Scale-Bearing Merchant": null
     },
     {
-      "field_0": 299,
+      "index": 299,
       "Nightlord": "Heolstor",
       "Shifting Earth": "Default",
       "Spawn Point": "Northeast of Saintsbridge",
@@ -13714,5 +13439,4 @@
       "Frenzy Tower": null,
       "Scale-Bearing Merchant": null
     }
-  ]
-}
+]

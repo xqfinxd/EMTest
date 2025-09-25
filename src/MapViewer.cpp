@@ -1,8 +1,8 @@
 #include "MapViewer.h"
-#include "GLUtils.h"
 #include <algorithm>
 #include <string>
 #include <imgui.h>
+#include "GLUtils.h"
 
 static constexpr glm::vec2 ZOOM_RANGE(1, 5);
 
@@ -33,8 +33,8 @@ void MapViewer::InitImagePipeline() {
 
     glBindVertexArray(0);
 
-    GLuint vs = CompileShaderFile(GL_VERTEX_SHADER, GetDataPath("image.vert").c_str());
-    GLuint fs = CompileShaderFile(GL_FRAGMENT_SHADER, GetDataPath("image.frag").c_str());
+    GLuint vs = CompileShaderFile(GL_VERTEX_SHADER, DATA_DIR("image.vert").c_str());
+    GLuint fs = CompileShaderFile(GL_FRAGMENT_SHADER, DATA_DIR("image.frag").c_str());
 
     m_ImagePipeline = glCreateProgram();
     glAttachShader(m_ImagePipeline, vs);
@@ -71,16 +71,17 @@ void MapViewer::DrawMap(const glm::mat4& vpMat) {
 }
 
 void MapViewer::DrawIcon(const glm::mat4& vpMat, const char* name, const glm::ivec2& pos) {
-    auto iconRect = m_Atlas->GetRect(name);
+    auto iconRect = m_Atlas.QueryIcon(name);
     if (!iconRect)
         return;
     glm::ivec2 size(iconRect->z, iconRect->w);
 
-    glm::mat4 modelMatrix = glm::mat4(1.f);
-    modelMatrix = glm::scale(modelMatrix, glm::vec3(size, 1.f));
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(pos, 0.f));
-
-    glm::mat4 mvpMatrix = vpMat * modelMatrix;
+    glm::mat4 modelMat = glm::mat4(1.f);
+    glm::vec2 m02c = glm::vec2(pos) - glm::vec2(m_MapSize) / 2.f;
+    modelMat = glm::translate(modelMat, glm::vec3(m02c.x, -m02c.y, 0.f));
+    modelMat = glm::scale(modelMat, glm::vec3(size, 1.f));
+    
+    glm::mat4 mvpMatrix = vpMat * modelMat;
     GLint mvpLoc = glGetUniformLocation(m_ImagePipeline, "mvp");
     glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(mvpMatrix));
 
@@ -142,9 +143,9 @@ void MapViewer::Initialize() {
     InitImagePipeline();
 
     m_IconsTexture = LoadTexture(
-        GetTexPath("icons").c_str(),
+        TEX_DIR("icons.png").c_str(),
         m_IconsSize.x, m_IconsSize.y, true);
-    m_Atlas = CreateAtlasMgr<IconMgr>("icons.json");
+    m_Atlas.Initialize();
 
     ReloadMap("bg");
 
@@ -161,12 +162,15 @@ void MapViewer::Cleanup() {
 void MapViewer::Render() {
     glm::vec2 viewSize = GetViewSize();
     glm::vec2 offset = m_Transform.offset;
+    offset.x = -offset.x;
+
+    // left buttom
+    glm::vec2 lb = offset - viewSize / 2.f;
+    // right top
+    glm::vec2 rt = offset + viewSize / 2.f;
     
     glm::mat4 projMatrix = glm::ortho(
-        -offset.x - viewSize.x/2.f, -offset.x + viewSize.x/2.f,
-        offset.y - viewSize.y/2.f, offset.y + viewSize.y/2.f,
-        -1.0f, 1.0f
-    );
+        lb.x, rt.x, lb.y, rt.y, -1.0f, 1.0f);
 
     glm::mat4 viewMatrix = glm::lookAt(
         glm::vec3(0, 0, 1.f),
@@ -205,13 +209,13 @@ void MapViewer::SetViewport(const glm::ivec4& viewport) {
     OnResizeMap();
 }
 
-void MapViewer::ReloadMap(const char* mapName) {
+void MapViewer::ReloadMap(const char* mapName_) {
     if (m_MapTexture != 0) {
         glDeleteTextures(1, &m_MapTexture);
         m_MapTexture = 0;
     }
     m_MapTexture = LoadTexture(
-        GetTexPath(mapName).c_str(),
+        TEX_DIR(std::string(mapName_) + ".png").c_str(),
         m_MapSize.x, m_MapSize.y, true);
     vReset();
     OnResizeMap();
