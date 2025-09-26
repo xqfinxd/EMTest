@@ -11,16 +11,27 @@ public:
 	void RenderImGui(MapViewer& mapViewer);
 
 private:
+	bool FilterTerrain();
+	bool FilterLanding();
+	bool FilterSmallCampType();
+	bool FilterNearCamp();
+
+private:
 	MapThumbnail m_Thumbnail;
 	Variables m_Variables;
 
-	std::vector<std::string_view> m_Terrains;
+	std::vector<std::string> m_Terrains;
 	int m_TerrainIndex = -1;
 
-	std::vector<MapLocation> m_SpawnPoints;
-	int m_SpawnPointIndex = -1;
-	int m_CampIndex = -1;
-	glm::ivec2 m_NearPoint;
-	std::string m_NearPointName;
-	std::string m_NearPointDesc;
+	std::vector<std::string> m_Landings;
+	int m_LandingIndex = -1;
+
+	std::vector<std::string> m_SmallCampTypes;
+	int m_SmallCampTypeIndex = -1;
+
+	std::string m_NearCamp;
+	std::map<int, std::string> m_CampTypes;
+	int m_CampTypeIndex;
+
+	int m_MapIdx = -1;
 };

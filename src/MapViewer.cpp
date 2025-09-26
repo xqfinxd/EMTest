@@ -70,16 +70,16 @@ void MapViewer::DrawMap(const glm::mat4& vpMat) {
     glBindVertexArray(0);
 }
 
-void MapViewer::DrawIcon(const glm::mat4& vpMat, const char* name, const glm::ivec2& pos) {
-    auto iconRect = m_Atlas.QueryIcon(name);
+void MapViewer::DrawIcon(const glm::mat4& vpMat, const MapButton& btn) {
+    auto iconRect = m_Atlas.QueryIcon(btn.name.c_str());
     if (!iconRect)
         return;
-    glm::ivec2 size(iconRect->z, iconRect->w);
+    glm::vec2 size(iconRect->z, iconRect->w);
 
     glm::mat4 modelMat = glm::mat4(1.f);
-    glm::vec2 m02c = glm::vec2(pos) - glm::vec2(m_MapSize) / 2.f;
+    glm::vec2 m02c = glm::vec2(btn.pos) - glm::vec2(m_MapSize) / 2.f;
     modelMat = glm::translate(modelMat, glm::vec3(m02c.x, -m02c.y, 0.f));
-    modelMat = glm::scale(modelMat, glm::vec3(size, 1.f));
+    modelMat = glm::scale(modelMat, glm::vec3(size * btn.scale, 1.f));
     
     glm::mat4 mvpMatrix = vpMat * modelMat;
     GLint mvpLoc = glGetUniformLocation(m_ImagePipeline, "mvp");
@@ -181,7 +181,7 @@ void MapViewer::Render() {
     auto vpMat = projMatrix * viewMatrix;
     DrawMap(vpMat);
     for (const auto& info : m_IconList) {
-        DrawIcon(vpMat, info.name.c_str(), info.pos);
+        DrawIcon(vpMat, info);
     }
 }
 

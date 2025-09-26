@@ -4,6 +4,7 @@
 
 #include <SDL_log.h>
 #include <SDL_assert.h>
+#include <set>
 
 std::string TEX_DIR(const std::string& fname_) {
     std::string name(fname_);
@@ -100,91 +101,102 @@ const glm::ivec4* IconAtlas::QueryIcon(const char* name) const {
     return &iter->second;
 }
 
-static std::string locpath(const char* name) {
+static std::string LOC_PATH(const char* name) {
     return std::string("loc ") + name + ".json";
 }
 
+static std::string MAP_PATH(const char* name) {
+    return std::string("map ") + name + ".json";
+}
+
 void MapThumbnail::LoadMap(const char* mapName) {
-    using namespace std;
-    m_SpawnPoints.clear();
-    m_AllPoints.clear();
+    m_Json.Load(MAP_PATH(mapName).c_str());
 
-    string jsonFn = "map ";
-    jsonFn.append(mapName);
-    jsonFn.append(".json");
+    {
+        const char* name = "Minor Base";
+        std::unordered_set<std::string_view> exist;
+        Foreach([&exist,name](const rapidjson::Value& member) {
+            auto itr = member.FindMember(name);
+            if (itr == member.MemberEnd())
+                return;
+            auto& bases = itr->value;
+            for (auto subItr = bases.MemberBegin();
+                subItr != bases.MemberEnd(); ++subItr) {
+                if (subItr->value.IsString())
+                    exist.insert(subItr->name.GetString());
+            }
+        });
+        LoadLocation(m_Minor, name, exist);
+    }
 
-    JsonAsset mJson;
-    SDL_assert(mJson.Load(jsonFn.c_str()));
-    auto& mDoc = mJson.GetDoc();
+    {
+        const char* name = "Major Base";
+        std::unordered_set<std::string_view> exist;
+        Foreach([&exist, name](const rapidjson::Value& member) {
+            auto itr = member.FindMember(name);
+            if (itr == member.MemberEnd())
+                return;
+            auto& bases = itr->value;
+            for (auto subItr = bases.MemberBegin();
+                subItr != bases.MemberEnd(); ++subItr) {
+                if (subItr->value.IsString())
+                    exist.insert(subItr->name.GetString());
+            }
+        });
+        LoadLocation(m_Major, name, exist);
+    }
+}
 
-    auto getbase_ = [](const rapidjson::Document& doc, const char* member) {
-        map<string_view, MapLocation> result;
+void MapThumbnail::Foreach(MapFilter&& filter) {
+    auto mapList = m_Json.GetDoc().GetArray();
+    std::for_each(mapList.Begin(), mapList.End(), filter);
+}
 
-        for (const auto& elem : doc.GetArray()) {
-            auto idxItr = elem.FindMember("index");
-            if (idxItr == elem.MemberEnd())
-                continue;
-            int mapIdx = elem["index"].GetInt();
+std::string_view MapThumbnail::Near(const char* locName) const {
+    std::string_view majorCamp;
+    auto itr = m_Minor.find(locName);
+    if (itr == m_Minor.end())
+        return majorCamp;
 
-            auto mItr = elem.FindMember(member);
-            if (mItr == elem.MemberEnd())
-                continue;
+    using ValueType = decltype(*m_Major.begin());
+    auto& pos = itr->second;
+    float dis = FLT_MAX;
+    std::for_each(m_Major.begin(), m_Major.end(),
+        [&pos,&dis,&majorCamp](ValueType& value) {
+            float newdis = glm::distance(
+                glm::vec2(pos),
+                glm::vec2(value.second));
+            if (newdis < 1)
+                return;
 
-            for (auto campItr = mItr->value.MemberBegin();
-                campItr != mItr->value.MemberEnd(); ++campItr) {
-                string_view name = campItr->name.GetString();
-
-                result[name].diff[mapIdx] = campItr->value.GetString();
+            if (newdis < dis) {
+                majorCamp = value.first;
+                dis = newdis;
             }
         }
+    );
 
-        JsonAsset mlocJson;
-        bool locLoaded = mlocJson.Load(locpath(member).c_str());
-        auto& mlocDoc = mlocJson.GetDoc();
-        for (auto& p : result) {
-            p.second.name = p.first;
-            if (!locLoaded)
-                continue;
+    return majorCamp;
+}
 
-            auto locItr = mlocDoc.FindMember(p.first.data());
-            if (locItr != mlocDoc.MemberEnd()) {
-                toivec2(p.second.pos, locItr->value.GetString());
-            }
+void MapThumbnail::LoadLocation(Locations& target, const char* source,
+    const std::unordered_set<std::string_view>& exist) {
+    target.clear();
+
+    JsonAsset mlocJson;
+    mlocJson.Load(LOC_PATH(source).c_str());
+
+    auto& mlocDoc = mlocJson.GetDoc();
+    using JsonMember = decltype(*(mlocDoc.MemberBegin()));
+    std::for_each(mlocDoc.MemberBegin(), mlocDoc.MemberEnd(),
+        [&target,&exist](const JsonMember& member) {
+            if (!member.value.IsString())
+                return;
+            auto itr = exist.find(member.name.GetString());
+            if (itr == exist.end())
+                return;
+            std::string_view key = *itr;
+            toivec2(target[key], member.value.GetString());
         }
-        
-        return result;
-    };
-
-    auto minorBase = getbase_(mDoc, "Minor Base");
-    auto majorBase = getbase_(mDoc, "Major Base");
-    map<string_view, MapLocation> spBase;
-
-    for (const auto& elem : mDoc.GetArray()) {
-        auto idxItr = elem.FindMember("index");
-        if (idxItr == elem.MemberEnd())
-            continue;
-        int mapIdx = elem["index"].GetInt();
-
-        auto spItr = elem.FindMember("Spawn Point");
-        if (spItr == elem.MemberEnd())
-            continue;
-        string_view name = spItr->value.GetString();
-        SDL_assert(minorBase.count(name));
-        spBase[name].diff[mapIdx] = minorBase[name].diff[mapIdx];
-    }
-    
-    for (auto& p : spBase) {
-        p.second.name = p.first;
-        p.second.pos = minorBase[p.first].pos;
-    }
-
-    for (const auto& p : spBase) {
-        m_SpawnPoints.push_back(p.second);
-    }
-    for (const auto& p : minorBase) {
-        m_AllPoints.push_back(p.second);
-    }
-    for (const auto& p : majorBase) {
-        m_AllPoints.push_back(p.second);
-    }
+    );
 }

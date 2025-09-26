@@ -7,22 +7,34 @@
 #endif
 #include <vector>
 #include <iostream>
-#include <memory>
+#include <functional>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "AssetUtils.h"
 
+class MapFilter;
+
 class MapViewer {
 public:
+    using Callback = std::function<void(MapFilter*, void*)>;
     struct Transform {
         glm::vec2 offset{ 0,0 };
         float zoom = 1.0f;
     };
 
-    struct IconInfo {
+    struct MapButton {
+        MapButton(glm::vec2 pos_, const char* name_) {
+            pos = pos_;
+            name = name_;
+        }
         glm::vec2 pos{ 0,0 };
         std::string name;
+
+        float scale = 1;
+        std::string text;
+        void* userdata = nullptr;
+        Callback onclick;
     };
 
 private:
@@ -42,11 +54,11 @@ private:
     glm::vec2 m_OriginViewSize{};
 
     IconAtlas m_Atlas;
-    std::vector<IconInfo> m_IconList;
+    std::vector<MapButton> m_IconList;
 
     void InitImagePipeline();
     void DrawMap(const glm::mat4& vpMat);
-    void DrawIcon(const glm::mat4& vpMat, const char* name, const glm::ivec2& pos);
+    void DrawIcon(const glm::mat4& vpMat, const MapButton& btn);
 
     glm::vec2 GetViewSize() const;
     glm::vec2 Normalize(const glm::vec2& pos) const;
@@ -62,7 +74,7 @@ public:
 
     void SetViewport(const glm::ivec4& viewport);
     void ReloadMap(const char* mapName);
-    std::vector<IconInfo>& MakeIcons() {
+    std::vector<MapButton>& MakeIcons() {
         return m_IconList;
     }
 

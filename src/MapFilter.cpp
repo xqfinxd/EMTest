@@ -30,24 +30,64 @@ static std::string ivec2tostr(const glm::ivec2& pos) {
     return str;
 }
 
+bool IsLandHere(
+    const rapidjson::Value& value,
+    const std::string& landing) {
+    auto itr = value.FindMember("Spawn Point");
+    if (itr == value.MemberEnd())
+        return false;
+    if (landing.compare(itr->value.GetString()) != 0)
+        return false;
+
+    return true;
+}
+
+std::string_view GetCampType(
+    const rapidjson::Value& value,
+    const char* morm, // Minor Base or Major Base
+    const std::string& landing) {
+    std::string_view result;
+    do {
+        auto itr = value.FindMember(morm);
+        if (itr == value.MemberEnd())
+            break;
+        auto campItr = itr->value.FindMember(landing.c_str());
+        if (campItr == itr->value.MemberEnd())
+            break;
+        if (!campItr->value.IsString())
+            break;
+        result = campItr->value.GetString();
+    } while (false);
+    
+    return result;
+}
+
 template<class T>
-static bool RenderCombo(const char* label, const T& container, int& idx,
-    std::function<std::string(const typename T::value_type&)>&& tostr) {
-    std::string previewText;
+using Stringify = std::function<std::string(const T&)>;
+
+template<class T>
+static bool RenderCombo(const char* label,
+    const T& container, int& idx,
+    Stringify<typename T::value_type>&& tostr) {
+    std::string text;
     if (idx >= 0 && idx < container.size()) {
         auto itr = std::cbegin(container);
         std::advance(itr, idx);
-        previewText = tostr(*itr);
+        text = tostr(*itr);
     }
+
     bool changed = false;
-    if (ImGui::BeginCombo(label, previewText.c_str())) {
-        for (auto itr = std::cbegin(container); itr != std::cend(container); ++itr) {
+    if (ImGui::BeginCombo(label, text.c_str())) {
+        for (auto itr = std::cbegin(container);
+            itr != std::cend(container); ++itr) {
             int i = std::distance(std::cbegin(container), itr);
             bool selected = idx == i;
 
-            if (ImGui::Selectable(tostr(*itr).c_str(), selected)) {
+            std::string item = tostr(*itr);
+            item = item + "##" + label + std::to_string(i);
+            if (ImGui::Selectable(item.c_str(), selected)) {
+                if (idx != i) changed = true;
                 idx = i;
-                changed = true;
             }
 
             if (selected)
@@ -60,90 +100,156 @@ static bool RenderCombo(const char* label, const T& container, int& idx,
 
 void MapFilter::Initialize() {
     m_Variables.Initialize();
-    m_Terrains = m_Variables.GetTerrains();
+    auto& terrain = m_Variables.GetTerrains();
+    m_Terrains.assign(terrain.begin(), terrain.end());
 }
 
 void MapFilter::RenderImGui(MapViewer& mapViewer) {
     using namespace std;
+    
     do {
-        // 选择地形
-        bool terrainChanged = RenderCombo("地形", m_Terrains, m_TerrainIndex,
-            [](const string_view& view) {
-                return string(view);
-            }
-        );
+        if (FilterTerrain()) {
+            const char* terrain = m_Terrains[m_TerrainIndex].data();
+            mapViewer.ReloadMap(terrain);
+            m_Thumbnail.LoadMap(terrain);
 
-        if (terrainChanged && m_TerrainIndex >= 0 && m_TerrainIndex < m_Terrains.size()) {
-            const char* terrainName = m_Terrains[m_TerrainIndex].data();
-            mapViewer.ReloadMap(terrainName);
-            m_Thumbnail.LoadMap(terrainName);
-            m_SpawnPoints = m_Thumbnail.GetSpawnPoints();
+            // reset
+            set<string_view> tmp;
+            m_Thumbnail.Foreach([&tmp](const rapidjson::Value& value) {
+                auto itr = value.FindMember("Spawn Point");
+                if (itr == value.MemberEnd())
+                    return;
+                tmp.insert(itr->value.GetString());
+            });
+            m_Landings.assign(tmp.begin(), tmp.end());
+            m_LandingIndex = -1;
+            m_SmallCampTypes.clear();
+            m_SmallCampTypeIndex = -1;
+            m_CampTypes.clear();
+            m_CampTypeIndex = -1;
+            m_MapIdx = -1;
+
+            // map icon
+            auto& icons = mapViewer.MakeIcons();
+            icons.clear();
+            for (const auto& landing : m_Landings) {
+                if (auto pos = m_Thumbnail.MinorLoc(landing.data()))
+                    icons.push_back({ *pos, Icons_::SPAWN_POINT });
+            }
         }
         
-        if (m_TerrainIndex < 0) break;
-
-        // 选择出生点
-        bool spawnChanged = RenderCombo("落地点", m_SpawnPoints, m_SpawnPointIndex,
-            [](const MapLocation& loc) {
-                return ivec2tostr(loc.pos);
-            }
-        );
-        auto& icons = mapViewer.MakeIcons();
-        icons.clear();
-        if (m_SpawnPointIndex >= 0 && m_SpawnPointIndex < m_SpawnPoints.size()) {
-            glm::ivec2 pos = m_SpawnPoints[m_SpawnPointIndex].pos;
-            icons.push_back({ pos, Icons_::SPAWN_POINT });
-        }
-        else {
-            for (const auto& sp : m_SpawnPoints) {
-                icons.push_back({ sp.pos, Icons_::SPAWN_POINT });
-            }
-        }
-
-        if (m_SpawnPointIndex < 0 || m_SpawnPointIndex >= m_SpawnPoints.size())
+        if (m_TerrainIndex < 0 || m_TerrainIndex >= m_Terrains.size())
             break;
 
-        // 选择出生营地
-        const auto& campLoc = m_SpawnPoints[m_SpawnPointIndex];
-        bool campChanged = RenderCombo("落地营地", campLoc.diff, m_CampIndex,
-            [](const std::pair<int, string>& camp) {
-                return std::to_string(camp.first) + ". " + camp.second;
-            }
-        );
-        
-        if (campChanged) {
-            auto curItr = std::begin(campLoc.diff);
-            std::advance(curItr, m_CampIndex);
-            int curMapIdx = curItr->first;
+        if (FilterLanding()) {
+            set<string_view> tmp;
+            m_Thumbnail.Foreach([&tmp, this](const rapidjson::Value& value) {
+                auto& landing = m_Landings[m_LandingIndex];
+                if (!IsLandHere(value, landing))
+                    return;
+                auto campType = GetCampType(value, "Minor Base", landing);
+                
+                tmp.insert(campType);
+            });
 
-            float dis = FLT_MAX;
-            auto& allCamps = m_Thumbnail.GetAllPoints();
-            auto closestItr = allCamps.end();
-            for (auto dstItr = allCamps.begin(); dstItr != allCamps.end(); dstItr++) {
-                float newdis = glm::distance(glm::vec2(campLoc.pos), glm::vec2(dstItr->pos));
-                if (newdis < 1)
-                    continue;
+            // reset
+            m_SmallCampTypes.assign(tmp.begin(), tmp.end());;
+            m_SmallCampTypeIndex = -1;
+            m_CampTypes.clear();
+            m_CampTypeIndex = -1;
+            m_MapIdx = -1;
 
-                if (newdis < dis) {
-                    closestItr = dstItr;
-                    dis = newdis;
-                }
-            }
-
-            if (closestItr != allCamps.end()) {
-                m_NearPoint = closestItr->pos;
-                m_NearPointName = closestItr->name;
-                auto dstCampItr = closestItr->diff.find(curMapIdx);
-                if (dstCampItr != closestItr->diff.end()) {
-                    m_NearPointDesc = dstCampItr->second;
-                }
-            }
+            // map icon
+            auto& icons = mapViewer.MakeIcons();
+            icons.clear();
+            auto& landing = m_Landings[m_LandingIndex];
+            if (auto pos = m_Thumbnail.MinorLoc(landing.data()))
+                icons.push_back({ *pos, Icons_::SPAWN_POINT });
         }
 
-        if (m_CampIndex >= 0 && m_CampIndex < campLoc.diff.size()) {
-            ImGui::Text("落地点附近 (%d,%d) 处是\n %s",
-                m_NearPoint.x, m_NearPoint.y, m_NearPointDesc.c_str());
-            icons.push_back({ m_NearPoint, Icons_::CAMP });
+        if (m_LandingIndex < 0 || m_LandingIndex >= m_Landings.size())
+            break;
+
+        if (FilterSmallCampType()) {
+            auto& landcamp = m_Landings[m_LandingIndex];
+            m_NearCamp = m_Thumbnail.Near(landcamp.data());
+
+            m_CampTypes.clear();
+            m_Thumbnail.Foreach([this](const rapidjson::Value& value) {
+                auto& landing = m_Landings[m_LandingIndex];
+                if (!IsLandHere(value, landing))
+                    return;
+
+                auto idxItr = value.FindMember("index");
+                if (idxItr == value.MemberEnd())
+                    return;
+                int mapIdx = value["index"].GetInt();
+
+                std::string campType = GetCampType(value, "Major Base", m_NearCamp).data();
+                m_CampTypes[mapIdx] = campType;
+            });
+            m_CampTypeIndex = -1;
+            m_MapIdx = -1;
         }
+
+        if (m_SmallCampTypeIndex < 0 || m_SmallCampTypeIndex >= m_SmallCampTypes.size())
+            break;
+
+        if (FilterNearCamp()) {
+            auto itr = m_CampTypes.begin();
+            std::advance(itr, m_CampTypeIndex);
+            m_MapIdx = itr->first;
+        }
+
+        if (m_CampTypeIndex < 0 || m_CampTypeIndex >= m_CampTypes.size())
+            break;
+
+        ImGui::Text("MapIndex: %d", m_MapIdx);
     } while (false);
+}
+
+bool MapFilter::FilterTerrain() {
+    // 选择地形
+    bool changed = RenderCombo("地形", m_Terrains, m_TerrainIndex,
+        [](const std::string_view& view) {
+            return std::string(view);
+        }
+    );
+
+    return changed && m_TerrainIndex >= 0 && m_TerrainIndex < m_Terrains.size();
+}
+
+bool MapFilter::FilterLanding() {
+    // 选择落地点
+    bool changed = RenderCombo("落地点", m_Landings, m_LandingIndex,
+        [this](const std::string_view& loc) {
+            if (auto pos = m_Thumbnail.MinorLoc(loc.data()))
+                return ivec2tostr(*pos);
+            return std::string("--------");
+        }
+    );
+
+    return changed && m_LandingIndex >= 0 && m_LandingIndex < m_Landings.size();
+}
+
+bool MapFilter::FilterSmallCampType() {
+    // 选择落地营地
+    bool changed = RenderCombo("落地营地", m_SmallCampTypes, m_SmallCampTypeIndex,
+        [](const std::string_view& camp) {
+            return std::string(camp);
+        }
+    );
+
+    return changed;
+}
+
+bool MapFilter::FilterNearCamp() {
+    using CampType = decltype(m_CampTypes)::value_type;
+    bool changed = RenderCombo("附近地点", m_CampTypes, m_CampTypeIndex,
+        [](const CampType& camp) {
+            return camp.second;
+        }
+    );
+
+    return changed;
 }
