@@ -1,58 +1,70 @@
 {
-	"Spawn Point": {
-		"offset": "651,463",
-		"size": "61,61"
-	},
-	"Buried Treasure": {
-		"offset": "228,246",
-		"size": "99,98"
-	},
-	"Rot Blessing": {
-		"offset": "113,240",
-		"size": "106,107"
-	},
-	"BOSS": {
-		"offset": "785,235",
+	"Boss": {
+		"offset": "1,1",
 		"size": "76,73"
 	},
-	"Scarab": {
-		"offset": "391,233",
-		"size": "94,106"
-	},
-	"Grace of Site": {
-		"offset": "391,126",
-		"size": "94,94"
-	},
-	"Evergaol": {
-		"offset": "499,123",
-		"size": "103,102"
+	"Buried Treasure": {
+		"offset": "78,1",
+		"size": "99,98"
 	},
 	"Camp": {
-		"offset": "1,122",
+		"offset": "178,1",
 		"size": "182,111"
 	},
-	"Great Church": {
-		"offset": "221,121",
-		"size": "128,117"
-	},
-	"Township": {
-		"offset": "385,37",
-		"size": "189,74"
-	},
-	"Sorcerer's Rise": {
-		"offset": "645,9",
-		"size": "50,104"
-	},
-	"Ruins": {
-		"offset": "190,6",
-		"size": "192,102"
-	},
-	"Fort": {
-		"offset": "786,1",
-		"size": "149,111"
+	"Castle": {
+		"offset": "361,1",
+		"size": "101,104"
 	},
 	"Church": {
-		"offset": "53,0",
+		"offset": "463,1",
 		"size": "81,112"
+	},
+	"Circle": {
+		"offset": "545,1",
+		"size": "160,160"
+	},
+	"Evergaol": {
+		"offset": "706,1",
+		"size": "103,102"
+	},
+	"Fort": {
+		"offset": "810,1",
+		"size": "149,111"
+	},
+	"Grace of Site": {
+		"offset": "1,162",
+		"size": "94,94"
+	},
+	"Great Church": {
+		"offset": "96,162",
+		"size": "128,117"
+	},
+	"Red Boss": {
+		"offset": "225,162",
+		"size": "107,102"
+	},
+	"Rot Blessing": {
+		"offset": "333,162",
+		"size": "106,107"
+	},
+	"Ruins": {
+		"offset": "440,162",
+		"size": "192,102"
+	},
+	"Scarab": {
+		"offset": "633,162",
+		"size": "94,106"
+	},
+	"Sorcerer's Rise": {
+		"offset": "728,162",
+		"size": "50,104"
+	},
+	"Spawn Point": {
+		"offset": "779,162",
+		"size": "120,120"
+	},
+	"Township": {
+		"offset": "1,283",
+		"size": "189,74"
 	}
 }
