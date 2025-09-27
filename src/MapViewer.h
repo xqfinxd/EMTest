@@ -77,9 +77,11 @@ public:
 private:
     GLuint m_MapPipeline = 0;
     GLuint m_MapVAO = 0;
+    GLuint m_MapVBO = 0;
 
     GLuint m_IconPipeline = 0;
     GLuint m_IconVAO = 0;
+    GLuint m_IconVBO = 0;
 
     GLuint m_MapTexture = 0;
     glm::ivec2 m_MapSize{};
@@ -94,11 +96,14 @@ private:
     IconAtlas m_Atlas;
     std::vector<MapButton> m_IconList;
     int m_IconFlags = -1;
+    bool m_DirtyIcons = true;
+    uint32_t m_IconVertexSize = 0;
 
     void InitMapPipeline();
     void InitIconPipeline();
+    void UpdateIconBuf();
     void DrawMap(const glm::mat4& vpMat);
-    void DrawIcon(const glm::mat4& vpMat, const MapButton& btn);
+    void DrawIcon(const glm::mat4& vpMat);
 
     glm::vec2 GetViewSize() const;
     glm::vec2 Normalize(const glm::vec2& pos) const;
@@ -134,10 +139,12 @@ public:
     }
     MapButton& AddButton(const glm::vec2& pos, const char* name) {
         m_IconList.emplace_back(pos, name, 0);
+        m_DirtyIcons = true;
         return m_IconList.back();
     }
     MapButton& AddButton(const glm::vec2& pos, const char* name, int layer) {
         m_IconList.emplace_back(pos, name, layer);
+        m_DirtyIcons = true;
         return m_IconList.back();
     }
     

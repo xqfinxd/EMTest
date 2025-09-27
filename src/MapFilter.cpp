@@ -210,8 +210,8 @@ void MapFilter::RenderImGui() {
         ImGui::Text("夜王: %s", detail.nightlord.c_str());
         ImGui::Text("第一夜BOSS: %s", detail.night_1_boss.c_str());
         ImGui::Text("第一夜BOSS: %s", detail.night_2_boss.c_str());
-        if (detail.special_event.empty()) {
-            ImGui::Text("特殊事件: %s", detail.nightlord.c_str());
+        if (!detail.special_event.empty()) {
+            ImGui::Text("特殊事件: %s", detail.special_event.c_str());
             if (!detail.extra_boss.empty()) {
                 ImGui::Text("额外夜晚BOSS: %s", detail.extra_boss.c_str());
             }
