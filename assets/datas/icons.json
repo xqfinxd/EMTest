@@ -11,72 +11,80 @@
 		"offset": "212,1",
 		"size": "182,111"
 	},
-	"Castle": {
+	"Cart": {
 		"offset": "395,1",
+		"size": "168,143"
+	},
+	"Castle": {
+		"offset": "564,1",
 		"size": "101,104"
 	},
 	"Church": {
-		"offset": "497,1",
+		"offset": "666,1",
 		"size": "81,112"
 	},
 	"Circle": {
-		"offset": "579,1",
+		"offset": "748,1",
 		"size": "143,139"
 	},
 	"Demon Merchant": {
-		"offset": "723,1",
+		"offset": "892,1",
 		"size": "79,98"
 	},
 	"Evergaol": {
-		"offset": "803,1",
+		"offset": "1,145",
 		"size": "103,102"
 	},
 	"Fort": {
-		"offset": "1,141",
+		"offset": "105,145",
 		"size": "149,111"
 	},
 	"Grace of Site": {
-		"offset": "151,141",
+		"offset": "255,145",
 		"size": "94,94"
 	},
 	"Great Church": {
-		"offset": "246,141",
+		"offset": "350,145",
 		"size": "128,117"
 	},
 	"Padding 1": {
-		"offset": "375,141",
+		"offset": "479,145",
 		"size": "120,120"
 	},
 	"Padding 2": {
-		"offset": "496,141",
+		"offset": "600,145",
 		"size": "160,160"
 	},
 	"Padding 3": {
-		"offset": "657,141",
+		"offset": "761,145",
 		"size": "92,96"
 	},
 	"Red Boss": {
-		"offset": "750,141",
+		"offset": "854,145",
 		"size": "133,122"
 	},
 	"Rot Blessing": {
-		"offset": "1,302",
+		"offset": "1,306",
 		"size": "149,148"
 	},
 	"Ruins": {
-		"offset": "151,302",
+		"offset": "151,306",
 		"size": "192,102"
 	},
 	"Scarab": {
-		"offset": "344,302",
+		"offset": "344,306",
 		"size": "94,106"
 	},
+	"Small Camp": {
+		"offset": "439,306",
+		"size": "261,113"
+	},
 	"Sorcerer's Rise": {
-		"offset": "439,302",
+		"offset": "701,306",
 		"size": "50,104"
 	},
 	"Township": {
-		"offset": "490,302",
+		"offset": "752,306",
 		"size": "189,74"
 	}
 }
