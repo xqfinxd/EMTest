@@ -15,16 +15,18 @@ void MapViewer::InitMapPipeline() {
 
     unsigned int indices[] = { 0, 1, 2, 2, 3, 0 };
 
+    GLuint mapVBO, mapEBO;
+
     glGenVertexArrays(1, &m_MapVAO);
-    glGenBuffers(1, &m_MapVBO);
-    glGenBuffers(1, &m_MapEBO);
+    glGenBuffers(1, &mapVBO);
+    glGenBuffers(1, &mapEBO);
 
     glBindVertexArray(m_MapVAO);
 
-    glBindBuffer(GL_ARRAY_BUFFER, m_MapVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, mapVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_MapEBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mapEBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
@@ -42,6 +44,9 @@ void MapViewer::InitMapPipeline() {
 
     glDeleteShader(vs);
     glDeleteShader(fs);
+
+    glDeleteBuffers(1, &mapVBO);
+    glDeleteBuffers(1, &mapEBO);
 }
 
 void MapViewer::InitIconPipeline() {
@@ -54,16 +59,18 @@ void MapViewer::InitIconPipeline() {
 
     unsigned int indices[] = { 0, 1, 2, 2, 3, 0 };
 
+    GLuint iconVBO, iconEBO;
+
     glGenVertexArrays(1, &m_IconVAO);
-    glGenBuffers(1, &m_IconVBO);
-    glGenBuffers(1, &m_IconEBO);
+    glGenBuffers(1, &iconVBO);
+    glGenBuffers(1, &iconEBO);
 
     glBindVertexArray(m_IconVAO);
 
-    glBindBuffer(GL_ARRAY_BUFFER, m_IconVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, iconVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IconEBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iconEBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
@@ -81,6 +88,9 @@ void MapViewer::InitIconPipeline() {
 
     glDeleteShader(vs);
     glDeleteShader(fs);
+
+    glDeleteBuffers(1, &iconVBO);
+    glDeleteBuffers(1, &iconEBO);
 }
 
 void MapViewer::DrawMap(const glm::mat4& vpMat) {
@@ -190,13 +200,9 @@ void MapViewer::Initialize() {
 
 void MapViewer::Cleanup() {
     glDeleteVertexArrays(1, &m_MapVAO);
-    glDeleteBuffers(1, &m_MapVBO);
-    glDeleteBuffers(1, &m_MapEBO);
     glDeleteProgram(m_MapPipeline);
 
     glDeleteVertexArrays(1, &m_IconVAO);
-    glDeleteBuffers(1, &m_IconVBO);
-    glDeleteBuffers(1, &m_IconEBO);
     glDeleteProgram(m_IconPipeline);
 }
 

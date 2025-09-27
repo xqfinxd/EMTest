@@ -77,13 +77,9 @@ public:
 private:
     GLuint m_MapPipeline = 0;
     GLuint m_MapVAO = 0;
-    GLuint m_MapVBO = 0;
-    GLuint m_MapEBO = 0;
 
     GLuint m_IconPipeline = 0;
     GLuint m_IconVAO = 0;
-    GLuint m_IconVBO = 0;
-    GLuint m_IconEBO = 0;
 
     GLuint m_MapTexture = 0;
     glm::ivec2 m_MapSize{};
