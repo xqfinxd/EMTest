@@ -1,70 +1,82 @@
 {
 	"Boss": {
 		"offset": "1,1",
-		"size": "76,73"
+		"size": "110,104"
 	},
 	"Buried Treasure": {
-		"offset": "78,1",
+		"offset": "112,1",
 		"size": "99,98"
 	},
 	"Camp": {
-		"offset": "178,1",
+		"offset": "212,1",
 		"size": "182,111"
 	},
 	"Castle": {
-		"offset": "361,1",
+		"offset": "395,1",
 		"size": "101,104"
 	},
 	"Church": {
-		"offset": "463,1",
+		"offset": "497,1",
 		"size": "81,112"
 	},
 	"Circle": {
-		"offset": "545,1",
-		"size": "160,160"
+		"offset": "579,1",
+		"size": "143,139"
 	},
 	"Evergaol": {
-		"offset": "706,1",
+		"offset": "723,1",
 		"size": "103,102"
 	},
 	"Fort": {
-		"offset": "810,1",
+		"offset": "827,1",
 		"size": "149,111"
 	},
 	"Grace of Site": {
-		"offset": "1,162",
+		"offset": "1,141",
 		"size": "94,94"
 	},
 	"Great Church": {
-		"offset": "96,162",
+		"offset": "96,141",
 		"size": "128,117"
 	},
+	"Major Base": {
+		"offset": "225,141",
+		"size": "261,113"
+	},
+	"Minor Base": {
+		"offset": "487,141",
+		"size": "148,95"
+	},
+	"Pading 1": {
+		"offset": "636,141",
+		"size": "120,120"
+	},
+	"Pading 2": {
+		"offset": "757,141",
+		"size": "160,160"
+	},
 	"Red Boss": {
-		"offset": "225,162",
-		"size": "107,102"
+		"offset": "1,302",
+		"size": "133,122"
 	},
 	"Rot Blessing": {
-		"offset": "333,162",
-		"size": "106,107"
+		"offset": "135,302",
+		"size": "149,148"
 	},
 	"Ruins": {
-		"offset": "440,162",
+		"offset": "285,302",
 		"size": "192,102"
 	},
 	"Scarab": {
-		"offset": "633,162",
+		"offset": "478,302",
 		"size": "94,106"
 	},
 	"Sorcerer's Rise": {
-		"offset": "728,162",
+		"offset": "573,302",
 		"size": "50,104"
 	},
-	"Spawn Point": {
-		"offset": "779,162",
-		"size": "120,120"
-	},
 	"Township": {
-		"offset": "1,283",
+		"offset": "624,302",
 		"size": "189,74"
 	}
 }
