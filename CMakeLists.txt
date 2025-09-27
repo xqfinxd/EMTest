@@ -38,9 +38,11 @@ target_include_directories(EMTest PRIVATE
 if(EMSCRIPTEN)
 	target_compile_options(EMTest PRIVATE 
 		-sUSE_SDL=2
+		-sUSE_SDL_TTF=2
 	)
 	target_link_options(EMTest PRIVATE 
 		-sUSE_SDL=2
+		-sUSE_SDL_TTF=2
 		-sWASM=1
 		-sMIN_WEBGL_VERSION=2
 		-sMAX_WEBGL_VERSION=2
@@ -54,17 +56,21 @@ if(EMSCRIPTEN)
 else()
 	add_subdirectory(3rdparty/glad)
 	find_package(SDL2 REQUIRED)
+	find_package(SDL2_TTF REQUIRED)
 	target_link_libraries(EMTest PRIVATE
 		SDL2::SDL2
+		SDL2_ttf::SDL2_ttf
 		glad
 	)
 	target_include_directories(EMTest PRIVATE
 		${SDL2_INCLUDE_DIRS}
+		${SDL2_TTF_INCLUDE_DIRS}
 	)
 	target_compile_definitions(EMTest PRIVATE 
 		SDL_MAIN_HANDLED
 	)
 	target_compile_options(EMTest PRIVATE
-		/utf-8)
+		/utf-8
+	)
 	file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets DESTINATION ${CMAKE_BINARY_DIR})
 endif()

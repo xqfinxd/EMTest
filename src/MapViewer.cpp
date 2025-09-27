@@ -114,8 +114,7 @@ void MapViewer::DrawMap(const glm::mat4& vpMat) {
 }
 
 void MapViewer::DrawIcon(const glm::mat4& vpMat, const MapButton& btn) {
-    if (!btn.rect)
-        return;
+    if (!btn.rect) return;
 
     glUseProgram(m_IconPipeline);
     glBlendFunc(GL_DST_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
