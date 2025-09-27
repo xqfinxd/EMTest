@@ -49,11 +49,11 @@ protected:
         }
 #endif
         glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        
         m_MapViewer.SetViewport(glm::ivec4(0, 0, m_Size.x, m_Size.y));
         m_MapViewer.Initialize();
 
-        m_MapFilter.Initialize();
+        m_MapFilter.Initialize(&m_MapViewer);
 
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
@@ -98,8 +98,11 @@ protected:
             case SDL_MOUSEBUTTONUP:
                 if (event.button.button == SDL_BUTTON_MIDDLE)
                     m_MapViewer.vReset();
-                if (event.button.button == SDL_BUTTON_LEFT)
+                if (event.button.button == SDL_BUTTON_LEFT) {
                     m_IsDrag = false;
+                    m_MapViewer.OnClick(&m_MapFilter, event.button.x,
+                        event.button.y);
+                }
                 break;
             case SDL_MOUSEMOTION:
                 if (m_IsDrag) {
@@ -208,7 +211,7 @@ protected:
             ImGui::Separator();
             m_MapViewer.RenderImGui();
             ImGui::Separator();
-            m_MapFilter.RenderImGui(m_MapViewer);
+            m_MapFilter.RenderImGui();
         }
 
         ImGui::End();

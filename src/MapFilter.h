@@ -7,16 +7,22 @@ public:
 	MapFilter() = default;
 	~MapFilter() = default;
 
-	void Initialize();
-	void RenderImGui(MapViewer& mapViewer);
+	void Initialize(MapViewer* view);
+	void RenderImGui();
 
 private:
 	bool FilterTerrain();
+	void OnFilterTerrain();
 	bool FilterLanding();
+	void OnFilterLanding();
 	bool FilterSmallCampType();
+	void OnFilterSmallCampType();
 	bool FilterNearCamp();
+	void OnFilterNearCamp();
 
 private:
+	MapViewer* m_Viewer = nullptr;
+
 	MapThumbnail m_Thumbnail;
 	Variables m_Variables;
 
@@ -33,5 +39,5 @@ private:
 	std::map<int, std::string> m_CampTypes;
 	int m_CampTypeIndex;
 
-	int m_MapIdx = -1;
+	MapDetail m_MapDetail;
 };

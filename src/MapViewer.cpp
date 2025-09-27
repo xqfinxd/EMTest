@@ -1,12 +1,11 @@
 #include "MapViewer.h"
-#include <algorithm>
 #include <string>
 #include <imgui.h>
 #include "GLUtils.h"
 
 static constexpr glm::vec2 ZOOM_RANGE(1, 5);
 
-void MapViewer::InitImagePipeline() {
+void MapViewer::InitMapPipeline() {
     float vertices[] = {
         -0.5f, -0.5f,
         0.5f, -0.5f,
@@ -16,16 +15,16 @@ void MapViewer::InitImagePipeline() {
 
     unsigned int indices[] = { 0, 1, 2, 2, 3, 0 };
 
-    glGenVertexArrays(1, &m_ImageVAO);
-    glGenBuffers(1, &m_ImageVBO);
-    glGenBuffers(1, &m_ImageEBO);
+    glGenVertexArrays(1, &m_MapVAO);
+    glGenBuffers(1, &m_MapVBO);
+    glGenBuffers(1, &m_MapEBO);
 
-    glBindVertexArray(m_ImageVAO);
+    glBindVertexArray(m_MapVAO);
 
-    glBindBuffer(GL_ARRAY_BUFFER, m_ImageVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, m_MapVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ImageEBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_MapEBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
@@ -33,74 +32,110 @@ void MapViewer::InitImagePipeline() {
 
     glBindVertexArray(0);
 
-    GLuint vs = CompileShaderFile(GL_VERTEX_SHADER, DATA_DIR("image.vert").c_str());
-    GLuint fs = CompileShaderFile(GL_FRAGMENT_SHADER, DATA_DIR("image.frag").c_str());
+    GLuint vs = CompileShaderFile(GL_VERTEX_SHADER, DATA_DIR("map.vert").c_str());
+    GLuint fs = CompileShaderFile(GL_FRAGMENT_SHADER, DATA_DIR("map.frag").c_str());
 
-    m_ImagePipeline = glCreateProgram();
-    glAttachShader(m_ImagePipeline, vs);
-    glAttachShader(m_ImagePipeline, fs);
-    glLinkProgram(m_ImagePipeline);
+    m_MapPipeline = glCreateProgram();
+    glAttachShader(m_MapPipeline, vs);
+    glAttachShader(m_MapPipeline, fs);
+    glLinkProgram(m_MapPipeline);
+
+    glDeleteShader(vs);
+    glDeleteShader(fs);
+}
+
+void MapViewer::InitIconPipeline() {
+    float vertices[] = {
+        -0.5f, -0.5f,
+        0.5f, -0.5f,
+        0.5f,  0.5f,
+        -0.5f,  0.5f,
+    };
+
+    unsigned int indices[] = { 0, 1, 2, 2, 3, 0 };
+
+    glGenVertexArrays(1, &m_IconVAO);
+    glGenBuffers(1, &m_IconVBO);
+    glGenBuffers(1, &m_IconEBO);
+
+    glBindVertexArray(m_IconVAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, m_IconVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IconEBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    glBindVertexArray(0);
+
+    GLuint vs = CompileShaderFile(GL_VERTEX_SHADER, DATA_DIR("icon.vert").c_str());
+    GLuint fs = CompileShaderFile(GL_FRAGMENT_SHADER, DATA_DIR("icon.frag").c_str());
+
+    m_IconPipeline = glCreateProgram();
+    glAttachShader(m_IconPipeline, vs);
+    glAttachShader(m_IconPipeline, fs);
+    glLinkProgram(m_IconPipeline);
 
     glDeleteShader(vs);
     glDeleteShader(fs);
 }
 
 void MapViewer::DrawMap(const glm::mat4& vpMat) {
+    glUseProgram(m_MapPipeline);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     glm::mat4 modelMatrix = glm::mat4(1.f);
     modelMatrix = glm::scale(modelMatrix, glm::vec3(m_MapSize, 1.f));
 
     glm::mat4 mvpMatrix = vpMat * modelMatrix;
-    GLint mvpLoc = glGetUniformLocation(m_ImagePipeline, "mvp");
+    GLint mvpLoc = glGetUniformLocation(m_MapPipeline, "mvp");
     glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(mvpMatrix));
-
-    glm::vec2 texOffset(0, 0);
-    GLint offsetLoc = glGetUniformLocation(m_ImagePipeline, "offset");
-    glUniform2fv(offsetLoc, 1, glm::value_ptr(texOffset));
-
-    glm::vec2 texSize(1, 1);
-    GLint sizeLoc = glGetUniformLocation(m_ImagePipeline, "size");
-    glUniform2fv(sizeLoc, 1, glm::value_ptr(texSize));
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, m_MapTexture);
 
-    glBindVertexArray(m_ImageVAO);
+    glBindVertexArray(m_MapVAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
     glBindVertexArray(0);
 }
 
 void MapViewer::DrawIcon(const glm::mat4& vpMat, const MapButton& btn) {
-    auto iconRect = m_Atlas.QueryIcon(btn.name.c_str());
-    if (!iconRect)
+    if (!btn.rect)
         return;
-    glm::vec2 size(iconRect->z, iconRect->w);
 
+    glUseProgram(m_IconPipeline);
+    glBlendFunc(GL_DST_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    glm::vec2 size(btn.rect->z, btn.rect->w);
     glm::mat4 modelMat = glm::mat4(1.f);
     glm::vec2 m02c = glm::vec2(btn.pos) - glm::vec2(m_MapSize) / 2.f;
     modelMat = glm::translate(modelMat, glm::vec3(m02c.x, -m02c.y, 0.f));
     modelMat = glm::scale(modelMat, glm::vec3(size * btn.scale, 1.f));
     
     glm::mat4 mvpMatrix = vpMat * modelMat;
-    GLint mvpLoc = glGetUniformLocation(m_ImagePipeline, "mvp");
+    GLint mvpLoc = glGetUniformLocation(m_IconPipeline, "mvp");
     glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(mvpMatrix));
 
-    glm::vec2 texOffset(iconRect->x, iconRect->y);
+    glm::vec2 texOffset(btn.rect->x, btn.rect->y);
     texOffset /= m_IconsSize;
     glm::vec2 texSize(size);
     texSize /= m_IconsSize;
 
     texOffset.y = 1 - texOffset.y - texSize.y;
-    GLint offsetLoc = glGetUniformLocation(m_ImagePipeline, "offset");
+    GLint offsetLoc = glGetUniformLocation(m_IconPipeline, "offset");
     glUniform2fv(offsetLoc, 1, glm::value_ptr(texOffset));
 
-    GLint sizeLoc = glGetUniformLocation(m_ImagePipeline, "size");
+    GLint sizeLoc = glGetUniformLocation(m_IconPipeline, "size");
     glUniform2fv(sizeLoc, 1, glm::value_ptr(texSize));
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, m_IconsTexture);
 
-    glBindVertexArray(m_ImageVAO);
+    glBindVertexArray(m_IconVAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
     glBindVertexArray(0);
@@ -140,7 +175,8 @@ void MapViewer::OnResizeMap() {
 }
 
 void MapViewer::Initialize() {
-    InitImagePipeline();
+    InitMapPipeline();
+    InitIconPipeline();
 
     m_IconsTexture = LoadTexture(
         TEX_DIR("icons.png").c_str(),
@@ -153,10 +189,15 @@ void MapViewer::Initialize() {
 }
 
 void MapViewer::Cleanup() {
-    glDeleteVertexArrays(1, &m_ImageVAO);
-    glDeleteBuffers(1, &m_ImageVBO);
-    glDeleteBuffers(1, &m_ImageEBO);
-    glDeleteProgram(m_ImagePipeline);
+    glDeleteVertexArrays(1, &m_MapVAO);
+    glDeleteBuffers(1, &m_MapVBO);
+    glDeleteBuffers(1, &m_MapEBO);
+    glDeleteProgram(m_MapPipeline);
+
+    glDeleteVertexArrays(1, &m_IconVAO);
+    glDeleteBuffers(1, &m_IconVBO);
+    glDeleteBuffers(1, &m_IconEBO);
+    glDeleteProgram(m_IconPipeline);
 }
 
 void MapViewer::Render() {
@@ -177,10 +218,21 @@ void MapViewer::Render() {
         glm::vec3(0, 0, 0),
         glm::vec3(0, 1, 0));
 
-    glUseProgram(m_ImagePipeline);
     auto vpMat = projMatrix * viewMatrix;
     DrawMap(vpMat);
-    for (const auto& info : m_IconList) {
+
+    auto itr = std::remove_if(m_IconList.begin(), m_IconList.end(),
+        [](const MapButton& btn) {
+            return btn.layer < 0;
+        }
+    );
+    m_IconList.erase(itr, m_IconList.end());
+    for (auto& info : m_IconList) {
+        if (!info.rect)
+            info.rect = m_Atlas.QueryIcon(info.name.c_str());
+        if (0 == (m_IconFlags & info.layer))
+            continue;
+
         DrawIcon(vpMat, info);
     }
 }
@@ -201,6 +253,23 @@ void MapViewer::Constrain() {
     glm::vec2 viewOffset = glm::vec2(m_MapSize) - GetViewSize();
     glm::vec2 range = glm::abs(viewOffset) / 2.f;
     m_Transform.offset = glm::clamp(m_Transform.offset, -range, range);
+}
+
+void MapViewer::OnClick(MapFilter* filter, int x, int y)  const {
+    auto mapPos = Screen2Map(glm::vec2(x, y));
+    for (auto& btn : m_IconList) {
+        if (!btn.rect) continue;
+        if (btn.layer < 0) continue;
+        if (!btn.onclick) continue;
+        if (0 == (btn.layer & m_IconFlags))
+            continue;
+
+        float dis = glm::distance(mapPos, btn.pos);
+        float range = glm::max(btn.rect->z, btn.rect->w) / 2;
+        if (dis <= range * 1.4142f * btn.scale) {
+            btn.onclick(filter, btn.userdata);
+        }
+    }
 }
 
 void MapViewer::SetViewport(const glm::ivec4& viewport) {
