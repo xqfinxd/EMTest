@@ -54,7 +54,7 @@ const CharInfo& FontAtlas::GetCharInfo(uint32_t charCode) {
         return charMap[charCode];
     }
     
-    static CharInfo emptyChar = {0, 0, 0, 0, 0, 0, false};
+    static CharInfo emptyChar = {0, 0, 0, 0, 0, 0, 0, 0, false};
     return emptyChar;
 }
 
@@ -98,6 +98,8 @@ bool FontAtlas::GenCharTexture(uint32_t charCode, CharInfo& charInfo) {
     
     charInfo.width = rgbaSurface->w;
     charInfo.height = rgbaSurface->h;
+    charInfo.bearingx = minx;
+    charInfo.bearingy = miny;
 
     int x, y;
     if (!FindEmptySpace(charInfo.width, charInfo.height, x, y)) {

@@ -88,7 +88,7 @@ void MapViewer::UpdateFontBuffer() {
     for (auto& btn : m_IconList) {
         float cursorX = btn.pos.x;
         float cursorY = btn.pos.y;
-        float scale = 1.f;
+        float scale = 0.8f;
 
         std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
         std::wstring wideText = converter.from_bytes(btn.text);
@@ -98,8 +98,10 @@ void MapViewer::UpdateFontBuffer() {
 
             if (!charInfo.generated) continue;
 
-            float x = cursorX - (m_MapSize.x / 2.f);
-            float y = (m_MapSize.y / 2.f) - (cursorY - charInfo.height * scale);
+            float x = cursorX + charInfo.bearingx * scale;
+            x = x - (m_MapSize.x / 2.f);
+            float y = cursorY - (charInfo.height + charInfo.bearingy) * scale;
+            y = (m_MapSize.y / 2.f) - y;
             float hw = charInfo.width * scale / 2;
             float hh = charInfo.height * scale / 2;
             float u0 = charInfo.u0;
@@ -233,7 +235,7 @@ void MapViewer::Initialize() {
         m_IconsSize.x, m_IconsSize.y, true);
 
     m_IconAtlas.Initialize();
-    m_FontAtlas.Initialize(DATA_DIR("simhei.ttf").c_str(), 14, 1024);
+    m_FontAtlas.Initialize(DATA_DIR("simhei.ttf").c_str(), 24, 1024);
 
     ReloadMap("bg");
 

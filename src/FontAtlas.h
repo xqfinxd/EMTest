@@ -15,6 +15,8 @@ struct CharInfo {
     float v1;
     int width;
     int height;
+    int bearingx;
+    int bearingy;
     bool generated;
 };
 
