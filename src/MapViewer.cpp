@@ -1,67 +1,59 @@
 #include "MapViewer.h"
 #include <string>
+#include <locale>
+#include <codecvt>
 #include <imgui.h>
 #include "GLUtils.h"
 
-static constexpr glm::vec2 ZOOM_RANGE(1, 5);
+static constexpr glm::vec2 ZOOM_RANGE(1, 10);
 
 void MapViewer::InitMapPipeline() {
-    glGenVertexArrays(1, &m_MapVAO);
-    glGenBuffers(1, &m_MapVBO);
+    GLuint vs = CompileShaderFile(GL_VERTEX_SHADER, DATA_DIR("texture.vert").c_str());
+    GLuint fs = CompileShaderFile(GL_FRAGMENT_SHADER, DATA_DIR("texture.frag").c_str());
 
-    glBindVertexArray(m_MapVAO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, m_MapVBO);
-    glBufferData(GL_ARRAY_BUFFER, 6 * 4 * sizeof(float), nullptr, GL_STATIC_DRAW);
-
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
-
-    glBindVertexArray(0);
-
-    GLuint vs = CompileShaderFile(GL_VERTEX_SHADER, DATA_DIR("map.vert").c_str());
-    GLuint fs = CompileShaderFile(GL_FRAGMENT_SHADER, DATA_DIR("map.frag").c_str());
-
-    m_MapPipeline = glCreateProgram();
-    glAttachShader(m_MapPipeline, vs);
-    glAttachShader(m_MapPipeline, fs);
-    glLinkProgram(m_MapPipeline);
+    m_TexPipeline = glCreateProgram();
+    glAttachShader(m_TexPipeline, vs);
+    glAttachShader(m_TexPipeline, fs);
+    glLinkProgram(m_TexPipeline);
 
     glDeleteShader(vs);
     glDeleteShader(fs);
 }
 
 void MapViewer::InitIconPipeline() {
-    glGenVertexArrays(1, &m_IconVAO);
-    glGenBuffers(1, &m_IconVBO);
+    GLuint vs = CompileShaderFile(GL_VERTEX_SHADER, DATA_DIR("font.vert").c_str());
+    GLuint fs = CompileShaderFile(GL_FRAGMENT_SHADER, DATA_DIR("font.frag").c_str());
 
-    glBindVertexArray(m_IconVAO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, m_IconVBO);
-    glBufferData(GL_ARRAY_BUFFER, 6 * 4 * sizeof(float) * 256, nullptr, GL_DYNAMIC_DRAW);
-
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
-    
-    glBindVertexArray(0);
-
-    GLuint vs = CompileShaderFile(GL_VERTEX_SHADER, DATA_DIR("icon.vert").c_str());
-    GLuint fs = CompileShaderFile(GL_FRAGMENT_SHADER, DATA_DIR("icon.frag").c_str());
-
-    m_IconPipeline = glCreateProgram();
-    glAttachShader(m_IconPipeline, vs);
-    glAttachShader(m_IconPipeline, fs);
-    glLinkProgram(m_IconPipeline);
+    m_FontPipeline = glCreateProgram();
+    glAttachShader(m_FontPipeline, vs);
+    glAttachShader(m_FontPipeline, fs);
+    glLinkProgram(m_FontPipeline);
 
     glDeleteShader(vs);
     glDeleteShader(fs);
 }
 
-void MapViewer::UpdateIconBuf() {
+void MapViewer::SetupBuffer(GLuint& vbo, GLuint& vao, int elemSize) {
+    glGenVertexArrays(1, &vao);
+    glGenBuffers(1, &vbo);
+
+    glBindVertexArray(vao);
+
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    int drawType = elemSize == 1 ? GL_STATIC_DRAW : GL_DYNAMIC_DRAW;
+    glBufferData(GL_ARRAY_BUFFER, 6 * 4 * sizeof(float) * elemSize, nullptr, drawType);
+
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+
+    glBindVertexArray(0);
+}
+
+void MapViewer::UpdateIconBuffer() {
     std::vector<float> vertices;
     for (auto& btn : m_IconList) {
         if (!btn.rect) {
-            btn.rect = m_Atlas.QueryIcon(btn.name.c_str());
+            btn.rect = m_IconAtlas.QueryIcon(btn.name.c_str());
         }
         if (0 == (m_IconFlags & btn.layer)) continue;
         if (!btn.rect) continue;
@@ -81,7 +73,7 @@ void MapViewer::UpdateIconBuf() {
             x + hw, y + hh, u1, v0,
             x - hw, y + hh, u0, v0,
             x - hw, y - hh, u0, v1,
-            });
+        });
     }
     if (!vertices.empty()) {
         glBindBuffer(GL_ARRAY_BUFFER, m_IconVBO);
@@ -91,12 +83,56 @@ void MapViewer::UpdateIconBuf() {
     }
 }
 
+void MapViewer::UpdateFontBuffer() {
+    std::vector<float> vertices;
+    for (auto& btn : m_IconList) {
+        float cursorX = btn.pos.x;
+        float cursorY = btn.pos.y;
+        float scale = 1.f;
+
+        std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+        std::wstring wideText = converter.from_bytes(btn.text);
+
+        for (wchar_t charCode : wideText) {
+            const auto& charInfo = m_FontAtlas.GetCharInfo((uint32_t)charCode);
+
+            if (!charInfo.generated) continue;
+
+            float x = cursorX - (m_MapSize.x / 2.f);
+            float y = (m_MapSize.y / 2.f) - (cursorY - charInfo.height * scale);
+            float hw = charInfo.width * scale / 2;
+            float hh = charInfo.height * scale / 2;
+            float u0 = charInfo.u0;
+            float v0 = charInfo.v0;
+            float u1 = charInfo.u1;
+            float v1 = charInfo.v1;
+
+            vertices.insert(vertices.end(), {
+                x - hw, y - hh, u0, v1,
+                x + hw, y - hh, u1, v1,
+                x + hw, y + hh, u1, v0,
+                x + hw, y + hh, u1, v0,
+                x - hw, y + hh, u0, v0,
+                x - hw, y - hh, u0, v1,
+            });
+
+            cursorX += charInfo.width * scale;
+        }
+    }
+    if (!vertices.empty()) {
+        glBindBuffer(GL_ARRAY_BUFFER, m_FontVBO);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, vertices.size() * sizeof(float), vertices.data());
+
+        m_FontVertexSize = vertices.size() / 4;
+    }
+}
+
 void MapViewer::DrawMap(const glm::mat4& vpMat) {
-    glUseProgram(m_MapPipeline);
+    glUseProgram(m_TexPipeline);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glm::mat4 mvpMatrix = vpMat * glm::mat4(1.f);
-    GLint mvpLoc = glGetUniformLocation(m_MapPipeline, "mvp");
+    GLint mvpLoc = glGetUniformLocation(m_TexPipeline, "mvp");
     glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(mvpMatrix));
 
     glActiveTexture(GL_TEXTURE0);
@@ -108,14 +144,14 @@ void MapViewer::DrawMap(const glm::mat4& vpMat) {
     glBindVertexArray(0);
 }
 
-void MapViewer::DrawIcon(const glm::mat4& vpMat) {
+void MapViewer::DrawIcons(const glm::mat4& vpMat) {
     if (!m_IconVertexSize) return;
 
-    glUseProgram(m_MapPipeline);
+    glUseProgram(m_TexPipeline);
     glBlendFunc(GL_DST_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glm::mat4 mvpMatrix = vpMat * glm::mat4(1.f);
-    GLint mvpLoc = glGetUniformLocation(m_IconPipeline, "mvp");
+    GLint mvpLoc = glGetUniformLocation(m_TexPipeline, "mvp");
     glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(mvpMatrix));
 
     glActiveTexture(GL_TEXTURE0);
@@ -123,6 +159,30 @@ void MapViewer::DrawIcon(const glm::mat4& vpMat) {
 
     glBindVertexArray(m_IconVAO);
     glDrawArrays(GL_TRIANGLES, 0, m_IconVertexSize);
+
+    glBindVertexArray(0);
+}
+
+void MapViewer::DrawTexts(const glm::mat4& vpMat) {
+    if (!m_FontVertexSize) return;
+    m_FontAtlas.UpdateTexture();
+
+    glUseProgram(m_FontPipeline);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    glm::mat4 mvpMatrix = vpMat * glm::mat4(1.f);
+    GLint mvpLoc = glGetUniformLocation(m_FontPipeline, "mvp");
+    glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(mvpMatrix));
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, m_FontAtlas.GetTextureID());
+
+    float textColor[] = { 1.0f, 1.0f, 0.0f, 1.0f };
+    GLint colorLoc = glGetUniformLocation(m_FontPipeline, "uColor");
+    glUniform4fv(colorLoc, 1, textColor);
+
+    glBindVertexArray(m_FontVAO);
+    glDrawArrays(GL_TRIANGLES, 0, m_FontVertexSize);
 
     glBindVertexArray(0);
 }
@@ -164,10 +224,16 @@ void MapViewer::Initialize() {
     InitMapPipeline();
     InitIconPipeline();
 
+    SetupBuffer(m_MapVBO, m_MapVAO, 1);
+    SetupBuffer(m_IconVBO, m_IconVAO, 256);
+    SetupBuffer(m_FontVBO, m_FontVAO, 512);
+
     m_IconsTexture = LoadTexture(
         TEX_DIR("icons.png").c_str(),
         m_IconsSize.x, m_IconsSize.y, true);
-    m_Atlas.Initialize();
+
+    m_IconAtlas.Initialize();
+    m_FontAtlas.Initialize(DATA_DIR("simhei.ttf").c_str(), 14, 1024);
 
     ReloadMap("bg");
 
@@ -177,11 +243,16 @@ void MapViewer::Initialize() {
 void MapViewer::Cleanup() {
     glDeleteBuffers(1, &m_MapVBO);
     glDeleteVertexArrays(1, &m_MapVAO);
-    glDeleteProgram(m_MapPipeline);
+    glDeleteProgram(m_TexPipeline);
+
+    glDeleteVertexArrays(1, &m_FontVAO);
+    glDeleteBuffers(1, &m_FontVBO);
+
+    m_FontAtlas.Cleanup();
 
     glDeleteBuffers(1, &m_IconVBO);
     glDeleteVertexArrays(1, &m_IconVAO);
-    glDeleteProgram(m_IconPipeline);
+    glDeleteProgram(m_FontPipeline);
 }
 
 void MapViewer::Render() {
@@ -216,10 +287,13 @@ void MapViewer::Render() {
     }
     
     if (m_DirtyIcons) {
-        UpdateIconBuf();
+        UpdateIconBuffer();
+        UpdateFontBuffer();
+        m_DirtyIcons = false;
     }
     
-    DrawIcon(vpMat);
+    DrawIcons(vpMat);
+    DrawTexts(vpMat);
 }
 
 void MapViewer::RenderImGui() {

@@ -62,8 +62,8 @@ protected:
 
         auto& io = ImGui::GetIO();
         io.IniFilename = nullptr;
-        io.Fonts->AddFontFromFileTTF(DATA_DIR("msyh.ttc").c_str(), 14,
-            nullptr, io.Fonts->GetGlyphRangesChineseFull());
+        io.Fonts->AddFontFromFileTTF(DATA_DIR("simhei.ttf").c_str(),
+            14, nullptr, io.Fonts->GetGlyphRangesChineseFull());
         io.Fonts->Build();
         io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
     }

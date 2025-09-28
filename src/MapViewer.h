@@ -13,6 +13,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "AssetUtils.h"
+#include "FontAtlas.h"
 
 class MapFilter;
 using Callback = std::function<void(MapFilter*, void*)>;
@@ -75,35 +76,41 @@ public:
     };
 
 private:
-    GLuint m_MapPipeline = 0;
+    GLuint m_TexPipeline = 0;
     GLuint m_MapVAO = 0;
     GLuint m_MapVBO = 0;
-
-    GLuint m_IconPipeline = 0;
-    GLuint m_IconVAO = 0;
-    GLuint m_IconVBO = 0;
-
     GLuint m_MapTexture = 0;
     glm::ivec2 m_MapSize{};
 
+    GLuint m_FontPipeline = 0;
+    GLuint m_IconVAO = 0;
+    GLuint m_IconVBO = 0;
     GLuint m_IconsTexture = 0;
     glm::ivec2 m_IconsSize;
-
-    Transform m_Transform;
-    glm::ivec4 m_Viewport{};
-    glm::vec2 m_OriginViewSize{};
-
-    IconAtlas m_Atlas;
+    IconAtlas m_IconAtlas;
     std::vector<MapButton> m_IconList;
     int m_IconFlags = -1;
     bool m_DirtyIcons = true;
     uint32_t m_IconVertexSize = 0;
 
+    FontAtlas m_FontAtlas;
+    GLuint m_FontVAO = 0;
+    GLuint m_FontVBO = 0;
+    uint32_t m_FontVertexSize = 0;
+
+    Transform m_Transform;
+    glm::ivec4 m_Viewport{};
+    glm::vec2 m_OriginViewSize{};
+
     void InitMapPipeline();
     void InitIconPipeline();
-    void UpdateIconBuf();
+    void SetupBuffer(GLuint& vbo, GLuint& vao, int elemSize);
+
     void DrawMap(const glm::mat4& vpMat);
-    void DrawIcon(const glm::mat4& vpMat);
+    void DrawIcons(const glm::mat4& vpMat);
+    void DrawTexts(const glm::mat4& vpMat);
+    void UpdateIconBuffer();
+    void UpdateFontBuffer();
 
     glm::vec2 GetViewSize() const;
     glm::vec2 Normalize(const glm::vec2& pos) const;
