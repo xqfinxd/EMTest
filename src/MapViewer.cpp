@@ -53,7 +53,7 @@ void MapViewer::UpdateIconBuffer() {
     std::vector<float> vertices;
     for (auto& btn : m_IconList) {
         if (!btn.rect) {
-            btn.rect = m_IconAtlas.QueryIcon(btn.name.c_str());
+            btn.rect = m_IconAtlas.QueryRect(btn.name.c_str());
         }
         if (0 == (m_IconFlags & btn.layer)) continue;
         if (!btn.rect) continue;
@@ -86,9 +86,11 @@ void MapViewer::UpdateIconBuffer() {
 void MapViewer::UpdateFontBuffer() {
     std::vector<float> vertices;
     for (auto& btn : m_IconList) {
+        if (0 == (m_IconFlags & btn.layer)) continue;
+
         float cursorX = btn.pos.x;
         float cursorY = btn.pos.y;
-        float scale = 0.8f;
+        float scale = 0.6f;
 
         std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
         std::wstring wideText = converter.from_bytes(btn.text);
@@ -98,9 +100,9 @@ void MapViewer::UpdateFontBuffer() {
 
             if (!charInfo.generated) continue;
 
-            float x = cursorX + charInfo.bearingx * scale;
+            float x = cursorX;
             x = x - (m_MapSize.x / 2.f);
-            float y = cursorY - (charInfo.height + charInfo.bearingy) * scale;
+            float y = cursorY - (charInfo.height) * scale;
             y = (m_MapSize.y / 2.f) - y;
             float hw = charInfo.width * scale / 2;
             float hh = charInfo.height * scale / 2;
@@ -179,7 +181,7 @@ void MapViewer::DrawTexts(const glm::mat4& vpMat) {
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, m_FontAtlas.GetTextureID());
 
-    float textColor[] = { 1.0f, 1.0f, 0.0f, 1.0f };
+    float textColor[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     GLint colorLoc = glGetUniformLocation(m_FontPipeline, "uColor");
     glUniform4fv(colorLoc, 1, textColor);
 
@@ -228,7 +230,7 @@ void MapViewer::Initialize() {
 
     SetupBuffer(m_MapVBO, m_MapVAO, 1);
     SetupBuffer(m_IconVBO, m_IconVAO, 256);
-    SetupBuffer(m_FontVBO, m_FontVAO, 512);
+    SetupBuffer(m_FontVBO, m_FontVAO, 2048);
 
     m_IconsTexture = LoadTexture(
         TEX_DIR("icons.png").c_str(),
@@ -326,7 +328,7 @@ void MapViewer::OnClick(MapFilter* filter, int x, int y)  const {
             continue;
 
         float dis = glm::distance(mapPos, btn.pos);
-        float range = glm::max(btn.rect->z, btn.rect->w) / 2;
+        float range = glm::max(btn.rect->z, btn.rect->w) / 2.f;
         if (dis <= range * 1.4142f * btn.scale) {
             btn.onclick(filter, btn.userdata);
         }

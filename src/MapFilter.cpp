@@ -263,6 +263,7 @@ void MapFilter::OnFilterTerrain() {
         auto pos = m_Thumbnail.Query(eMinorBase, landing.data());
         if (!pos) continue;
         m_Viewer->AddButton(*pos, Icons_::SPAWN_POINT, 1)
+            .SetText("出生点 Spawn Point")
             .SetLayer(1)
             .SetScale(Icons_::SPAWN_POINT_SCALE_1)
             .SetUserData((void*)i)
@@ -375,53 +376,53 @@ bool MapFilter::FilterNearCamp() {
 void MapFilter::OnFilterNearCamp() {
     auto itr = m_CampTypes.begin();
     std::advance(itr, m_CampTypeIndex);
-    m_MapDetail.index = itr->first;
 
-    auto target = m_Thumbnail.Find([this](const rapidjson::Value& value) {
-        auto idxItr = value.FindMember("index");
-        if (idxItr == value.MemberEnd())
-            return false;
-        int mapIdx = value["index"].GetInt();
-        return m_MapDetail.index == mapIdx;
-    });
-
-    if (target)
-        m_MapDetail.Load(*target, m_Thumbnail);
-
+    m_Thumbnail.LoadDetail(itr->first, m_MapDetail);
     auto& detail = m_MapDetail;
+    BossDefines bossDefines;
+
     m_Viewer->RemoveAllButtons(3);
     m_Viewer->AddButton(detail.spawn_point, Icons_::SPAWN_POINT, 3);
-    m_Viewer->AddButton(detail.day_1_circle, Icons_::CIRCLE, 3);
-    m_Viewer->AddButton(detail.day_2_circle, Icons_::CIRCLE, 3);
+    m_Viewer->AddButton(detail.day_1_circle, Icons_::CIRCLE, 3)
+        .SetText("Day 1");
+    m_Viewer->AddButton(detail.day_2_circle, Icons_::CIRCLE, 3)
+        .SetText("Day 2");
     for (const auto& e : detail.major) {
         float scale = 1;
-        const auto* name = Icons_::From(e.second, scale);
-        m_Viewer->AddButton(e.first, name, 3)
-            .SetScale(scale);
+        const auto* iconName = Icons_::From(e.second, scale);
+        m_Viewer->AddButton(e.first, iconName, 3)
+            .SetScale(scale)
+            .SetText(e.second);
     }
     for (const auto& e : detail.minor) {
         float scale = 1;
-        const auto* name = Icons_::From(e.second, scale);
-        m_Viewer->AddButton(e.first, name, 3)
-            .SetScale(scale);
+        const auto* iconName = Icons_::From(e.second, scale);
+        m_Viewer->AddButton(e.first, iconName, 3)
+            .SetScale(scale)
+            .SetText(e.second);
     }
     for (const auto& e : detail.evergaol) {
         m_Viewer->AddButton(e.first, Icons_::EVERGOAL, 3)
-            .SetScale(Icons_::EVERGOAL_SCALE);
+            .SetScale(Icons_::EVERGOAL_SCALE)
+            .SetText(e.second);
     }
     for (const auto& e : detail.field) {
-        if (e.second[0] == '*') {
+        auto bossType = bossDefines.BossType(e.second);
+        if (2 == bossType) {
             m_Viewer->AddButton(e.first, Icons_::RED_BOSS, 3)
-                .SetScale(Icons_::BOSS_SCALE);
+                .SetScale(Icons_::BOSS_SCALE)
+                .SetText(e.second);
         }
-        else {
+        else if (1 == bossType) {
             m_Viewer->AddButton(e.first, Icons_::BOSS, 3)
-                .SetScale(Icons_::BOSS_SCALE);
+                .SetScale(Icons_::BOSS_SCALE)
+                .SetText(e.second);
         }
     }
     for (const auto& e : detail.rotted_woods) {
         m_Viewer->AddButton(e.first, Icons_::RED_BOSS, 3)
-            .SetScale(Icons_::BOSS_SCALE);
+            .SetScale(Icons_::BOSS_SCALE)
+            .SetText(e.second);
     }
     m_Viewer->AddButton(detail.rot_blessing, Icons_::ROT_BLESSING, 3)
         .SetScale(Icons_::ROT_BLESSING_SCALE);
