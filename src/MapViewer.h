@@ -38,7 +38,7 @@ public:
         userdata = ud;
         return *this;
     }
-    MapButton& SetText(const std::string& str) {
+    MapButton& SetText(string_view str) {
         text = str;
         return *this;
     }

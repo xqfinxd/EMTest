@@ -6,8 +6,10 @@
 #include <SDL_assert.h>
 #include <set>
 
+std::unique_ptr<Translator> g_Translator{ nullptr };
+bool g_EnableChinese = true;
+
 using JsonMember = std::decay_t<decltype(*(rapidjson::Value{}.MemberBegin()))>;
-using JsonValue = rapidjson::Value;
 
 std::string TEX_DIR(const std::string& fname_) {
     std::string name(fname_);
@@ -19,6 +21,15 @@ std::string DATA_DIR(const std::string& fname_) {
     std::string name(fname_);
     std::transform(name.begin(), name.end(), name.begin(), ::tolower);
     return std::string("assets/datas/") + name;
+}
+
+string_view TR(string_view ostr) {
+    if (g_EnableChinese) {
+        if (!g_Translator)
+            g_Translator.reset(new Translator);
+        return g_Translator->Find(ostr);
+    }
+    return ostr;
 }
 
 bool LoadJson(const char* fname, rapidjson::Document& doc) {
@@ -42,6 +53,19 @@ std::unique_ptr<rapidjson::Document> LoadJson(const char* fname) {
     return doc;
 }
 
+const glm::ivec2* AsVec2(const char* str) {
+    if (str == nullptr || strlen(str) == 0)
+        return false;
+    static glm::ivec2 result;
+    char* newstr = nullptr;
+    result.x = std::strtol(str, &newstr, 10);
+    if (!newstr || str == newstr)
+        return nullptr;
+    result.y = std::strtol(newstr + 1, &newstr, 10);
+
+    return &result;
+}
+
 bool toivec2(glm::ivec2& result, const char* str) {
     if (str == nullptr || strlen(str) == 0)
         return false;
@@ -51,26 +75,12 @@ bool toivec2(glm::ivec2& result, const char* str) {
     return true;
 }
 
-const char* SubString(const JsonValue* value, const char* key) {
-    const char* nulString = "";
-    if (!value)
-        return nulString;
-    auto itr = value->FindMember(key);
-    if (itr == value->MemberEnd())
-        return nulString;
-    if (!itr->value.IsString())
-        return nulString;
-    return itr->value.GetString();
-}
-
-const JsonValue* SubObject(const JsonValue* value, const char* key) {
+const JsonValue* SubValue(const JsonValue* value, const char* key) {
     const rapidjson::Value* nulObject = nullptr;
     if (!value)
         return nulObject;
     auto itr = value->FindMember(key);
     if (itr == value->MemberEnd())
-        return nulObject;
-    if (!itr->value.IsObject())
         return nulObject;
     return &itr->value;
 }
@@ -79,16 +89,16 @@ void Variables::Initialize() {
     m_Json = LoadJson("defines.json");
     SDL_assert(m_Json);
 
-    auto mapsItr = m_Json->FindMember("Maps");
-    if (mapsItr != m_Json->MemberEnd() && mapsItr->value.IsArray()) {
-        for (const auto& map : mapsItr->value.GetArray()) {
+    auto mapsValue = SubValue(m_Json.get(), "Maps");
+    if (mapsValue && mapsValue->IsArray()) {
+        for (const auto& map : mapsValue->GetArray()) {
             m_Terrains.emplace_back(map.GetString());
         }
     }
 
-    auto lordsItr = m_Json->FindMember("Nightloads");
-    if (lordsItr != m_Json->MemberEnd() && lordsItr->value.IsArray()) {
-        for (const auto& lord : lordsItr->value.GetArray()) {
+    auto lordsValue = SubValue(m_Json.get(), "Nightloads");
+    if (lordsValue && lordsValue->IsArray()) {
+        for (const auto& lord : lordsValue->GetArray()) {
             m_Nightlords.emplace_back(lord.GetString());
         }
     }
@@ -98,19 +108,26 @@ void IconAtlas::Initialize() {
     m_Json = LoadJson("icons.json");
     SDL_assert(m_Json);
 
+    auto SubVec2 = [](const JsonValue* value_, glm::ivec2& result) {
+        if (!value_ || !value_->IsString())
+            return false;
+        auto tmp_ = AsVec2(value_->GetString());
+        if (!tmp_) return false;
+        result = *tmp_;
+        return true;
+    };
+
     for (auto itr = m_Json->MemberBegin();
         itr != m_Json->MemberEnd(); ++itr) {
         std::string_view name{ itr->name.GetString() };
 
-        glm::ivec2 offset, size;
-        auto offsetItr = itr->value.FindMember("offset");
-        if (offsetItr != itr->value.MemberEnd()) {
-            toivec2(offset, offsetItr->value.GetString());
-        }
-        auto sizeItr = itr->value.FindMember("size");
-        if (sizeItr != itr->value.MemberEnd()) {
-            toivec2(size, sizeItr->value.GetString());
-        }
+        glm::ivec2 offset;
+        if (!SubVec2(SubValue(&itr->value, "offset"), offset))
+            continue;
+        
+        glm::ivec2 size;
+        if (!SubVec2(SubValue(&itr->value, "size"), size))
+            continue;
 
         m_IconMap[name] = glm::ivec4(offset, size);
     }
@@ -163,16 +180,20 @@ bool MapThumbnail::LoadDetail(int mapIdx, MapDetail& detail) {
 
     auto itr = std::find_if(m_MapList->Begin(), m_MapList->End(),
         [mapIdx](const rapidjson::Value& value) {
-            auto itr = value.FindMember("index");
-            if (itr == value.MemberEnd())
+            auto idxValue = SubValue(&value, "index");
+            if (!idxValue || !idxValue->IsInt())
                 return false;
-            if (!itr->value.IsInt())
-                return false;
-            return itr->value.GetInt() == mapIdx;
+            return idxValue->GetInt() == mapIdx;
         }
     );
-    if (itr == m_MapList->End())
-        return false;
+    if (itr == m_MapList->End()) return false;
+
+    auto SubString = [](const JsonValue* value, const char* key) {
+        auto sub = SubValue(value, key);
+        if (!sub || !sub->IsString())
+            return "";
+        return sub->GetString();
+    };
 
     detail.nightlord = SubString(itr, "Nightlord");
     if (auto pos = Query(eMinorBase, SubString(itr, "Spawn Point"))) {
@@ -189,29 +210,29 @@ bool MapThumbnail::LoadDetail(int mapIdx, MapDetail& detail) {
     if (auto pos = Query(eCircle, SubString(itr, "Night 2 Circle"))) {
         detail.day_2_circle = *pos;
     }
-    if (auto sub = SubObject(itr, "Castle")) {
+    if (auto sub = SubValue(itr, "Castle")) {
         detail.castle_type = SubString(sub, "Castle");
     }
-    if (auto sub = SubObject(itr, "Minor Base")) {
+    if (auto sub = SubValue(itr, "Minor Base")) {
         LoadMapLocations(*sub, detail.minor, eMinorBase);
     }
-    if (auto sub = SubObject(itr, "Major Base")) {
+    if (auto sub = SubValue(itr, "Major Base")) {
         LoadMapLocations(*sub, detail.major, eMajorBase);
     }
-    if (auto sub = SubObject(itr, "Evergaol")) {
+    if (auto sub = SubValue(itr, "Evergaol")) {
         LoadMapLocations(*sub, detail.evergaol, eEvergaol);
     }
-    if (auto sub = SubObject(itr, "Field Boss")) {
+    if (auto sub = SubValue(itr, "Field Boss")) {
         LoadMapLocations(*sub, detail.field, eFieldBoss);
     }
-    if (auto sub = SubObject(itr, "Rotted Woods")) {
+    if (auto sub = SubValue(itr, "Rotted Woods")) {
         LoadMapLocations(*sub, detail.rotted_woods, eRottedWoods);
     }
 
-    if (auto sub = SubObject(itr, "Arena Boss")) {
+    if (auto sub = SubValue(itr, "Arena Boss")) {
         detail.castle_basement = SubString(sub, "Castle Basement");
     }
-    if (auto sub = SubObject(itr, "Field Boss")) {
+    if (auto sub = SubValue(itr, "Field Boss")) {
         detail.castle_rooftop = SubString(sub, "Castle Rooftop");
     }
     if (auto pos = Query(eRotBlessing, SubString(itr, "Rot Blessing"))) {
@@ -225,6 +246,18 @@ bool MapThumbnail::LoadDetail(int mapIdx, MapDetail& detail) {
     }
 
     return true;
+}
+
+const glm::ivec2* MapThumbnail::Query(LocationType loc, string_view locName) const {
+    if (locName.empty())
+        return nullptr;
+    auto typeItr = m_Locations.find(loc);
+    if (typeItr == m_Locations.end())
+        return nullptr;
+    auto itr = typeItr->second.find(locName);
+    if (itr == typeItr->second.end())
+        return nullptr;
+    return &itr->second;
 }
 
 string_view MapThumbnail::Near(const char* locName) const {
@@ -264,14 +297,16 @@ void MapThumbnail::LoadLocation1(Locations& loc, const char* source, const char*
     auto doc = LoadJson(LOC_PATH(source).c_str());
     Foreach(
         [&loc, &doc, key](const rapidjson::Value& member) {
-            auto itr = member.FindMember(key);
-            if (itr == member.MemberEnd())
+            auto value_ = SubValue(&member, key);
+            if (!value_ || !value_->IsString())
                 return;
-            if (!itr->value.IsString())
+            string_view subKey = value_->GetString();
+            auto locvalue_ = SubValue(doc.get(), subKey.data());
+            if (!locvalue_ || !locvalue_->IsString())
                 return;
-            string_view subKey = itr->value.GetString();
+
             glm::ivec2 pos;
-            if (toivec2(pos, SubString(doc.get(), subKey.data())))
+            if (toivec2(pos, locvalue_->GetString()))
                 loc[subKey] = pos;
         }
     );
@@ -281,17 +316,19 @@ void MapThumbnail::LoadLocation2(Locations& loc, const char* source, const char*
     auto doc = LoadJson(LOC_PATH(source).c_str());
     Foreach(
         [&loc, &doc, key](const rapidjson::Value& member) {
-            auto itr = member.FindMember(key);
-            if (itr == member.MemberEnd())
+            auto value_ = SubValue(&member, key);
+            if (!value_ || !value_->IsObject())
                 return;
-            if (!itr->value.IsObject())
-                return;
-
-            for (auto subItr = itr->value.MemberBegin();
-                subItr != itr->value.MemberEnd(); ++subItr) {
+            
+            for (auto subItr = value_->MemberBegin();
+                subItr != value_->MemberEnd(); ++subItr) {
                 string_view subKey = subItr->name.GetString();
+                auto locvalue_ = SubValue(doc.get(), subKey.data());
+                if (!locvalue_ || !locvalue_->IsString())
+                    continue;
+
                 glm::ivec2 pos;
-                if (toivec2(pos, SubString(doc.get(), subKey.data())))
+                if (toivec2(pos, locvalue_->GetString()))
                     loc[subKey] = pos;
             }
         }
@@ -339,10 +376,35 @@ BossDefines::BossDefines() {
 }
 
 int BossDefines::BossType(string_view bossName) const {
-    auto itr = m_Json->FindMember(bossName.data());
-    if (itr == m_Json->MemberEnd())
+    auto typeValue = SubValue(m_Json.get(), bossName.data());
+    if (!typeValue || !typeValue->IsInt())
         return 0;
-    if (!itr->value.IsInt())
-        return 0;
-    return itr->value.GetInt();
+    return typeValue->GetInt();
+}
+
+Translator::Translator() {
+    Load("chs main.json");
+    Load("chs special event.json");
+    Load("chs ui.json");
+}
+
+string_view Translator::Find(string_view word) const {
+    std::hash<std::string_view> hashFunc{};
+    auto itr = m_Table.find(hashFunc(word));
+    if (itr == m_Table.end())
+        return word;
+    return itr->second;
+}
+
+void Translator::Load(const char* fname) {
+    std::hash<std::string_view> hashFunc{};
+    auto doc = LoadJson(fname);
+    std::for_each(doc->MemberBegin(), doc->MemberEnd(),
+        [this,&hashFunc](const JsonMember& member) {
+            if (!member.name.IsString() || !member.value.IsString())
+                return;
+            size_t hash = hashFunc(member.name.GetString());
+            m_Table[hash] = member.value.GetString();
+        }
+    );
 }

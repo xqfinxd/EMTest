@@ -16,9 +16,13 @@ std::string DATA_DIR(const std::string& fname);
 
 using Document = rapidjson::Document;
 using string_view = std::string_view;
+using JsonValue = rapidjson::Value;
+
+string_view TR(string_view ostr);
 
 bool LoadJson(const char* fname, Document& doc);
 std::unique_ptr<Document> LoadJson(const char* fname);
+const JsonValue* SubValue(const JsonValue* value, const char* key);
 
 class Variables {
 public:
@@ -35,6 +39,19 @@ private:
 	std::unique_ptr<Document> m_Json;
     NameList m_Terrains;
     NameList m_Nightlords;
+};
+
+class Translator {
+public:
+	using Table = std::unordered_map<size_t, std::string>;
+	Translator();
+	string_view Find(string_view word) const;
+
+private:
+	void Load(const char* fname);
+
+private:
+	Table m_Table;
 };
 
 class BossDefines {
@@ -116,17 +133,7 @@ public:
 	const rapidjson::Value* Find(MapFinder&& finder);
 	bool LoadDetail(int mapIdx, MapDetail& detail);
 
-	const glm::ivec2* Query(LocationType loc, const char* locName) const {
-		if (!locName || strlen(locName) == 0)
-			return nullptr;
-		auto typeItr = m_Locations.find(loc);
-		if (typeItr == m_Locations.end())
-			return nullptr;
-		auto itr = typeItr->second.find(locName);
-		if (itr == typeItr->second.end())
-			return nullptr;
-		return &itr->second;
-	}
+	const glm::ivec2* Query(LocationType loc, string_view locName) const;
 	string_view Near(const char* locName) const;
 
 private:

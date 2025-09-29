@@ -8,6 +8,7 @@
 namespace Icons_ {
     constexpr static const char* SPAWN_POINT = "Padding 1";
     constexpr static const char* MAJOR_BASE = "Padding 2";
+    constexpr static const char* PADDING3 = "Padding 3";
     constexpr static const char* ROT_BLESSING = "Rot Blessing";
     constexpr static const char* BOSS = "Boss";
     constexpr static const char* RED_BOSS = "Red Boss";
@@ -78,6 +79,10 @@ namespace Icons_ {
             scale = 0.6f;
             return TOWNSHIP;
         }
+        else if (name.npos != name.find("map event")) {
+            scale = 0.4f;
+            return PADDING3;
+        }
         return "";
     }
 }
@@ -90,45 +95,27 @@ static std::string ivec2tostr(const glm::ivec2& pos) {
     return str;
 }
 
-bool IsLandHere(
-    const rapidjson::Value& value,
-    const std::string& landing) {
-    auto itr = value.FindMember("Spawn Point");
-    if (itr == value.MemberEnd())
+static bool CompareValue(const JsonValue* value_, string_view landing) {
+    if (!value_ || !value_->IsString())
         return false;
-    if (landing.compare(itr->value.GetString()) != 0)
-        return false;
-
-    return true;
+    return landing == value_->GetString();
 }
 
-std::string_view GetCampType(
-    const rapidjson::Value& value,
-    const char* morm, // Minor Base or Major Base
-    const std::string& landing) {
-    std::string_view result;
-    do {
-        auto itr = value.FindMember(morm);
-        if (itr == value.MemberEnd())
-            break;
-        auto campItr = itr->value.FindMember(landing.c_str());
-        if (campItr == itr->value.MemberEnd())
-            break;
-        if (!campItr->value.IsString())
-            break;
-        result = campItr->value.GetString();
-    } while (false);
-    
-    return result;
+static string_view GetCampType(const JsonValue* value_, string_view landing) {
+    auto campValue = SubValue(value_, landing.data());
+    if (!campValue || !campValue->IsString())
+        return "";
+    return campValue->GetString();
 }
 
 template<class T>
 using Stringify = std::function<std::string(const T&)>;
 
 template<class T>
-static bool RenderCombo(const char* label,
+static bool RenderCombo(string_view label,
     const T& container, int& idx,
-    Stringify<typename T::value_type>&& tostr) {
+    Stringify<typename T::value_type>&& tostr)
+{
     std::string text;
     if (idx >= 0 && idx < container.size()) {
         auto itr = std::cbegin(container);
@@ -137,14 +124,14 @@ static bool RenderCombo(const char* label,
     }
 
     bool changed = false;
-    if (ImGui::BeginCombo(label, text.c_str())) {
+    if (ImGui::BeginCombo(label.data(), text.c_str())) {
         for (auto itr = std::cbegin(container);
             itr != std::cend(container); ++itr) {
             int i = std::distance(std::cbegin(container), itr);
             bool selected = idx == i;
 
             std::string item = tostr(*itr);
-            item = item + "##" + label + std::to_string(i);
+            item = item + "##" + std::string(label) + std::to_string(i);
             if (ImGui::Selectable(item.c_str(), selected)) {
                 if (idx != i) changed = true;
                 idx = i;
@@ -206,29 +193,35 @@ void MapFilter::RenderImGui() {
             break;
 
         const auto& detail = m_MapDetail;
-        ImGui::Text("地图索引: %d", detail.index);
-        ImGui::Text("夜王: %s", detail.nightlord.c_str());
-        ImGui::Text("第一夜BOSS: %s", detail.night_1_boss.c_str());
-        ImGui::Text("第一夜BOSS: %s", detail.night_2_boss.c_str());
+        auto Combine = [](std::vector<string_view>&& strs) {
+            std::string ret;
+            for (auto&& s : strs) {
+                ret.append(s);
+            }
+            return ret;
+        };
+        ImGui::Text(Combine({ TR("Map Index"), ": ", std::to_string(detail.index) }).c_str());
+        ImGui::Text(Combine({ TR("Nightlord"), ": ", TR(detail.nightlord) }).c_str());
+        ImGui::Text(Combine({ TR("Day 1"), "BOSS: ", TR(detail.night_1_boss) }).c_str());
+        ImGui::Text(Combine({ TR("Day 2"), "BOSS: ", TR(detail.night_2_boss) }).c_str());
         if (!detail.special_event.empty()) {
-            ImGui::Text("特殊事件: %s", detail.special_event.c_str());
+            ImGui::Text(Combine({ TR("Special Event"), ": ", TR(detail.special_event) }).c_str());
             if (!detail.extra_boss.empty()) {
-                ImGui::Text("额外夜晚BOSS: %s", detail.extra_boss.c_str());
+                ImGui::Text(Combine({ TR("Extra Night BOSS"), ": ", TR(detail.extra_boss) }).c_str());
             }
         }
         if (!detail.castle_type.empty()) {
-            ImGui::Text("主城类型: %s", detail.castle_type.c_str());
-            ImGui::Text("主城地下: %s", detail.castle_basement.c_str());
-            ImGui::Text("主城楼顶: %s", detail.castle_rooftop.c_str());
+            ImGui::Text(Combine({ TR("Castle Type"), ": ", TR(detail.castle_type) }).c_str());
+            ImGui::Text(Combine({ TR("Castle Basement"), ": ", TR(detail.castle_basement) }).c_str());
+            ImGui::Text(Combine({ TR("Castle Rooftop"), ": ", TR(detail.castle_rooftop) }).c_str());
         }
     } while (false);
 }
 
 bool MapFilter::FilterTerrain() {
-    // 选择地形
-    bool changed = RenderCombo("地形", m_Terrains, m_TerrainIndex,
-        [](const std::string_view& view) {
-            return std::string(view);
+    bool changed = RenderCombo(TR("Terrain"), m_Terrains, m_TerrainIndex,
+        [](const std::string& view) {
+            return std::string(TR(view));
         }
     );
 
@@ -243,10 +236,11 @@ void MapFilter::OnFilterTerrain() {
     // reset
     std::set<std::string_view> tmp;
     m_Thumbnail.Foreach([&tmp](const rapidjson::Value& value) {
-        auto itr = value.FindMember("Spawn Point");
-        if (itr == value.MemberEnd())
+        auto spawnValue = SubValue(&value, "Spawn Point");
+        if (!spawnValue || !spawnValue->IsString())
             return;
-        tmp.insert(itr->value.GetString());
+
+        tmp.insert(spawnValue->GetString());
     });
     m_Landings.assign(tmp.begin(), tmp.end());
     m_LandingIndex = -1;
@@ -263,7 +257,7 @@ void MapFilter::OnFilterTerrain() {
         auto pos = m_Thumbnail.Query(eMinorBase, landing.data());
         if (!pos) continue;
         m_Viewer->AddButton(*pos, Icons_::SPAWN_POINT, 1)
-            .SetText("出生点 Spawn Point")
+            .SetText(ivec2tostr(*pos))
             .SetLayer(1)
             .SetScale(Icons_::SPAWN_POINT_SCALE_1)
             .SetUserData((void*)i)
@@ -281,7 +275,7 @@ void MapFilter::OnFilterTerrain() {
 
 bool MapFilter::FilterLanding() {
     // 选择落地点
-    bool changed = RenderCombo("落地点", m_Landings, m_LandingIndex,
+    bool changed = RenderCombo(TR("Spawn Point"), m_Landings, m_LandingIndex,
         [this](const std::string_view& loc) {
             if (auto pos = m_Thumbnail.Query(eMinorBase, loc.data()))
                 return ivec2tostr(*pos);
@@ -296,11 +290,11 @@ void MapFilter::OnFilterLanding() {
     std::set<std::string_view> tmp;
     m_Thumbnail.Foreach([&tmp, this](const rapidjson::Value& value) {
         auto& landing = m_Landings[m_LandingIndex];
-        if (!IsLandHere(value, landing))
+        if (!CompareValue(SubValue(&value, "Spawn Point"), landing))
             return;
-        auto campType = GetCampType(value, "Minor Base", landing);
-
-        tmp.insert(campType);
+        auto campType = GetCampType(SubValue(&value, "Minor Base"), landing);
+        if (!campType.empty())
+            tmp.insert(campType);
     });
 
     // reset
@@ -327,6 +321,7 @@ void MapFilter::OnFilterLanding() {
     if (auto pos = m_Thumbnail.Query(eMajorBase, m_NearCamp.c_str())) {
         m_Viewer->RemoveAllButtons(2);
         m_Viewer->AddButton(*pos, Icons_::MAJOR_BASE, 2)
+            .SetText(TR("Closest Location"))
             .SetScale(Icons_::MAJOR_BASE_SCALE);
     }
     m_Viewer->SetButtonFlagBits(GetFlags({ 1,2 }));
@@ -334,9 +329,9 @@ void MapFilter::OnFilterLanding() {
 
 bool MapFilter::FilterSmallCampType() {
     // 选择落地营地
-    bool changed = RenderCombo("落地营地", m_SmallCampTypes, m_SmallCampTypeIndex,
-        [](const std::string_view& camp) {
-            return std::string(camp);
+    bool changed = RenderCombo(TR("Spawn Camp"), m_SmallCampTypes, m_SmallCampTypeIndex,
+        [](const std::string& camp) {
+            return std::string(TR(camp));
         }
     );
 
@@ -346,17 +341,24 @@ bool MapFilter::FilterSmallCampType() {
 void MapFilter::OnFilterSmallCampType() {
     m_CampTypes.clear();
     m_Thumbnail.Foreach([this](const rapidjson::Value& value) {
-        auto& landing = m_Landings[m_LandingIndex];
-        if (!IsLandHere(value, landing))
+        const auto& landing = m_Landings[m_LandingIndex];
+        if (!CompareValue(SubValue(&value, "Spawn Point"), landing))
+            return;
+        auto minorValue = SubValue(&value, "Minor Base");
+        if (!minorValue || !minorValue->IsObject())
+            return;
+        const auto& smallCampType = m_SmallCampTypes[m_SmallCampTypeIndex];
+        if (!CompareValue(SubValue(minorValue, landing.c_str()), smallCampType))
             return;
 
-        auto idxItr = value.FindMember("index");
-        if (idxItr == value.MemberEnd())
+        auto idxValue = SubValue(&value, "index");
+        if (!idxValue || !idxValue->IsInt())
             return;
-        int mapIdx = value["index"].GetInt();
+        int mapIdx = idxValue->GetInt();
 
-        std::string campType = GetCampType(value, "Major Base", m_NearCamp).data();
-        m_CampTypes[mapIdx] = campType;
+        auto campType = GetCampType(SubValue(&value, "Major Base"), m_NearCamp);
+        if (!campType.empty())
+            m_CampTypes[mapIdx] = campType;
     });
     m_CampTypeIndex = -1;
     m_MapDetail.Reset();
@@ -364,9 +366,9 @@ void MapFilter::OnFilterSmallCampType() {
 
 bool MapFilter::FilterNearCamp() {
     using CampType = decltype(m_CampTypes)::value_type;
-    bool changed = RenderCombo("附近地点", m_CampTypes, m_CampTypeIndex,
+    bool changed = RenderCombo(TR("Closest Location"), m_CampTypes, m_CampTypeIndex,
         [](const CampType& camp) {
-            return camp.second;
+            return std::string(TR(camp.second));
         }
     );
 
@@ -384,45 +386,45 @@ void MapFilter::OnFilterNearCamp() {
     m_Viewer->RemoveAllButtons(3);
     m_Viewer->AddButton(detail.spawn_point, Icons_::SPAWN_POINT, 3);
     m_Viewer->AddButton(detail.day_1_circle, Icons_::CIRCLE, 3)
-        .SetText("Day 1");
+        .SetText(TR("Day 1"));
     m_Viewer->AddButton(detail.day_2_circle, Icons_::CIRCLE, 3)
-        .SetText("Day 2");
+        .SetText(TR("Day 2"));
     for (const auto& e : detail.major) {
         float scale = 1;
         const auto* iconName = Icons_::From(e.second, scale);
         m_Viewer->AddButton(e.first, iconName, 3)
             .SetScale(scale)
-            .SetText(e.second);
+            .SetText(TR(e.second));
     }
     for (const auto& e : detail.minor) {
         float scale = 1;
         const auto* iconName = Icons_::From(e.second, scale);
         m_Viewer->AddButton(e.first, iconName, 3)
             .SetScale(scale)
-            .SetText(e.second);
+            .SetText(TR(e.second));
     }
     for (const auto& e : detail.evergaol) {
         m_Viewer->AddButton(e.first, Icons_::EVERGOAL, 3)
             .SetScale(Icons_::EVERGOAL_SCALE)
-            .SetText(e.second);
+            .SetText(TR(e.second));
     }
     for (const auto& e : detail.field) {
         auto bossType = bossDefines.BossType(e.second);
         if (2 == bossType) {
             m_Viewer->AddButton(e.first, Icons_::RED_BOSS, 3)
                 .SetScale(Icons_::BOSS_SCALE)
-                .SetText(e.second);
+                .SetText(TR(e.second));
         }
         else if (1 == bossType) {
             m_Viewer->AddButton(e.first, Icons_::BOSS, 3)
                 .SetScale(Icons_::BOSS_SCALE)
-                .SetText(e.second);
+                .SetText(TR(e.second));
         }
     }
     for (const auto& e : detail.rotted_woods) {
         m_Viewer->AddButton(e.first, Icons_::RED_BOSS, 3)
             .SetScale(Icons_::BOSS_SCALE)
-            .SetText(e.second);
+            .SetText(TR(e.second));
     }
     m_Viewer->AddButton(detail.rot_blessing, Icons_::ROT_BLESSING, 3)
         .SetScale(Icons_::ROT_BLESSING_SCALE);

@@ -85,16 +85,20 @@ void MapViewer::UpdateIconBuffer() {
 
 void MapViewer::UpdateFontBuffer() {
     std::vector<float> vertices;
+
+    constexpr float scale = 0.6f;
+    constexpr float textSpace = 10;
     for (auto& btn : m_IconList) {
         if (0 == (m_IconFlags & btn.layer)) continue;
 
         float cursorX = btn.pos.x;
         float cursorY = btn.pos.y;
-        float scale = 0.6f;
 
         std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
         std::wstring wideText = converter.from_bytes(btn.text);
-
+        std::vector<glm::vec4> baseVertices;
+        baseVertices.reserve(wideText.size());
+        float textHeight = 0;
         for (wchar_t charCode : wideText) {
             const auto& charInfo = m_FontAtlas.GetCharInfo((uint32_t)charCode);
 
@@ -104,24 +108,36 @@ void MapViewer::UpdateFontBuffer() {
             x = x - (m_MapSize.x / 2.f);
             float y = cursorY - (charInfo.height) * scale;
             y = (m_MapSize.y / 2.f) - y;
-            float hw = charInfo.width * scale / 2;
-            float hh = charInfo.height * scale / 2;
+            float h = charInfo.height * scale;
+            textHeight = glm::max(h, textHeight);
+            float w = charInfo.width * scale;
             float u0 = charInfo.u0;
             float v0 = charInfo.v0;
             float u1 = charInfo.u1;
             float v1 = charInfo.v1;
 
-            vertices.insert(vertices.end(), {
-                x - hw, y - hh, u0, v1,
-                x + hw, y - hh, u1, v1,
-                x + hw, y + hh, u1, v0,
-                x + hw, y + hh, u1, v0,
-                x - hw, y + hh, u0, v0,
-                x - hw, y - hh, u0, v1,
+            baseVertices.insert(baseVertices.end(), {
+                {x,     y    , u0, v1},
+                {x + w, y    , u1, v1},
+                {x + w, y + h, u1, v0},
+                {x + w, y + h, u1, v0},
+                {x,     y + h, u0, v0},
+                {x,     y    , u0, v1},
             });
 
             cursorX += charInfo.width * scale;
         }
+        float offsetx = (cursorX - btn.pos.x) / 2;
+        float offsety = textHeight + textSpace;
+        if (btn.rect)
+            offsety += btn.rect->w * btn.scale / 2;
+        std::for_each(baseVertices.begin(), baseVertices.end(),
+            [offsetx, offsety, &vertices](const glm::vec4& v) {
+                vertices.insert(vertices.end(), {
+                    v.x - offsetx, v.y - offsety, v.z, v.w,
+                });
+            }
+        );
     }
     if (!vertices.empty()) {
         glBindBuffer(GL_ARRAY_BUFFER, m_FontVBO);
@@ -303,10 +319,11 @@ void MapViewer::Render() {
 void MapViewer::RenderImGui() {
     const auto& mpos = ImGui::GetIO().MousePos;
     auto mappos = Screen2Map(glm::vec2(mpos.x, mpos.y));
-    ImGui::Text("地图坐标 : %d,%d", (int)mappos.x, (int)mappos.y);
+    std::string fmtLoc = std::string(TR("Map Location")) + ": %d,%d";
+    ImGui::Text(fmtLoc.c_str(), (int)mappos.x, (int)mappos.y);
     auto& view = m_Transform;
-    ImGui::SliderFloat("缩放", &view.zoom, ZOOM_RANGE.x, ZOOM_RANGE.y);
-    ImGui::DragFloat2("偏移", glm::value_ptr(view.offset), 2);
+    ImGui::SliderFloat(TR("Zoom").data(), &view.zoom, ZOOM_RANGE.x, ZOOM_RANGE.y);
+    ImGui::DragFloat2(TR("Offset").data(), glm::value_ptr(view.offset), 2);
 }
 
 void MapViewer::Constrain() {

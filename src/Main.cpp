@@ -10,6 +10,8 @@
 #include "MapViewer.h"
 #include "MapFilter.h"
 
+extern bool g_EnableChinese;
+
 class MyGame : public GameLoop {
 protected:
     void Initialize() override {
@@ -125,7 +127,7 @@ protected:
         // 窗口的 ID 和 标题
         ImGuiID dockID = ImGui::GetID("##ui.dock_space");
         const char* UI_ROOT_WINDOW = "##ui.root";
-        const char* UI_PROPERTY_BOX = "视图##ui.property";
+        const char* UI_PROPERTY_BOX = "##ui.property";
         const char* UI_VIEW_BOX = "##ui.view";
 
         const ImGuiViewport* viewport = ImGui::GetMainViewport();
@@ -200,14 +202,17 @@ protected:
         ImGui::PopStyleVar(3); // 弹出样式设置
         {
             auto framerate = ImGui::GetIO().Framerate;
-            ImGui::TextColored(ImVec4(0,1,0,1), "帧率: %.1f", framerate);
+            std::string fmtFps = std::string(TR("Frame Rate")) + ": %.1f";
+            ImGui::TextColored(ImVec4(0,1,0,1), fmtFps.c_str(), framerate);
         }
         ImGui::End();
         
         // 右侧边栏
         ImGui::Begin(UI_PROPERTY_BOX, nullptr, ImGuiWindowFlags_NoCollapse);
         {
-            ImGui::ColorEdit4("背景颜色", glm::value_ptr(m_BgColor));
+            std::string fmtBgColor(TR("Bg Color"));
+            ImGui::ColorEdit4(fmtBgColor.c_str(), glm::value_ptr(m_BgColor));
+            ImGui::Checkbox("中文", &g_EnableChinese);
             ImGui::Separator();
             m_MapViewer.RenderImGui();
             ImGui::Separator();
