@@ -35,7 +35,7 @@ protected:
         m_Size.x -= 20;
         m_Size.y -= 100;
 #endif
-        m_Window = SDL_CreateWindow("EMTest",
+        m_Window = SDL_CreateWindow("Nightreign Map Filter",
             SDL_WINDOWPOS_CENTERED,
             SDL_WINDOWPOS_CENTERED,
             m_Size.x, m_Size.y, windowFlags);
