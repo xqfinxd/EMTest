@@ -63,8 +63,9 @@ protected:
         }
 #endif
         glEnable(GL_BLEND);
+        m_HasTouchDevice = SDL_GetNumTouchDevices() > 0;
         
-        m_MapViewer.SetViewport(glm::ivec4(0, 0, m_Size.x, m_Size.y));
+        m_MapViewer.SetViewport(m_Size.y, glm::ivec4(0, 0, m_Size.x * 0.75f, m_Size.y));
         m_MapViewer.Initialize();
 
         m_MapFilter.Initialize(&m_MapViewer);
@@ -99,40 +100,25 @@ protected:
                 Stop();
                 break;
             case SDL_MOUSEWHEEL:
-                if (m_MapViewer.TestPoint(event.wheel.mouseX,
-                    event.wheel.mouseY)) {
-                    if (event.wheel.y > 0)
-                        m_MapViewer.vZoom(1.f);
-                    else if (event.wheel.y < 0)
-                        m_MapViewer.vZoom(-1.f);
-                }
+                OnMouseWheel(event.wheel);
                 break;
             case SDL_MOUSEBUTTONDOWN:
-                if (event.button.button == SDL_BUTTON_LEFT
-                    && event.button.clicks == 1
-                    && m_MapViewer.TestPoint(event.button.x,
-                        event.button.y)) {
-                    m_IsDrag = true;
-                }
-                    
-                break;
             case SDL_MOUSEBUTTONUP:
-                if (event.button.button == SDL_BUTTON_MIDDLE)
-                    m_MapViewer.vReset();
-                if (event.button.button == SDL_BUTTON_LEFT) {
-                    m_IsDrag = false;
-                    m_MapViewer.OnClick(&m_MapFilter, event.button.x,
-                        event.button.y);
-                }
+                OnMouseButton(event.button);
                 break;
             case SDL_MOUSEMOTION:
-                if (m_IsDrag) {
-                    m_MapViewer.vMove(event.motion.xrel, event.motion.yrel);
-                }
+                OnMouseMotion(event.motion);
+                break;
+            // phone web browser touch
+            case SDL_FINGERUP:
+            case SDL_FINGERDOWN:
+            case SDL_FINGERMOTION:
+                OnTouch(event.tfinger);
                 break;
             }
         }
     }
+
     void Update(float deltaTime) override {
         m_MapViewer.Constrain();
     }
@@ -283,6 +269,60 @@ protected:
     }
 
 private:
+    void OnMouseButton(const SDL_MouseButtonEvent& me) {
+        if (m_HasTouchDevice)
+            return;
+
+        const int x = me.x;
+        const int y = me.y;
+
+        if (me.type == SDL_MOUSEBUTTONDOWN) {
+            if (!m_MapViewer.TestPoint(x, y))
+                return;
+            if (me.button == SDL_BUTTON_LEFT) {
+                if (me.clicks == 1) {
+                    m_IsDrag = true;
+                }
+                else {
+                    m_MapViewer.vMoveTo(x, y);
+                    m_MapViewer.vZoom(1);
+                }
+            }
+            else if (me.button == SDL_BUTTON_MIDDLE) {
+                m_MapViewer.vReset();
+            }
+        }
+        else if (me.type == SDL_MOUSEBUTTONUP) {
+            if (me.button == SDL_BUTTON_LEFT) {
+                m_IsDrag = false;
+                m_MapViewer.OnClick(&m_MapFilter, x, y);
+            }
+        }
+    }
+
+    void OnMouseMotion(const SDL_MouseMotionEvent& me) {
+        if (m_HasTouchDevice)
+            return;
+
+        if (m_IsDrag) {
+            m_MapViewer.vMove(me.xrel, me.yrel);
+        }
+    }
+
+    void OnMouseWheel(const SDL_MouseWheelEvent& we) {
+        if (m_MapViewer.TestPoint(we.mouseX, we.mouseY)) {
+            if (we.y > 0)
+                m_MapViewer.vZoom(1.f);
+            else if (we.y < 0)
+                m_MapViewer.vZoom(-1.f);
+        }
+    }
+
+    void OnTouch(const SDL_TouchFingerEvent& te) {
+        
+    }
+
+private:
     SDL_Window* m_Window = nullptr;
     SDL_Renderer* m_LocalRenderer = nullptr;
     SDL_GLContext m_Context = nullptr;
@@ -295,6 +335,7 @@ private:
     MapFilter m_MapFilter;
 
     bool m_IsDrag = false;
+    bool m_HasTouchDevice = false;
 };
 
 int main(int argc, char* argv[]) {

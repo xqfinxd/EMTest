@@ -289,6 +289,9 @@ void MapViewer::Render() {
         glm::vec3(0, 0, 0),
         glm::vec3(0, 1, 0));
 
+    glViewport(m_glViewport.x, m_glViewport.y,
+        m_glViewport.z, m_glViewport.w);
+
     auto vpMat = projMatrix * viewMatrix;
     DrawMap(vpMat);
 
@@ -361,8 +364,9 @@ void MapViewer::OnClick(MapFilter* filter, int x, int y)  const {
     }
 }
 
-void MapViewer::SetViewport(const glm::ivec4& viewport) {
-    m_Viewport = viewport;
+void MapViewer::SetViewport(int screenHeight, const glm::ivec4& viewport) {
+    m_glViewport = m_Viewport = viewport;
+    m_glViewport.y = screenHeight - viewport.w - viewport.y;
     vReset();
     OnResizeMap();
 }
@@ -398,8 +402,17 @@ void MapViewer::vZoom(float value) {
 }
 
 void MapViewer::vMove(int x, int y) {
+    glm::vec2 zero(0, 0);
+    glm::vec2 nzero = Normalize(zero);
     glm::vec2 offset(x, y);
-    m_Transform.offset += Normalize(offset);
+    glm::vec2 noffset = Normalize(offset);
+    m_Transform.offset += (noffset - nzero);
+}
+
+void MapViewer::vMoveTo(int x, int y) {
+    glm::vec2 mapPos = Screen2Map(glm::vec2(x, y));
+    glm::vec2 mz2mc(m_MapSize / 2);
+    m_Transform.offset = mz2mc - mapPos;
 }
 
 void MapViewer::vReset() {

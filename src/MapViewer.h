@@ -102,6 +102,7 @@ private:
 
     Transform m_Transform;
     glm::ivec4 m_Viewport{};
+    glm::ivec4 m_glViewport{};
     glm::vec2 m_OriginViewSize{};
 
     void InitMapPipeline();
@@ -129,7 +130,7 @@ public:
     void Constrain();
     void OnClick(MapFilter* filter, int x, int y) const;
 
-    void SetViewport(const glm::ivec4& viewport);
+    void SetViewport(int screenHeight, const glm::ivec4& viewport);
     void ReloadMap(const char* mapName);
 
     void ForeachButton(std::function<void(MapButton&)>&& func) {
@@ -161,6 +162,7 @@ public:
     
     void vZoom(float value);
     void vMove(int x, int y);
+    void vMoveTo(int x, int y);
     void vReset();
     bool TestPoint(int x, int y) const;
 };
