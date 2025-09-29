@@ -9,6 +9,8 @@ public:
 
 	void Initialize(MapViewer* view);
 	void RenderImGui();
+	bool RenderFilter();
+	void RenderDetail();
 
 private:
 	bool FilterTerrain();

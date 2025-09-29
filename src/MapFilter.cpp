@@ -161,61 +161,68 @@ static int GetFlags(std::set<int>&& values) {
 }
 
 void MapFilter::RenderImGui() {
+    if (RenderFilter())
+        RenderDetail();
+}
+
+bool MapFilter::RenderFilter() {
     using namespace std;
-    
-    do {
-        if (FilterTerrain()) {
-            OnFilterTerrain();
+
+    if (FilterTerrain()) 
+        OnFilterTerrain();
+
+    if (m_TerrainIndex < 0 || m_TerrainIndex >= m_Terrains.size())
+        return false;
+
+    if (FilterLanding())
+        OnFilterLanding();
+
+    if (m_LandingIndex < 0 || m_LandingIndex >= m_Landings.size())
+        return false;
+
+    if (FilterSmallCampType()) 
+        OnFilterSmallCampType();
+
+    if (m_SmallCampTypeIndex < 0 || m_SmallCampTypeIndex >= m_SmallCampTypes.size())
+        return false;
+
+    if (FilterNearCamp()) 
+        OnFilterNearCamp();
+
+    if (m_CampTypeIndex < 0 || m_CampTypeIndex >= m_CampTypes.size())
+        return false;
+
+    return true;
+}
+
+void MapFilter::RenderDetail() {
+    using namespace std;
+    const auto& md = m_MapDetail;
+    if (md.index < 0 || md.nightlord.empty())
+        return;
+
+    auto Combine = [](vector<string_view>&& strs) {
+        string ret;
+        for (auto&& s : strs) {
+            ret.append(s);
         }
-        
-        if (m_TerrainIndex < 0 || m_TerrainIndex >= m_Terrains.size())
-            break;
-
-        if (FilterLanding()) {
-            OnFilterLanding();
+        return ret;
+    };
+    ImGui::Text(Combine({ TR("Map Index"), ": ", to_string(md.index) }).c_str());
+    ImGui::Text(Combine({ TR("Nightlord"), ": ", TR(md.nightlord) }).c_str());
+    ImGui::Text(Combine({ TR("Day 1"), "BOSS: ", TR(md.night_1_boss) }).c_str());
+    ImGui::Text(Combine({ TR("Day 2"), "BOSS: ", TR(md.night_2_boss) }).c_str());
+    if (!md.special_event.empty()) {
+        ImGui::Text(Combine({ TR("Special Event"), ": ", TR(md.special_event) }).c_str());
+        if (!md.extra_boss.empty()) {
+            ImGui::Text(Combine({ TR("Extra Night BOSS"), ": ", TR(md.extra_boss) }).c_str());
         }
-
-        if (m_LandingIndex < 0 || m_LandingIndex >= m_Landings.size())
-            break;
-
-        if (FilterSmallCampType()) {
-            OnFilterSmallCampType();
-        }
-
-        if (m_SmallCampTypeIndex < 0 || m_SmallCampTypeIndex >= m_SmallCampTypes.size())
-            break;
-
-        if (FilterNearCamp()) {
-            OnFilterNearCamp();
-        }
-
-        if (m_CampTypeIndex < 0 || m_CampTypeIndex >= m_CampTypes.size())
-            break;
-
-        const auto& detail = m_MapDetail;
-        auto Combine = [](std::vector<string_view>&& strs) {
-            std::string ret;
-            for (auto&& s : strs) {
-                ret.append(s);
-            }
-            return ret;
-        };
-        ImGui::Text(Combine({ TR("Map Index"), ": ", std::to_string(detail.index) }).c_str());
-        ImGui::Text(Combine({ TR("Nightlord"), ": ", TR(detail.nightlord) }).c_str());
-        ImGui::Text(Combine({ TR("Day 1"), "BOSS: ", TR(detail.night_1_boss) }).c_str());
-        ImGui::Text(Combine({ TR("Day 2"), "BOSS: ", TR(detail.night_2_boss) }).c_str());
-        if (!detail.special_event.empty()) {
-            ImGui::Text(Combine({ TR("Special Event"), ": ", TR(detail.special_event) }).c_str());
-            if (!detail.extra_boss.empty()) {
-                ImGui::Text(Combine({ TR("Extra Night BOSS"), ": ", TR(detail.extra_boss) }).c_str());
-            }
-        }
-        if (!detail.castle_type.empty()) {
-            ImGui::Text(Combine({ TR("Castle Type"), ": ", TR(detail.castle_type) }).c_str());
-            ImGui::Text(Combine({ TR("Castle Basement"), ": ", TR(detail.castle_basement) }).c_str());
-            ImGui::Text(Combine({ TR("Castle Rooftop"), ": ", TR(detail.castle_rooftop) }).c_str());
-        }
-    } while (false);
+    }
+    if (!md.castle_type.empty()) {
+        ImGui::Text(Combine({ TR("Castle Type"), ": ", TR(md.castle_type) }).c_str());
+        ImGui::Text(Combine({ TR("Castle Basement"), ": ", TR(md.castle_basement) }).c_str());
+        ImGui::Text(Combine({ TR("Castle Rooftop"), ": ", TR(md.castle_rooftop) }).c_str());
+    }
 }
 
 bool MapFilter::FilterTerrain() {

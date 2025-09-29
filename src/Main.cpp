@@ -21,8 +21,19 @@ protected:
         }
 
         int windowFlags = SDL_WINDOW_SHOWN;
+        m_Size.x = 1200;
+        m_Size.y = 900;
 #ifndef __EMSCRIPTEN__
         windowFlags |= SDL_WINDOW_OPENGL;
+#else
+        m_Size.x = EM_ASM_INT({
+            return window.innerWidth;
+        });
+        m_Size.y = EM_ASM_INT({
+            return window.innerHeight;
+        });
+        m_Size.x -= 20;
+        m_Size.y -= 100;
 #endif
         m_Window = SDL_CreateWindow("EMTest",
             SDL_WINDOWPOS_CENTERED,
@@ -173,7 +184,7 @@ protected:
                     // 设置节点停靠窗口
                     ImGui::DockBuilderDockWindow(UI_VIEW_BOX, leftTopNode);     // 左上节点
                     if (ImGuiDockNode* MainNode = ImGui::DockBuilderGetNode(leftTopNode)) {
-                        MainNode->LocalFlags |= ImGuiDockNodeFlags_NoTabBar | ImGuiDockNodeFlags_NoResize;
+                        MainNode->LocalFlags |= ImGuiDockNodeFlags_NoTabBar;
                     }
                     
                     ImGui::DockBuilderDockWindow(UI_PROPERTY_BOX, leftBottomNode); // 左下节点
@@ -268,8 +279,7 @@ private:
     SDL_Renderer* m_LocalRenderer = nullptr;
     SDL_GLContext m_Context = nullptr;
 
-    glm::ivec2 m_Size = { 800, 600 };
-    glm::ivec2 m_ViewPort = { 800, 600 };
+    glm::ivec2 m_Size{};
     glm::vec2 m_ZoomRange = { 1.f, 5.f };
     glm::vec4 m_BgColor = { 0.8f,0.8f,0.8f,1 };
     

@@ -55,7 +55,7 @@ std::unique_ptr<rapidjson::Document> LoadJson(const char* fname) {
 
 const glm::ivec2* AsVec2(const char* str) {
     if (str == nullptr || strlen(str) == 0)
-        return false;
+        return nullptr;
     static glm::ivec2 result;
     char* newstr = nullptr;
     result.x = std::strtol(str, &newstr, 10);
