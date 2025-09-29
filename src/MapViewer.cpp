@@ -1,11 +1,9 @@
 #include "MapViewer.h"
 #include <string>
-#include <locale>
-#include <codecvt>
 #include <imgui.h>
 #include "GLUtils.h"
 
-static constexpr glm::vec2 ZOOM_RANGE(1, 10);
+static constexpr glm::vec2 ZOOM_RANGE(1, 8);
 
 void MapViewer::InitMapPipeline() {
     GLuint vs = CompileShaderFile(GL_VERTEX_SHADER, DATA_DIR("texture.vert").c_str());
@@ -86,16 +84,15 @@ void MapViewer::UpdateIconBuffer() {
 void MapViewer::UpdateFontBuffer() {
     std::vector<float> vertices;
 
-    constexpr float scale = 0.6f;
-    constexpr float textSpace = 10;
+    const float scale = m_FontScale;
+    constexpr float textSpace = 20;
     for (auto& btn : m_IconList) {
         if (0 == (m_IconFlags & btn.layer)) continue;
 
         float cursorX = btn.pos.x;
         float cursorY = btn.pos.y;
 
-        std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
-        std::wstring wideText = converter.from_bytes(btn.text);
+        std::wstring wideText = ConvertFrom(btn.text);
         std::vector<glm::vec4> baseVertices;
         baseVertices.reserve(wideText.size());
         float textHeight = 0;
@@ -197,9 +194,8 @@ void MapViewer::DrawTexts(const glm::mat4& vpMat) {
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, m_FontAtlas.GetTextureID());
 
-    float textColor[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     GLint colorLoc = glGetUniformLocation(m_FontPipeline, "uColor");
-    glUniform4fv(colorLoc, 1, textColor);
+    glUniform4fv(colorLoc, 1, glm::value_ptr(m_FontColor));
 
     glBindVertexArray(m_FontVAO);
     glDrawArrays(GL_TRIANGLES, 0, m_FontVertexSize);
@@ -253,7 +249,7 @@ void MapViewer::Initialize() {
         m_IconsSize.x, m_IconsSize.y, true);
 
     m_IconAtlas.Initialize();
-    m_FontAtlas.Initialize(DATA_DIR("simhei.ttf").c_str(), 24, 1024);
+    m_FontAtlas.Initialize(DATA_DIR("simhei.ttf").c_str(), 24, 600);
 
     ReloadMap("bg");
 
@@ -320,10 +316,23 @@ void MapViewer::RenderImGui() {
     const auto& mpos = ImGui::GetIO().MousePos;
     auto mappos = Screen2Map(glm::vec2(mpos.x, mpos.y));
     std::string fmtLoc = std::string(TR("Map Location")) + ": %d,%d";
+    ImGui::ColorEdit4(TR("Font Color").data(), glm::value_ptr(m_FontColor));
+    if (ImGui::SliderFloat(TR("Font Scale").data(), &m_FontScale, 0.4f, 2.0f)) {
+        m_DirtyIcons = true;
+    }
     ImGui::Text(fmtLoc.c_str(), (int)mappos.x, (int)mappos.y);
     auto& view = m_Transform;
     ImGui::SliderFloat(TR("Zoom").data(), &view.zoom, ZOOM_RANGE.x, ZOOM_RANGE.y);
     ImGui::DragFloat2(TR("Offset").data(), glm::value_ptr(view.offset), 2);
+}
+
+void MapViewer::BuildFont(const std::string& str) {
+    auto ws = ConvertFrom(str);
+    std::for_each(ws.begin(), ws.end(),
+        [this](const wchar_t& c) {
+            m_FontAtlas.GetCharInfo(c);
+        }
+    );
 }
 
 void MapViewer::Constrain() {

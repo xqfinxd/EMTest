@@ -11,6 +11,7 @@
 #include "MapFilter.h"
 
 extern bool g_EnableChinese;
+extern std::unique_ptr<Translator> g_Translator;
 
 class MyGame : public GameLoop {
 protected:
@@ -74,9 +75,16 @@ protected:
         ImGui_ImplOpenGL3_Init();
 
         auto& io = ImGui::GetIO();
-        io.IniFilename = nullptr;
+        
+        ImVector<ImWchar> myRange;
+        ImFontGlyphRangesBuilder myGlyph;
+        auto&& used = g_Translator->Collect();
+        m_MapViewer.BuildFont(used);
+        myGlyph.AddText(used.c_str());
+        myGlyph.BuildRanges(&myRange);
+
         io.Fonts->AddFontFromFileTTF(DATA_DIR("simhei.ttf").c_str(),
-            14, nullptr, io.Fonts->GetGlyphRangesChineseFull());
+            14, nullptr, myRange.Data);
         io.Fonts->Build();
         io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
     }
@@ -223,7 +231,7 @@ protected:
         {
             std::string fmtBgColor(TR("Bg Color"));
             ImGui::ColorEdit4(fmtBgColor.c_str(), glm::value_ptr(m_BgColor));
-            ImGui::Checkbox("中文", &g_EnableChinese);
+            ImGui::Checkbox("Chinese", &g_EnableChinese);
             ImGui::Separator();
             m_MapViewer.RenderImGui();
             ImGui::Separator();

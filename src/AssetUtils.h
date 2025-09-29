@@ -20,6 +20,8 @@ using JsonValue = rapidjson::Value;
 
 string_view TR(string_view ostr);
 
+std::wstring ConvertFrom(string_view str);
+
 bool LoadJson(const char* fname, Document& doc);
 std::unique_ptr<Document> LoadJson(const char* fname);
 const JsonValue* SubValue(const JsonValue* value, const char* key);
@@ -46,6 +48,7 @@ public:
 	using Table = std::unordered_map<size_t, std::string>;
 	Translator();
 	string_view Find(string_view word) const;
+	std::string Collect() const;
 
 private:
 	void Load(const char* fname);

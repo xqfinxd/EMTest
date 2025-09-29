@@ -1,13 +1,16 @@
 #include "AssetUtils.h"
 #include <algorithm>
+#include <numeric>
 #include <fstream>
-
+#include <set>
+#include <locale>
+#include <codecvt>
 #include <SDL_log.h>
 #include <SDL_assert.h>
-#include <set>
 
-std::unique_ptr<Translator> g_Translator{ nullptr };
+std::unique_ptr<Translator> g_Translator{ new Translator };
 bool g_EnableChinese = true;
+std::wstring_convert<std::codecvt_utf8<wchar_t>> g_Converter;
 
 using JsonMember = std::decay_t<decltype(*(rapidjson::Value{}.MemberBegin()))>;
 
@@ -30,6 +33,10 @@ string_view TR(string_view ostr) {
         return g_Translator->Find(ostr);
     }
     return ostr;
+}
+
+std::wstring ConvertFrom(string_view str) {
+    return g_Converter.from_bytes(str.data());
 }
 
 bool LoadJson(const char* fname, rapidjson::Document& doc) {
@@ -394,6 +401,25 @@ string_view Translator::Find(string_view word) const {
     if (itr == m_Table.end())
         return word;
     return itr->second;
+}
+
+std::string Translator::Collect() const {
+    auto totalSize = std::accumulate(m_Table.begin(), m_Table.end(), 0,
+        [](size_t old, const Table::value_type& e) {
+            return old + e.second.length();
+        }
+    );
+    std::string ret;
+    ret.reserve(totalSize + 256);
+    ret.append(127, '\0');
+    std::iota(ret.begin(), ret.end(), 1);
+    std::for_each(m_Table.begin(), m_Table.end(),
+        [&ret](const Table::value_type& e) {
+            ret.insert(ret.end(), e.second.begin(), e.second.end());
+        }
+    );
+    ret.push_back('\0');
+    return ret;
 }
 
 void Translator::Load(const char* fname) {

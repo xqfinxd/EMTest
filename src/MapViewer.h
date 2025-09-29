@@ -97,6 +97,8 @@ private:
     GLuint m_FontVAO = 0;
     GLuint m_FontVBO = 0;
     uint32_t m_FontVertexSize = 0;
+    glm::vec4 m_FontColor{ 1,1,0,1 };
+    float m_FontScale = 0.6f;
 
     Transform m_Transform;
     glm::ivec4 m_Viewport{};
@@ -122,6 +124,8 @@ public:
     void Cleanup();
     void Render();
     void RenderImGui();
+    void BuildFont(const std::string& str);
+
     void Constrain();
     void OnClick(MapFilter* filter, int x, int y) const;
 
