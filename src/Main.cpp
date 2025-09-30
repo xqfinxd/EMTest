@@ -79,7 +79,6 @@ private:
         point.startPos.y = point.curPos.y = event.y;
         point.startTime = event.timestamp;
         point.active = true;
-        point.fingerID = event.fingerId;
 
         uint32_t delta = event.timestamp - lastTapTime;
         if (lastTapTime > 0
