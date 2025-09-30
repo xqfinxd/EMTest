@@ -28,13 +28,8 @@ void GameLoop::Run() {
 }
 
 void GameLoop::MainLoopWrapper(void* userData) {
-    try {
-        GameLoop* game = static_cast<GameLoop*>(userData);
-        game->MainLoop();
-    }
-    catch (...) {
-        std::cout << "hello \n";
-    }
+    GameLoop* game = static_cast<GameLoop*>(userData);
+    game->MainLoop();
 }
 
 void GameLoop::MainLoop() {

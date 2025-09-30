@@ -410,10 +410,12 @@ void MapViewer::OnClick(MapFilter* filter, glm::vec2 pos)  const {
 }
 
 void MapViewer::SetViewport(int screenHeight, const glm::ivec4& viewport) {
-    m_glViewport = m_Viewport = viewport;
-    m_glViewport.y = screenHeight - viewport.w - viewport.y;
-    vReset();
-    OnResizeMap();
+    if (!glm::all(glm::equal(m_Viewport, viewport))) {
+        m_glViewport = m_Viewport = viewport;
+        m_glViewport.y = screenHeight - viewport.w - viewport.y;
+        // vReset();
+        OnResizeMap();
+    }
 }
 
 void MapViewer::ReloadMap(const char* mapName_) {

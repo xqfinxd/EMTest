@@ -13,6 +13,20 @@
 extern bool g_EnableChinese;
 extern std::unique_ptr<Translator> g_Translator;
 
+#ifdef __EMSCRIPTEN__
+EM_JS(void, SetupJSResizeListener, (void* game), {
+        window.addEventListener('resize', function() {
+            Module._HandleWindowResize(game, window.innerWidth, window.innerHeight);
+        });
+    }
+);
+int CutWidth(int w) {
+    return w - 20;
+}
+int CutHeight(int h) {
+    return h - 80;
+}
+#endif
 class ActionDetector {
 public:
     struct TouchPoint {
@@ -278,14 +292,15 @@ protected:
 #ifndef __EMSCRIPTEN__
         windowFlags |= SDL_WINDOW_OPENGL;
 #else
-        m_Size.x = EM_ASM_INT({
+        int w_ = EM_ASM_INT({
             return window.innerWidth;
         });
-        m_Size.y = EM_ASM_INT({
+        int h_ = EM_ASM_INT({
             return window.innerHeight;
         });
-        m_Size.x -= 20;
-        m_Size.y -= 100;
+        SetupJSResizeListener(this);
+        m_Size.x = CutWidth(w_);
+        m_Size.y = CutHeight(h_);
 #endif
         m_Window = SDL_CreateWindow("Nightreign Map Filter",
             SDL_WINDOWPOS_CENTERED,
@@ -315,7 +330,6 @@ protected:
 #endif
         glEnable(GL_BLEND);
         
-        m_MapViewer.SetViewport(m_Size.y, glm::ivec4(0, 0, m_Size.x * 0.75f, m_Size.y));
         m_MapViewer.Initialize();
 
         m_MapFilter.Initialize(&m_MapViewer);
@@ -324,6 +338,31 @@ protected:
         ImGui::CreateContext();
         ImGui_ImplSDL2_InitForOpenGL(m_Window, m_Context);
         ImGui_ImplOpenGL3_Init();
+
+        float devicePixelRatio = 1.f;
+#ifdef __EMSCRIPTEN__
+        devicePixelRatio = (float)EM_ASM_DOUBLE({
+            return window.devicePixelRatio || 1.0;
+        });
+#else
+        auto displayIdx = SDL_GetWindowDisplayIndex(m_Window);
+        float vdpi = 96.f;
+        if (SDL_GetDisplayDPI(displayIdx, nullptr, nullptr, &vdpi) == 0)
+            devicePixelRatio = vdpi / 96.f;
+#endif
+        SDL_Log("Device Pixel Ratio: %f", devicePixelRatio);
+
+        float uiScale = 1.f;
+        if (devicePixelRatio >= 3.0) {
+            uiScale = 1.5f;
+        }
+        else if (devicePixelRatio >= 2.0) {
+            uiScale = 1.2f;
+        }
+        else {
+            uiScale = 1.0f;
+        }
+        SDL_Log("UI Scale: %f", uiScale);
 
         auto& io = ImGui::GetIO();
         
@@ -338,6 +377,13 @@ protected:
             16, nullptr, myRange.Data);
         io.Fonts->Build();
         io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+        io.IniFilename = nullptr;
+
+        io.FontGlobalScale = uiScale;
+
+        // 设置样式缩放
+        ImGuiStyle& style = ImGui::GetStyle();
+        style.ScaleAllSizes(uiScale);
     }
 
     void ProcessInput() override {
@@ -357,6 +403,7 @@ protected:
         m_MapViewer.Constrain();
     }
 
+
     void RenderImGui() {
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplSDL2_NewFrame();
@@ -364,90 +411,96 @@ protected:
         ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), ImGuiDockNodeFlags_PassthruCentralNode);
 
         // 窗口的 ID 和 标题
-        ImGuiID dockID = ImGui::GetID("##ui.dock_space");
-        const char* UI_ROOT_WINDOW = "##ui.root";
-        const char* UI_PROPERTY_BOX = "##ui.property";
-        const char* UI_VIEW_BOX = "##ui.view";
+        ImGuiID dockID = ImGui::GetID("##ui.dockspace");
+        std::string rootWin = "##ui.root";
+        std::string settingWin = std::string(TR("Settings")) + "##ui.settings";
+        std::string viewWin = "##ui.view";
+        std::string filterWin = std::string(TR("Filter")) + "##ui.filter";
 
         const ImGuiViewport* viewport = ImGui::GetMainViewport();
         ImGui::SetNextWindowPos(viewport->WorkPos);
         ImGui::SetNextWindowSize(viewport->WorkSize);
         ImGui::SetNextWindowViewport(viewport->ID);
 
-        int windowFlags = ImGuiWindowFlags_NoDecoration // 无装饰
-            | ImGuiWindowFlags_NoMove                   // 不可移动
-            | ImGuiWindowFlags_NoBackground             // 无背景（背景透明）
-            | ImGuiWindowFlags_NoDocking                // 不可停靠
-            | ImGuiWindowFlags_NoBringToFrontOnFocus    // 无法设置前台和聚焦
-            | ImGuiWindowFlags_NoNavFocus               // 无法通过键盘和手柄聚焦
+        int windowFlags = ImGuiWindowFlags_NoDecoration
+            | ImGuiWindowFlags_NoMove
+            | ImGuiWindowFlags_NoBackground
+            | ImGuiWindowFlags_NoDocking
+            | ImGuiWindowFlags_NoBringToFrontOnFocus
+            | ImGuiWindowFlags_NoNavFocus
             ;
 
-        // 压入样式设置
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);            // 无边框
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f)); // 无边界
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);              // 无圆角
-        ImGui::Begin(UI_ROOT_WINDOW, 0, windowFlags); // 开始停靠窗口
-        ImGui::PopStyleVar(3);                        // 弹出样式设置
-        {
+        // root begin
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
+        ImGui::Begin(rootWin.c_str(), 0, windowFlags);
+        ImGui::PopStyleVar(3);
+        do {
+            auto configs = ImGui::GetIO().ConfigFlags;
+            if (0 == (configs & ImGuiConfigFlags_DockingEnable))
+                break;
+            if (ImGui::DockBuilderGetNode(dockID) && !m_Resized)
+                break;
+            m_Resized = false;
+            ImGui::DockBuilderRemoveNode(dockID);
 
-            // 判断是否开启停靠
-            if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DockingEnable) {
-                // 判断是否有根节点，防止一直重建
-                if (!ImGui::DockBuilderGetNode(dockID)) {
-                    // 移除根节点
-                    ImGui::DockBuilderRemoveNode(dockID);
+            ImGuiID root = ImGui::DockBuilderAddNode(dockID, ImGuiDockNodeFlags_DockSpace);
 
-                    // 创建根节点
-                    ImGuiID root = ImGui::DockBuilderAddNode(dockID, ImGuiDockNodeFlags_DockSpace);
+            ImGui::DockBuilderSetNodePos(root, { 0.0f, 0.0f });
+            ImGui::DockBuilderSetNodeSize(root, viewport->WorkSize);
 
-                    // 设置根节点位置大小
-                    ImGui::DockBuilderSetNodePos(root, { 0.0f, 0.0f });
-                    ImGui::DockBuilderSetNodeSize(root, ImGui::GetWindowSize());
-
-                    // 分割停靠空间
-                    ImGuiID leftTopNode, leftBottomNode;
-                    // 根节点分割左节点
-                    ImGuiID leftNode = ImGui::DockBuilderSplitNode(root, ImGuiDir_Left, 0.75f, &leftTopNode, &leftBottomNode);
-
-                    // 设置节点停靠窗口
-                    ImGui::DockBuilderDockWindow(UI_VIEW_BOX, leftTopNode);     // 左上节点
-                    if (ImGuiDockNode* MainNode = ImGui::DockBuilderGetNode(leftTopNode)) {
-                        MainNode->LocalFlags |= ImGuiDockNodeFlags_NoTabBar;
-                    }
-                    
-                    ImGui::DockBuilderDockWindow(UI_PROPERTY_BOX, leftBottomNode); // 左下节点
-
-                    // 结束停靠设置
-                    ImGui::DockBuilderFinish(dockID);
-
-                    // 设置焦点窗口
-                    ImGui::SetWindowFocus(UI_VIEW_BOX);
-                }
+            ImGuiID viewNode, settingNode, filterNode;
+            int w = viewport->WorkSize.x;
+            int h = viewport->WorkSize.y;
+            if (w > h) {
+                float spaceRate = glm::max(0.25f, 1.f * (w - h) / w);
+                viewNode = ImGui::DockBuilderSplitNode(root,
+                    ImGuiDir_Left, 1 - spaceRate, nullptr, &settingNode);
+                settingNode = ImGui::DockBuilderSplitNode(settingNode,
+                    ImGuiDir_Up, 0.4f, nullptr, &filterNode);
             }
+            else {
+                float spaceRate = glm::max(0.4f, 1.f * (h - w) / h);
+                viewNode = ImGui::DockBuilderSplitNode(root,
+                    ImGuiDir_Up, 1 - spaceRate, nullptr, &settingNode);
+                settingNode = ImGui::DockBuilderSplitNode(settingNode,
+                    ImGuiDir_Left, 0.4f, nullptr, &filterNode);
+            }
+            
+            ImGui::DockBuilderDockWindow(viewWin.c_str(), viewNode);
+            if (auto MainNode = ImGui::DockBuilderGetNode(viewNode)) {
+                MainNode->LocalFlags |= ImGuiDockNodeFlags_NoTabBar;
+            }
+            ImGui::DockBuilderDockWindow(settingWin.c_str(), settingNode);
+            ImGui::DockBuilderDockWindow(filterWin.c_str(), filterNode);
+            ImGui::DockBuilderFinish(dockID);
+        } while (false);
 
-            // 创建停靠空间
-            ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 0.0f);
-            ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
-            ImGui::DockSpace(dockID, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_None);
-            ImGui::PopStyleVar();
-            ImGui::PopStyleColor();
-        }
-        ImGui::End(); // 结束停靠窗口
+        ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 0.0f);
+        ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
+        ImGui::DockSpace(dockID, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_None);
+        ImGui::PopStyleVar();
+        ImGui::PopStyleColor();
+        ImGui::End();
+        // root end
 
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);            // 无边框
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f)); // 无边界
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);              // 无圆角
-        ImGui::Begin(UI_VIEW_BOX, nullptr, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_DockNodeHost);
-        ImGui::PopStyleVar(3); // 弹出样式设置
+        // view begin
+        ImGui::Begin(viewWin.c_str(), nullptr, ImGuiWindowFlags_NoBackground);
         {
             auto framerate = ImGui::GetIO().Framerate;
             std::string fmtFps = std::string(TR("Frame Rate")) + ": %.1f";
             ImGui::TextColored(ImVec4(0,1,0,1), fmtFps.c_str(), framerate);
+            auto curWin = ImGui::GetCurrentWindow();
+            m_MapViewer.SetViewport(m_Size.y, glm::ivec4(
+                curWin->Pos.x, curWin->Pos.y,
+                curWin->Size.x, curWin->Size.y));
         }
         ImGui::End();
-        
-        // 右侧边栏
-        ImGui::Begin(UI_PROPERTY_BOX, nullptr, ImGuiWindowFlags_NoCollapse);
+        // view end
+
+        // setting begin
+        ImGui::Begin(settingWin.c_str(), nullptr, ImGuiWindowFlags_NoCollapse| ImGuiWindowFlags_NoMove);
         {
             ImGui::Text("Ver 1.0.250930");
             std::string fmtBgColor(TR("Bg Color"));
@@ -455,11 +508,18 @@ protected:
             ImGui::Checkbox("Chinese", &g_EnableChinese);
             ImGui::Separator();
             m_MapViewer.RenderImGui();
-            ImGui::Separator();
+        }
+        ImGui::End();
+        // setting end
+
+        // filter begin
+        ImGui::Begin(filterWin.c_str(), nullptr, ImGuiWindowFlags_NoCollapse| ImGuiWindowFlags_NoMove);
+        {
             m_MapFilter.RenderImGui();
         }
-
         ImGui::End();
+        // filter end
+        
         
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -503,6 +563,13 @@ protected:
         SDL_Quit();
     }
 
+public:
+    void OnResize(int w, int h) {
+        SDL_Log("Resize : %d, %d", w, h);
+        SDL_SetWindowSize(m_Window, w, h);
+        m_Resized = true;
+    }
+
 private:
     SDL_Window* m_Window = nullptr;
     SDL_Renderer* m_LocalRenderer = nullptr;
@@ -511,11 +578,20 @@ private:
     glm::ivec2 m_Size{};
     glm::vec2 m_ZoomRange = { 1.f, 5.f };
     glm::vec4 m_BgColor = { 0.8f,0.8f,0.8f,1 };
+    bool m_Resized = false;
     
     MapViewer m_MapViewer;
     MapFilter m_MapFilter;
     ActionDetector m_Detector;
 };
+
+#ifdef __EMSCRIPTEN__
+extern "C" void EMSCRIPTEN_KEEPALIVE HandleWindowResize(void* ud, int w, int h) {
+    if (auto game = static_cast<MyGame*>(ud)) {
+        game->OnResize(w, h);
+    }
+}
+#endif
 
 int main(int argc, char* argv[]) {
     MyGame game;
