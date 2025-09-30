@@ -13,11 +13,274 @@
 extern bool g_EnableChinese;
 extern std::unique_ptr<Translator> g_Translator;
 
+class ActionDetector {
+public:
+    struct TouchPoint {
+        glm::vec2 startPos{};
+        glm::vec2 curPos{};
+        uint32_t startTime = 0;
+        bool active = false;
+    };
+    
+    MapAction ProcessEvent(const SDL_Event& event, int w, int h) {
+        MapAction result = { MapAction::eNone };
+        if (!hasTouchDevice) {
+            hasTouchDevice = SDL_GetNumTouchDevices() > 0;
+        }
+
+        switch (event.type) {
+        case SDL_FINGERDOWN:
+            HandleFingerDown(result, event.tfinger, w, h);
+            break;
+
+        case SDL_FINGERUP:
+            HandleFingerUp(result, event.tfinger, w, h);
+            break;
+
+        case SDL_FINGERMOTION:
+            HandleFingerMotion(result, event.tfinger, w, h);
+            break;
+
+        case SDL_MOUSEBUTTONDOWN:
+            HandleMouseDown(result, event.button);
+            break;
+
+        case SDL_MOUSEBUTTONUP:
+            HandleMouseUp(result, event.button);
+            break;
+
+        case SDL_MOUSEMOTION:
+            HandleMouseMotion(result, event.motion);
+            break;
+
+        case SDL_MOUSEWHEEL:
+            HandleMouseWheel(result, event.wheel);
+            break;
+        }
+
+        return result;
+    }
+
+private:
+    bool CheckInterval(uint32_t timestamp) const {
+        return timestamp - lastTapTime <= DOUBLE_CLICK_INTERVAL;
+    }
+
+    bool CheckDistance(float x, float y) const {
+        float dis = glm::distance(glm::vec2(x, y), lastTapPos);
+        return dis <= DOUBLE_CLICK_DISTANCE;
+    }
+
+    void HandleFingerDown(MapAction& result,
+        const SDL_TouchFingerEvent& event, int w, int h) {
+        TouchPoint point;
+        point.startPos.x = point.curPos.x = event.x;
+        point.startPos.y = point.curPos.y = event.y;
+        point.startTime = event.timestamp;
+        point.active = true;
+
+        activeTouches[event.fingerId] = point;
+
+        uint32_t delta = event.timestamp - lastTapTime;
+        if (lastTapTime > 0
+            && CheckInterval(event.timestamp)
+            && CheckDistance(event.x, event.y)) {
+            
+            result.type = MapAction::eDoubleTap;
+            result.pos.x = event.x * w;
+            result.pos.y = event.y * h;
+            result.scale = 2.f;
+
+            lastTapTime = 0;
+        }
+        else {
+            lastTapTime = event.timestamp;
+            lastTapPos = { event.x,event.y };
+
+            size_t count = activeTouches.size();
+            if (count == 1) {
+                isDragging = true;
+            }
+            else if (count == 2) {
+                isZooming = true;
+                UpdatePinchData(result);
+            }
+        }
+    }
+
+    void HandleFingerUp(MapAction& result, const SDL_TouchFingerEvent& event, int w, int h) {
+        auto it = activeTouches.find(event.fingerId);
+        if (it != activeTouches.end()) {
+            TouchPoint& point = it->second;
+
+            const size_t count = activeTouches.size();
+            if (count == 1) {
+                uint32_t duration = event.timestamp - point.startTime;
+                float dis = glm::distance(point.startPos, point.curPos);
+
+                if (duration < LONG_TOUCH_DURATION) {
+                    if (dis < DOUBLE_CLICK_DISTANCE) {
+                        result.type = MapAction::eSingleTap;
+                        result.pos.x = event.x * w;
+                        result.pos.y = event.y * h;
+                    }
+                }
+                else {
+                    if (!isZooming && (!isDragging || dis < DOUBLE_CLICK_DISTANCE)) {
+                        result.type = MapAction::eLongTouch;
+                        result.pos.x = event.x * w;
+                        result.pos.y = event.y * h;
+                    }
+                }
+                isDragging = false;
+            }
+            else if (count == 2) {
+                isZooming = false;
+                UpdatePinchData(result);
+            }
+
+            activeTouches.erase(it);
+        }
+    }
+
+    void HandleFingerMotion(MapAction& result, const SDL_TouchFingerEvent& event, int w, int h) {
+        auto it = activeTouches.find(event.fingerId);
+        if (it != activeTouches.end()) {
+            TouchPoint& point = it->second;
+            point.curPos = { event.x,event.y };
+
+            const size_t count = activeTouches.size();
+            if (count == 1) {
+                if (isDragging) {
+                    result.type = MapAction::eDragMove;
+                    result.pos.x = event.x * w;
+                    result.pos.y = event.y * h;
+                    result.delta.x = event.dx  * w;
+                    result.delta.y = event.dy  * h;
+                }
+            }
+            else if (count == 2) {
+                if (isZooming) {
+                    result.type = MapAction::eZoomLocal;
+                    UpdatePinchData(result);
+                }
+            }
+        }
+    }
+
+    void UpdatePinchData(MapAction& result) {
+        if (activeTouches.size() < 2) return;
+        if (!isZooming) {
+            initialDistance = 0;
+            curZoom = 1;
+            return;
+        }
+
+        auto it = activeTouches.begin();
+        const TouchPoint& point1 = it->second;
+        ++it;
+        const TouchPoint& point2 = it->second;
+
+        float dis = glm::distance(point1.curPos, point2.curPos);
+
+        if (initialDistance == 0.0f) {
+            initialDistance = dis;
+            curZoom = 1;
+            result.scale = 1;
+        }
+        else {
+            float relScale = dis / initialDistance;
+            result.scale = relScale / curZoom;
+            curZoom = relScale;
+        }
+
+        result.pos = (point1.curPos + point2.curPos) / 2.0f;
+    }
+
+    void HandleMouseDown(MapAction& result, const SDL_MouseButtonEvent& event) {
+        if (hasTouchDevice)
+            return;
+
+        if (event.button == SDL_BUTTON_LEFT) {
+            if (event.clicks == 1) {
+                isDragging = true;
+            }
+            else if (event.clicks == 2) {
+                result.type = MapAction::eDoubleTap;
+                result.pos = { event.x,event.y };
+                result.scale = 2.f;
+            }
+        }
+        else if (event.button == SDL_BUTTON_MIDDLE) {
+            result.type = MapAction::eLongTouch;
+            result.pos = { event.x,event.y };
+        }
+    }
+
+    void HandleMouseUp(MapAction& result, const SDL_MouseButtonEvent& event) {
+        if (hasTouchDevice)
+            return;
+
+        if (event.button == SDL_BUTTON_LEFT) {
+            if (isDragging) {
+                isDragging = false;
+            }
+
+            if(event.clicks == 1) {
+                result.type = MapAction::eSingleTap;
+                result.pos = { event.x,event.y };
+            }
+        }
+    }
+
+    void HandleMouseMotion(MapAction& result, const SDL_MouseMotionEvent& event) {
+        if (hasTouchDevice)
+            return;
+
+        if (isDragging) {
+            result.type = MapAction::eDragMove;
+            result.pos = { event.x,event.y };
+            result.delta = { event.xrel,event.yrel };
+        }
+    }
+
+    void HandleMouseWheel(MapAction& result, const SDL_MouseWheelEvent& event) {
+        if (hasTouchDevice)
+            return;
+
+        result.type = MapAction::eZoomCenter;
+        result.pos = { event.mouseX,event.mouseY };
+        if (event.y > 0)
+            result.scale = 2.f;
+        else if (event.y < 0)
+            result.scale = 0.5f;
+    }
+
+private:
+    using TouchPoints = std::unordered_map<SDL_FingerID, TouchPoint>;
+    
+    bool hasTouchDevice = false;
+
+    // mouse and finger
+    bool isDragging = false;
+
+    // only for finger
+    bool isZooming = false;
+    TouchPoints activeTouches;
+    uint32_t lastTapTime = 0;
+    glm::vec2 lastTapPos;
+    float initialDistance = 0.0f;
+    float curZoom = 1.0f;
+    const uint32_t DOUBLE_CLICK_INTERVAL = 200;
+    const float DOUBLE_CLICK_DISTANCE = 0.05f;
+    const uint32_t LONG_TOUCH_DURATION = 1000;
+};
+
 class MyGame : public GameLoop {
 protected:
     void Initialize() override {
         if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-            SDL_Log("Failed to initialize SDL: %s\n", SDL_GetError());
+            SDL_Log("Failed to initialize SDL: %s", SDL_GetError());
             return;
         }
 
@@ -41,7 +304,7 @@ protected:
             SDL_WINDOWPOS_CENTERED,
             m_Size.x, m_Size.y, windowFlags);
         if (!m_Window) {
-            SDL_Log("Failed to Create Window: %s\n", SDL_GetError());
+            SDL_Log("Failed to Create Window: %s", SDL_GetError());
             return;
         }
 
@@ -52,7 +315,7 @@ protected:
         m_Context = SDL_GL_CreateContext(m_Window);
 #endif
         if (!m_Context) {
-            SDL_Log("Failed to Get Context: %s\n", SDL_GetError());
+            SDL_Log("Failed to Get Context: %s", SDL_GetError());
             return;
         }
 
@@ -63,7 +326,6 @@ protected:
         }
 #endif
         glEnable(GL_BLEND);
-        m_HasTouchDevice = SDL_GetNumTouchDevices() > 0;
         
         m_MapViewer.SetViewport(m_Size.y, glm::ivec4(0, 0, m_Size.x * 0.75f, m_Size.y));
         m_MapViewer.Initialize();
@@ -93,29 +355,13 @@ protected:
     void ProcessInput() override {
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
-            ImGui_ImplSDL2_ProcessEvent(&event);
-
-            switch (event.type) {
-            case SDL_QUIT:
+            if (event.type == SDL_QUIT) {
                 Stop();
                 break;
-            case SDL_MOUSEWHEEL:
-                OnMouseWheel(event.wheel);
-                break;
-            case SDL_MOUSEBUTTONDOWN:
-            case SDL_MOUSEBUTTONUP:
-                OnMouseButton(event.button);
-                break;
-            case SDL_MOUSEMOTION:
-                OnMouseMotion(event.motion);
-                break;
-            // phone web browser touch
-            case SDL_FINGERUP:
-            case SDL_FINGERDOWN:
-            case SDL_FINGERMOTION:
-                OnTouch(event.tfinger);
-                break;
             }
+            ImGui_ImplSDL2_ProcessEvent(&event);
+            auto result = m_Detector.ProcessEvent(event, m_Size.x, m_Size.y);
+            m_MapViewer.HandleAction(&m_MapFilter, result);
         }
     }
 
@@ -269,60 +515,6 @@ protected:
     }
 
 private:
-    void OnMouseButton(const SDL_MouseButtonEvent& me) {
-        if (m_HasTouchDevice)
-            return;
-
-        const int x = me.x;
-        const int y = me.y;
-
-        if (me.type == SDL_MOUSEBUTTONDOWN) {
-            if (!m_MapViewer.TestPoint(x, y))
-                return;
-            if (me.button == SDL_BUTTON_LEFT) {
-                if (me.clicks == 1) {
-                    m_IsDrag = true;
-                }
-                else {
-                    m_MapViewer.vMoveTo(x, y);
-                    m_MapViewer.vZoom(1);
-                }
-            }
-            else if (me.button == SDL_BUTTON_MIDDLE) {
-                m_MapViewer.vReset();
-            }
-        }
-        else if (me.type == SDL_MOUSEBUTTONUP) {
-            if (me.button == SDL_BUTTON_LEFT) {
-                m_IsDrag = false;
-                m_MapViewer.OnClick(&m_MapFilter, x, y);
-            }
-        }
-    }
-
-    void OnMouseMotion(const SDL_MouseMotionEvent& me) {
-        if (m_HasTouchDevice)
-            return;
-
-        if (m_IsDrag) {
-            m_MapViewer.vMove(me.xrel, me.yrel);
-        }
-    }
-
-    void OnMouseWheel(const SDL_MouseWheelEvent& we) {
-        if (m_MapViewer.TestPoint(we.mouseX, we.mouseY)) {
-            if (we.y > 0)
-                m_MapViewer.vZoom(1.f);
-            else if (we.y < 0)
-                m_MapViewer.vZoom(-1.f);
-        }
-    }
-
-    void OnTouch(const SDL_TouchFingerEvent& te) {
-        
-    }
-
-private:
     SDL_Window* m_Window = nullptr;
     SDL_Renderer* m_LocalRenderer = nullptr;
     SDL_GLContext m_Context = nullptr;
@@ -333,9 +525,7 @@ private:
     
     MapViewer m_MapViewer;
     MapFilter m_MapFilter;
-
-    bool m_IsDrag = false;
-    bool m_HasTouchDevice = false;
+    ActionDetector m_Detector;
 };
 
 int main(int argc, char* argv[]) {

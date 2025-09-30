@@ -18,6 +18,23 @@
 class MapFilter;
 using Callback = std::function<void(MapFilter*, void*)>;
 
+struct MapAction {
+    enum Type {
+        eNone,
+        eSingleTap,
+        eDoubleTap,
+        eDragMove,
+        eZoomLocal,
+        eZoomCenter,
+        eLongTouch,
+    };
+
+    Type type = eNone;
+    glm::vec2 pos{};
+    glm::vec2 delta{};
+    float scale = 1.f;
+};
+
 class MapButton {
     friend class MapViewer;
 public:
@@ -116,9 +133,12 @@ private:
     void UpdateFontBuffer();
 
     glm::vec2 GetViewSize() const;
-    glm::vec2 Normalize(const glm::vec2& pos) const;
-    glm::vec2 Screen2Map(const glm::vec2& pos) const;
+    glm::vec2 Normalize(glm::vec2 pos) const;
+    glm::vec2 Screen2View(glm::vec2 pos) const;
+    glm::vec2 Screen2Map(glm::vec2 pos) const;
     void OnResizeMap();
+    void OnClick(MapFilter* filter, glm::vec2 pos) const;
+    bool TestPoint(glm::vec2 pos) const;
 
 public:
     void Initialize();
@@ -128,8 +148,7 @@ public:
     void BuildFont(const std::string& str);
 
     void Constrain();
-    void OnClick(MapFilter* filter, int x, int y) const;
-
+    void HandleAction(MapFilter* filter, const MapAction& action);
     void SetViewport(int screenHeight, const glm::ivec4& viewport);
     void ReloadMap(const char* mapName);
 
@@ -161,8 +180,8 @@ public:
     }
     
     void vZoom(float value);
-    void vMove(int x, int y);
-    void vMoveTo(int x, int y);
+    void vMove(glm::vec2 offset);
+    void vMoveTo(glm::vec2 pos);
     void vReset();
-    bool TestPoint(int x, int y) const;
+    float vZoom() const { return m_Transform.zoom; }
 };

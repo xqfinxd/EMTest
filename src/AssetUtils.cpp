@@ -43,7 +43,7 @@ bool LoadJson(const char* fname, rapidjson::Document& doc) {
     std::string path = DATA_DIR(fname);
     std::ifstream ss(path);
     if (!ss.is_open()) {
-        SDL_Log("Could not open the file %s\n", path.c_str());
+        SDL_Log("Could not open the file %s", path.c_str());
         return false;
     }
     using isb_iter = std::istreambuf_iterator<char>;

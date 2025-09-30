@@ -207,19 +207,24 @@ glm::vec2 MapViewer::GetViewSize() const {
     return m_OriginViewSize / m_Transform.zoom;;
 }
 
-glm::vec2 MapViewer::Normalize(const glm::vec2& pos) const {
-    glm::vec2 vsize = GetViewSize();
-    float mapdeltax = (pos.x - m_Viewport.x) * (vsize.x / m_Viewport.z);
-    float mapdeltay = (pos.y - m_Viewport.y) * (vsize.y / m_Viewport.w);
-    return glm::vec2(mapdeltax, mapdeltay);
+glm::vec2 MapViewer::Normalize(glm::vec2 pos) const {
+    float x = (pos.x - m_Viewport.x) / m_Viewport.z;
+    float y = (pos.y - m_Viewport.y) / m_Viewport.w;
+    return glm::vec2(x, y);
 }
 
-glm::vec2 MapViewer::Screen2Map(const glm::vec2& pos) const {
+glm::vec2 MapViewer::Screen2View(glm::vec2 pos) const {
+    glm::vec2 vsize = GetViewSize();
+    glm::vec2 norm = Normalize(pos);
+    return glm::vec2(norm.x * vsize.x, norm.y * vsize.y);
+}
+
+glm::vec2 MapViewer::Screen2Map(glm::vec2 pos) const {
     glm::vec2 vsize = GetViewSize();
     // map center to view center
     glm::vec2 vc2mc(m_Transform.offset);
     // view zero(left top) to current point
-    glm::vec2 v02c = Normalize(pos);
+    glm::vec2 v02c = Screen2View(pos);
     // view center to current point
     glm::vec2 vc2c = v02c - vsize / 2.f;
     return vc2c - vc2mc + glm::vec2(m_MapSize) / 2.f;
@@ -327,6 +332,9 @@ void MapViewer::RenderImGui() {
     auto& view = m_Transform;
     ImGui::SliderFloat(TR("Zoom").data(), &view.zoom, ZOOM_RANGE.x, ZOOM_RANGE.y);
     ImGui::DragFloat2(TR("Offset").data(), glm::value_ptr(view.offset), 2);
+    if (ImGui::Button(TR("Reset View").data())) {
+        vReset();
+    }
 }
 
 void MapViewer::BuildFont(const std::string& str) {
@@ -347,8 +355,43 @@ void MapViewer::Constrain() {
     m_Transform.offset = glm::clamp(m_Transform.offset, -range, range);
 }
 
-void MapViewer::OnClick(MapFilter* filter, int x, int y)  const {
-    auto mapPos = Screen2Map(glm::vec2(x, y));
+void MapViewer::HandleAction(MapFilter* filter, const MapAction& action) {
+    switch (action.type) {
+    case MapAction::eSingleTap:
+        if (TestPoint(action.pos))
+            OnClick(filter, action.pos);
+        break;
+    case MapAction::eDoubleTap:
+        if (TestPoint(action.pos)) {
+            vMoveTo(action.pos);
+            vZoom(action.scale);
+        }
+        break;
+    case MapAction::eDragMove:
+        if (TestPoint(action.pos)) {
+            vMove(action.delta);
+        }
+        break;
+    case MapAction::eZoomLocal:
+        if (TestPoint(action.pos)) {
+            glm::vec2 oldpos = Screen2Map(action.pos);
+            vZoom(action.scale);
+            glm::vec2 newpos = Screen2Map(action.pos);
+            m_Transform.offset += (newpos - oldpos);
+        }
+        break;
+    case MapAction::eZoomCenter:
+        if (TestPoint(action.pos)) {
+            vZoom(action.scale);
+        }
+        break;
+    default:
+        break;
+    }
+}
+
+void MapViewer::OnClick(MapFilter* filter, glm::vec2 pos)  const {
+    auto mapPos = Screen2Map(pos);
     for (auto& btn : m_IconList) {
         if (!btn.rect) continue;
         if (btn.layer < 0) continue;
@@ -398,19 +441,17 @@ void MapViewer::ReloadMap(const char* mapName_) {
 }
 
 void MapViewer::vZoom(float value) {
-    m_Transform.zoom += value;
+    m_Transform.zoom *= value;
 }
 
-void MapViewer::vMove(int x, int y) {
-    glm::vec2 zero(0, 0);
-    glm::vec2 nzero = Normalize(zero);
-    glm::vec2 offset(x, y);
-    glm::vec2 noffset = Normalize(offset);
+void MapViewer::vMove(glm::vec2 offset) {
+    glm::vec2 nzero = Screen2View(glm::vec2(0, 0));
+    glm::vec2 noffset = Screen2View(offset);
     m_Transform.offset += (noffset - nzero);
 }
 
-void MapViewer::vMoveTo(int x, int y) {
-    glm::vec2 mapPos = Screen2Map(glm::vec2(x, y));
+void MapViewer::vMoveTo(glm::vec2 pos) {
+    glm::vec2 mapPos = Screen2Map(pos);
     glm::vec2 mz2mc(m_MapSize / 2);
     m_Transform.offset = mz2mc - mapPos;
 }
@@ -420,8 +461,8 @@ void MapViewer::vReset() {
     m_Transform.offset = glm::vec2(0, 0);
 }
 
-bool MapViewer::TestPoint(int x, int y) const {
-    const auto& vp = m_Viewport;
-    return x > vp.x && x < vp.x + vp.z
-        && y > vp.y && y < vp.y + vp.w;
+bool MapViewer::TestPoint(glm::vec2 pos) const {
+    glm::vec4 vp(m_Viewport);
+    return pos.x > vp.x && pos.x < vp.x + vp.z
+        && pos.y > vp.y && pos.y < vp.y + vp.w;
 }

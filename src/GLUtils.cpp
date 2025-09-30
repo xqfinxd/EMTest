@@ -14,7 +14,7 @@ GLuint CompileShader(GLenum type, const char* source) {
     if (!success) {
         char infoLog[512];
         glGetShaderInfoLog(shader, 512, nullptr, infoLog);
-        SDL_Log("Shader compilation error: %s\n", infoLog);
+        SDL_Log("Shader compilation error: %s", infoLog);
         return 0;
     }
     return shader;
@@ -23,7 +23,7 @@ GLuint CompileShader(GLenum type, const char* source) {
 GLuint CompileShaderFile(GLenum type, const char* path) {
     std::ifstream inputFile(path, std::ios::in);
     if (!inputFile.is_open()) {
-        SDL_Log("Could not open the file %s\n", path);
+        SDL_Log("Could not open the file %s", path);
         return 0;
     }
     inputFile.seekg(0, std::ios::end);
@@ -32,7 +32,7 @@ GLuint CompileShaderFile(GLenum type, const char* path) {
     source.resize(count);
     inputFile.seekg(0, std::ios::beg);
     inputFile.read(source.data(), count);
-    SDL_Log("Load Shader %s\n", path);
+    SDL_Log("Load Shader %s", path);
     return CompileShader(type, source.c_str());
 }
 

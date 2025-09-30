@@ -6,13 +6,13 @@ FontAtlas::~FontAtlas() {
 
 bool FontAtlas::Initialize(const char* fontPath, int fontSize, int texSize) {
     if (TTF_Init() == -1) {
-        SDL_Log("Failed to initialize SDL: %s\n", TTF_GetError());
+        SDL_Log("Failed to initialize SDL: %s", TTF_GetError());
         return false;
     }
 
     font = TTF_OpenFont(fontPath, fontSize);
     if (!font) {
-        SDL_Log("Failed to load font: %s\n", TTF_GetError());
+        SDL_Log("Failed to load font: %s", TTF_GetError());
         return false;
     }
 
@@ -33,7 +33,7 @@ bool FontAtlas::Initialize(const char* fontPath, int fontSize, int texSize) {
     
     textureSurface = SDL_CreateRGBSurfaceWithFormat(0, textureSize, textureSize, 32, SDL_PIXELFORMAT_RGBA32);
     if (!textureSurface) {
-        SDL_Log("Failed to create font surface: %s\n", TTF_GetError());
+        SDL_Log("Failed to create font surface: %s", TTF_GetError());
         return false;
     }
     
@@ -81,7 +81,7 @@ bool FontAtlas::GenCharTexture(uint32_t charCode, CharInfo& charInfo) {
     SDL_Color white = {255, 255, 255, 255};
     SDL_Surface* charSurface = TTF_RenderUTF8_Blended(font, charUtf8.c_str(), white);
     if (!charSurface) {
-        SDL_Log("Failed to generate font texture: %s\n", TTF_GetError());
+        SDL_Log("Failed to generate font texture: %s", TTF_GetError());
         return false;
     }
     
@@ -89,7 +89,7 @@ bool FontAtlas::GenCharTexture(uint32_t charCode, CharInfo& charInfo) {
     SDL_FreeSurface(charSurface);
     
     if (!rgbaSurface) {
-        SDL_Log("Failed to generate RGBA font texture: %s\n", TTF_GetError());
+        SDL_Log("Failed to generate RGBA font texture: %s", TTF_GetError());
         return false;
     }
     
@@ -104,7 +104,7 @@ bool FontAtlas::GenCharTexture(uint32_t charCode, CharInfo& charInfo) {
     int x, y;
     if (!FindEmptySpace(charInfo.width, charInfo.height, x, y)) {
         SDL_FreeSurface(rgbaSurface);
-        SDL_Log("No available texture space to add new char: %u\n", charCode);
+        SDL_Log("No available texture space to add new char: %u", charCode);
         return false;
     }
     
