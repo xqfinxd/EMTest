@@ -66,25 +66,25 @@ private:
         return timestamp - lastTapTime <= DOUBLE_CLICK_INTERVAL;
     }
 
-    bool CheckDistance(float x, float y) const {
-        float dis = glm::distance(glm::vec2(x, y), lastTapPos);
+    bool CheckDistance(glm::vec2 v1, glm::vec2 v2) const {
+        float dis = glm::distance(v1, v2);
         return dis <= DOUBLE_CLICK_DISTANCE;
     }
 
-    void HandleFingerDown(MapAction& result,
-        const SDL_TouchFingerEvent& event, int w, int h) {
-        TouchPoint point;
+    void HandleFingerDown(MapAction& result, const SDL_TouchFingerEvent& event, int w, int h) {
+        if (activeTouches.size() == 2)
+            return;
+        TouchPoint& point = activeTouches[event.fingerId];
         point.startPos.x = point.curPos.x = event.x;
         point.startPos.y = point.curPos.y = event.y;
         point.startTime = event.timestamp;
         point.active = true;
-
-        activeTouches[event.fingerId] = point;
+        point.fingerID = event.fingerId;
 
         uint32_t delta = event.timestamp - lastTapTime;
         if (lastTapTime > 0
             && CheckInterval(event.timestamp)
-            && CheckDistance(event.x, event.y)) {
+            && CheckDistance(point.curPos, lastTapPos)) {
             
             result.type = MapAction::eDoubleTap;
             result.pos.x = event.x * w;
@@ -94,16 +94,15 @@ private:
             lastTapTime = 0;
         }
         else {
-            lastTapTime = event.timestamp;
-            lastTapPos = { event.x,event.y };
-
             size_t count = activeTouches.size();
             if (count == 1) {
-                isDragging = true;
+                lastTapTime = event.timestamp;
+                lastTapPos = { event.x,event.y };
             }
             else if (count == 2) {
-                isZooming = true;
-                UpdatePinchData(result);
+                // zoom start
+                result.type = MapAction::eZoomLocal;
+                UpdateZoomData(result, w, h);
             }
         }
     }
@@ -115,28 +114,15 @@ private:
 
             const size_t count = activeTouches.size();
             if (count == 1) {
-                uint32_t duration = event.timestamp - point.startTime;
-                float dis = glm::distance(point.startPos, point.curPos);
-
-                if (duration < LONG_TOUCH_DURATION) {
-                    if (dis < DOUBLE_CLICK_DISTANCE) {
-                        result.type = MapAction::eSingleTap;
-                        result.pos.x = event.x * w;
-                        result.pos.y = event.y * h;
-                    }
+                if (CheckDistance(point.startPos, point.curPos)) {
+                    result.type = MapAction::eSingleTap;
+                    result.pos.x = event.x * w;
+                    result.pos.y = event.y * h;
                 }
-                else {
-                    if (!isZooming && (!isDragging || dis < DOUBLE_CLICK_DISTANCE)) {
-                        result.type = MapAction::eLongTouch;
-                        result.pos.x = event.x * w;
-                        result.pos.y = event.y * h;
-                    }
-                }
-                isDragging = false;
             }
             else if (count == 2) {
-                isZooming = false;
-                UpdatePinchData(result);
+                // zoom end
+                ClearZoomData();
             }
 
             activeTouches.erase(it);
@@ -151,50 +137,51 @@ private:
 
             const size_t count = activeTouches.size();
             if (count == 1) {
-                if (isDragging) {
-                    result.type = MapAction::eDragMove;
-                    result.pos.x = event.x * w;
-                    result.pos.y = event.y * h;
-                    result.delta.x = event.dx  * w;
-                    result.delta.y = event.dy  * h;
-                }
+                result.type = MapAction::eDragMove;
+                result.pos.x = event.x * w;
+                result.pos.y = event.y * h;
+                result.delta.x = event.dx * w;
+                result.delta.y = event.dy * h;
             }
             else if (count == 2) {
-                if (isZooming) {
-                    result.type = MapAction::eZoomLocal;
-                    UpdatePinchData(result);
-                }
+                result.type = MapAction::eZoomLocal;
+                UpdateZoomData(result, w, h);
             }
         }
     }
 
-    void UpdatePinchData(MapAction& result) {
-        if (activeTouches.size() < 2) return;
-        if (!isZooming) {
-            initialDistance = 0;
-            curZoom = 1;
-            return;
-        }
+    void ClearZoomData() {
+        initialDis = 0;
+        curPos = { 0,0 };
+        curZoom = 1;
+    }
 
-        auto it = activeTouches.begin();
-        const TouchPoint& point1 = it->second;
-        ++it;
-        const TouchPoint& point2 = it->second;
+    void UpdateZoomData(MapAction& result, int w, int h) {
+        if (activeTouches.size() < 2) return;
+        const auto& point1 = activeTouches[0];
+        const auto& point2 = activeTouches[1];
 
         float dis = glm::distance(point1.curPos, point2.curPos);
+        glm::vec2 center = (point1.curPos + point2.curPos) / 2.0f;
 
-        if (initialDistance == 0.0f) {
-            initialDistance = dis;
+        result.pos.x = center.x * w;
+        result.pos.y = center.y * h;
+        if (initialDis == 0.0f) {
+            initialDis = dis;
+            curPos = center;
             curZoom = 1;
             result.scale = 1;
+            result.delta = { 0,0 };
         }
         else {
-            float relScale = dis / initialDistance;
-            result.scale = relScale / curZoom;
-            curZoom = relScale;
+            float scale = dis / initialDis;
+            result.scale = scale / curZoom;
+            glm::vec2 delta = center - curPos;
+            result.delta.x = delta.x * w;
+            result.delta.y = delta.y * h;
+            curZoom = scale;
+            curPos = center;
         }
-
-        result.pos = (point1.curPos + point2.curPos) / 2.0f;
     }
 
     void HandleMouseDown(MapAction& result, const SDL_MouseButtonEvent& event) {
@@ -265,15 +252,17 @@ private:
     bool isDragging = false;
 
     // only for finger
-    bool isZooming = false;
     TouchPoints activeTouches;
+    // check double tap
     uint32_t lastTapTime = 0;
     glm::vec2 lastTapPos;
-    float initialDistance = 0.0f;
+
+    float initialDis = 0;
     float curZoom = 1.0f;
+    glm::vec2 curPos{ 0,0 };
+
     const uint32_t DOUBLE_CLICK_INTERVAL = 200;
     const float DOUBLE_CLICK_DISTANCE = 0.05f;
-    const uint32_t LONG_TOUCH_DURATION = 1000;
 };
 
 class MyGame : public GameLoop {
@@ -347,7 +336,7 @@ protected:
         myGlyph.BuildRanges(&myRange);
 
         io.Fonts->AddFontFromFileTTF(DATA_DIR("simhei.ttf").c_str(),
-            14, nullptr, myRange.Data);
+            16, nullptr, myRange.Data);
         io.Fonts->Build();
         io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
     }
@@ -461,6 +450,7 @@ protected:
         // 右侧边栏
         ImGui::Begin(UI_PROPERTY_BOX, nullptr, ImGuiWindowFlags_NoCollapse);
         {
+            ImGui::Text("Ver 1.0.250930");
             std::string fmtBgColor(TR("Bg Color"));
             ImGui::ColorEdit4(fmtBgColor.c_str(), glm::value_ptr(m_BgColor));
             ImGui::Checkbox("Chinese", &g_EnableChinese);

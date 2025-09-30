@@ -374,10 +374,12 @@ void MapViewer::HandleAction(MapFilter* filter, const MapAction& action) {
         break;
     case MapAction::eZoomLocal:
         if (TestPoint(action.pos)) {
-            glm::vec2 oldpos = Screen2Map(action.pos);
+            glm::vec2 apos = action.pos - action.delta;
+            glm::vec2 oldpos = Screen2Map(apos);
             vZoom(action.scale);
-            glm::vec2 newpos = Screen2Map(action.pos);
+            glm::vec2 newpos = Screen2Map(apos);
             m_Transform.offset += (newpos - oldpos);
+            vMove(action.delta);
         }
         break;
     case MapAction::eZoomCenter:
