@@ -505,7 +505,9 @@ protected:
             ImGui::Text("Ver 1.0.250930");
             std::string fmtBgColor(TR("Bg Color"));
             ImGui::ColorEdit4(fmtBgColor.c_str(), glm::value_ptr(m_BgColor));
-            ImGui::Checkbox("Chinese", &g_EnableChinese);
+            if (ImGui::Checkbox("Chinese", &g_EnableChinese)) {
+                m_Resized = true;
+            }
             ImGui::Separator();
             m_MapViewer.RenderImGui();
         }

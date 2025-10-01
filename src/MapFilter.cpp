@@ -429,9 +429,17 @@ void MapFilter::OnFilterNearCamp() {
         }
     }
     for (const auto& e : detail.rotted_woods) {
-        m_Viewer->AddButton(e.first, Icons_::RED_BOSS, 3)
-            .SetScale(Icons_::BOSS_SCALE)
-            .SetText(TR(e.second));
+        auto bossType = bossDefines.BossType(e.second);
+        if (2 == bossType) {
+            m_Viewer->AddButton(e.first, Icons_::RED_BOSS, 3)
+                .SetScale(Icons_::BOSS_SCALE)
+                .SetText(TR(e.second));
+        }
+        else if (1 == bossType) {
+            m_Viewer->AddButton(e.first, Icons_::BOSS, 3)
+                .SetScale(Icons_::BOSS_SCALE)
+                .SetText(TR(e.second));
+        }
     }
     m_Viewer->AddButton(detail.rot_blessing, Icons_::ROT_BLESSING, 3)
         .SetScale(Icons_::ROT_BLESSING_SCALE);
