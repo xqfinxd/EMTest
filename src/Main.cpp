@@ -502,7 +502,7 @@ protected:
         // setting begin
         ImGui::Begin(settingWin.c_str(), nullptr, ImGuiWindowFlags_NoCollapse| ImGuiWindowFlags_NoMove);
         {
-            ImGui::Text("Ver 1.0.250930");
+            ImGui::Text("Ver 1.0.251001");
             std::string fmtBgColor(TR("Bg Color"));
             ImGui::ColorEdit4(fmtBgColor.c_str(), glm::value_ptr(m_BgColor));
             if (ImGui::Checkbox("Chinese", &g_EnableChinese)) {
