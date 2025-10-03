@@ -40,6 +40,7 @@ if(EMSCRIPTEN)
 	target_compile_options(EMTest PRIVATE 
 		-sUSE_SDL=2
 		-sUSE_SDL_TTF=2
+		-O3
 	)
 	target_link_options(EMTest PRIVATE 
 		-sUSE_SDL=2
@@ -48,6 +49,7 @@ if(EMSCRIPTEN)
 		-sMIN_WEBGL_VERSION=2
 		-sMAX_WEBGL_VERSION=2
 		-sALLOW_MEMORY_GROWTH=1
+		-O3
 		--preload-file ${CMAKE_CURRENT_SOURCE_DIR}/assets@/assets
 	)
 	target_compile_definitions(EMTest PRIVATE 

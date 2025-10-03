@@ -325,16 +325,21 @@ void MapViewer::RenderImGui() {
     auto mappos = Screen2Map(glm::vec2(mpos.x, mpos.y));
     std::string fmtLoc = std::string(TR("Map Location")) + ": %d,%d";
     ImGui::ColorEdit4(TR("Font Color").data(), glm::value_ptr(m_FontColor));
+    ImGui::Spacing();
     if (ImGui::SliderFloat(TR("Font Scale").data(), &m_FontScale, 0.4f, 2.0f)) {
         m_DirtyIcons = true;
     }
+    ImGui::Separator();
     ImGui::Text(fmtLoc.c_str(), (int)mappos.x, (int)mappos.y);
     auto& view = m_Transform;
     ImGui::SliderFloat(TR("Zoom").data(), &view.zoom, ZOOM_RANGE.x, ZOOM_RANGE.y);
+    ImGui::Spacing();
     ImGui::DragFloat2(TR("Offset").data(), glm::value_ptr(view.offset), 2);
+    ImGui::Spacing();
     if (ImGui::Button(TR("Reset View").data())) {
         vReset();
     }
+    ImGui::Spacing();
 }
 
 void MapViewer::BuildFont(const std::string& str) {

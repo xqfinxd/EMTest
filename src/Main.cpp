@@ -384,6 +384,7 @@ protected:
         // 设置样式缩放
         ImGuiStyle& style = ImGui::GetStyle();
         style.ScaleAllSizes(uiScale);
+        style.TouchExtraPadding = ImVec2{ 10,8 };
     }
 
     void ProcessInput() override {
@@ -502,7 +503,7 @@ protected:
         // setting begin
         ImGui::Begin(settingWin.c_str(), nullptr, ImGuiWindowFlags_NoCollapse| ImGuiWindowFlags_NoMove);
         {
-            ImGui::Text("Ver 1.0.251001");
+            ImGui::Text("Ver 1.0.251003");
             std::string fmtBgColor(TR("Bg Color"));
             ImGui::ColorEdit4(fmtBgColor.c_str(), glm::value_ptr(m_BgColor));
             if (ImGui::Checkbox("Chinese", &g_EnableChinese)) {

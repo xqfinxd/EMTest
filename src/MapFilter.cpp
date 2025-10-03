@@ -123,8 +123,10 @@ static bool RenderCombo(string_view label,
         text = tostr(*itr);
     }
 
+    ImGui::SeparatorText(label.data());
+    std::string idtext = std::string("##") + std::string(label);
     bool changed = false;
-    if (ImGui::BeginCombo(label.data(), text.c_str())) {
+    if (ImGui::BeginCombo(idtext.c_str(), text.c_str())) {
         for (auto itr = std::cbegin(container);
             itr != std::cend(container); ++itr) {
             int i = std::distance(std::cbegin(container), itr);
@@ -208,20 +210,24 @@ void MapFilter::RenderDetail() {
         }
         return ret;
     };
-    ImGui::Text(Combine({ TR("Map Index"), ": ", to_string(md.index) }).c_str());
-    ImGui::Text(Combine({ TR("Nightlord"), ": ", TR(md.nightlord) }).c_str());
+    ImGui::SeparatorText(Combine({ TR("Map Index"), ": ", to_string(md.index) }).c_str());
+    ImGui::TextColored(ImColor(255, 215, 0, 255),
+        Combine({ TR("Nightlord"), ": ", TR(md.nightlord) }).c_str());
     ImGui::Text(Combine({ TR("Day 1"), "BOSS: ", TR(md.night_1_boss) }).c_str());
     ImGui::Text(Combine({ TR("Day 2"), "BOSS: ", TR(md.night_2_boss) }).c_str());
+    if (!md.castle_type.empty()) {
+        ImGui::Separator();
+        ImGui::TextColored(ImColor(173, 216, 230, 255),
+            Combine({ TR("Castle Type"), ": ", TR(md.castle_type) }).c_str());
+        ImGui::Text(Combine({ TR("Castle Basement"), ": ", TR(md.castle_basement) }).c_str());
+        ImGui::Text(Combine({ TR("Castle Rooftop"), ": ", TR(md.castle_rooftop) }).c_str());
+    }
     if (!md.special_event.empty()) {
+        ImGui::Separator();
         ImGui::Text(Combine({ TR("Special Event"), ": ", TR(md.special_event) }).c_str());
         if (!md.extra_boss.empty()) {
             ImGui::Text(Combine({ TR("Extra Night BOSS"), ": ", TR(md.extra_boss) }).c_str());
         }
-    }
-    if (!md.castle_type.empty()) {
-        ImGui::Text(Combine({ TR("Castle Type"), ": ", TR(md.castle_type) }).c_str());
-        ImGui::Text(Combine({ TR("Castle Basement"), ": ", TR(md.castle_basement) }).c_str());
-        ImGui::Text(Combine({ TR("Castle Rooftop"), ": ", TR(md.castle_rooftop) }).c_str());
     }
 }
 
