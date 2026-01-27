@@ -12,7 +12,6 @@
 
 extern bool g_EnableChinese;
 extern std::unique_ptr<Translator> g_Translator;
-extern int counter = 0;
 
 class ActionDetector {
 public:
@@ -279,6 +278,8 @@ protected:
 #ifndef __EMSCRIPTEN__
         windowFlags |= SDL_WINDOW_OPENGL;
 #else
+        windowFlags |= SDL_WINDOW_RESIZABLE;
+
         double width, height;
         emscripten_get_element_css_size("canvas", &width, &height);
         emscripten_set_canvas_element_size("canvas", (int)width, (int)height);
@@ -287,8 +288,9 @@ protected:
         
         m_Size.x = int(width);
         m_Size.y = int(height);
+        SDL_Log("Size: %d, %d", m_Size.x, m_Size.y);
 #endif
-        m_Window = SDL_CreateWindow("Nightreign Map Filter",
+        m_Window = SDL_CreateWindow("Nightreign App",
             SDL_WINDOWPOS_CENTERED,
             SDL_WINDOWPOS_CENTERED,
             m_Size.x, m_Size.y, windowFlags);
@@ -334,8 +336,17 @@ protected:
                 Stop();
                 break;
             }
+            if (event.type == SDL_WINDOWEVENT)
+            {
+                if (event.window.event == SDL_WINDOWEVENT_RESIZED)
+                {
+                    int w, h;
+                    SDL_GetWindowSize(m_Window, &w, &h);
+                    SDL_Log("Resized: %d, %d", w, h);
+                }
+            }
             ImGui_ImplSDL2_ProcessEvent(&event);
-            // auto result = m_Detector.ProcessEvent(event, m_Size.x, m_Size.y);
+            m_Detector.ProcessEvent(event, m_Size.x, m_Size.y);
             // m_MapViewer.HandleAction(&m_MapFilter, result);
         }
     }
@@ -353,7 +364,6 @@ protected:
         auto framerate = ImGui::GetIO().Framerate;
         std::string fmtFps = "Frame Rate: %.1f";
         ImGui::TextColored(ImVec4(0, 1, 0, 1), fmtFps.c_str(), framerate);
-        ImGui::TextColored(ImVec4(0, 1, 0, 1), "Counter: %d", counter);
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -411,7 +421,7 @@ private:
 
     glm::ivec2 m_Size{};
     glm::vec2 m_ZoomRange = { 1.f, 5.f };
-    glm::vec4 m_BgColor = { 0.8f,0.8f,0.8f,1 };
+    glm::vec4 m_BgColor = { 0.2f,0.8f,0.5f,1 };
     bool m_Resized = false;
     
     MapViewer m_MapViewer;
@@ -421,18 +431,19 @@ private:
 
 #ifdef __EMSCRIPTEN__
 extern "C" bool EMSCRIPTEN_KEEPALIVE HandleWindowResize(int eventType, const EmscriptenUiEvent* uiEvent, void* userData) {
+    SDL_Log("Resize callback");
     if (auto game = static_cast<MyGame*>(userData)) {
         double width, height;
         emscripten_get_element_css_size("canvas", &width, &height);
         emscripten_set_canvas_element_size("canvas", (int)width, (int)height);
         game->OnResize((int)width, (int)height);
-        counter++;
     }
-    counter++;
+
     return true;
 }
 void SetupResizeEvent(MyGame* userData) {
-    emscripten_set_resize_callback(EMSCRIPTEN_EVENT_TARGET_WINDOW, userData, false, &HandleWindowResize);
+    int result = emscripten_set_resize_callback(EMSCRIPTEN_EVENT_TARGET_WINDOW, userData, false, &HandleWindowResize);
+    SDL_Log("emscripten_set_resize_callback: %d", result);
 }
 #endif
 
