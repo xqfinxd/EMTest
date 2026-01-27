@@ -12,21 +12,8 @@
 
 extern bool g_EnableChinese;
 extern std::unique_ptr<Translator> g_Translator;
+extern int counter = 0;
 
-#ifdef __EMSCRIPTEN__
-EM_JS(void, SetupJSResizeListener, (void* game), {
-        window.addEventListener('resize', function() {
-            Module._HandleWindowResize(game, window.innerWidth, window.innerHeight);
-        });
-    }
-);
-int CutWidth(int w) {
-    return w - 20;
-}
-int CutHeight(int h) {
-    return h - 80;
-}
-#endif
 class ActionDetector {
 public:
     struct TouchPoint {
@@ -292,15 +279,14 @@ protected:
 #ifndef __EMSCRIPTEN__
         windowFlags |= SDL_WINDOW_OPENGL;
 #else
-        int w_ = EM_ASM_INT({
-            return window.innerWidth;
-        });
-        int h_ = EM_ASM_INT({
-            return window.innerHeight;
-        });
-        SetupJSResizeListener(this);
-        m_Size.x = CutWidth(w_);
-        m_Size.y = CutHeight(h_);
+        double width, height;
+        emscripten_get_element_css_size("canvas", &width, &height);
+        emscripten_set_canvas_element_size("canvas", (int)width, (int)height);
+        extern void SetupResizeEvent(MyGame * userData);
+        SetupResizeEvent(this);
+        
+        m_Size.x = int(width);
+        m_Size.y = int(height);
 #endif
         m_Window = SDL_CreateWindow("Nightreign Map Filter",
             SDL_WINDOWPOS_CENTERED,
@@ -330,61 +316,15 @@ protected:
 #endif
         glEnable(GL_BLEND);
         
-        m_MapViewer.Initialize();
+        // m_MapViewer.Initialize();
 
-        m_MapFilter.Initialize(&m_MapViewer);
+        // m_MapFilter.Initialize(&m_MapViewer);
 
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
         ImGui_ImplSDL2_InitForOpenGL(m_Window, m_Context);
         ImGui_ImplOpenGL3_Init();
 
-        float devicePixelRatio = 1.f;
-#ifdef __EMSCRIPTEN__
-        devicePixelRatio = (float)EM_ASM_DOUBLE({
-            return window.devicePixelRatio || 1.0;
-        });
-#else
-        auto displayIdx = SDL_GetWindowDisplayIndex(m_Window);
-        float vdpi = 96.f;
-        if (SDL_GetDisplayDPI(displayIdx, nullptr, nullptr, &vdpi) == 0)
-            devicePixelRatio = vdpi / 96.f;
-#endif
-        SDL_Log("Device Pixel Ratio: %f", devicePixelRatio);
-
-        float uiScale = 1.f;
-        if (devicePixelRatio >= 3.0) {
-            uiScale = 1.5f;
-        }
-        else if (devicePixelRatio >= 2.0) {
-            uiScale = 1.2f;
-        }
-        else {
-            uiScale = 1.0f;
-        }
-        SDL_Log("UI Scale: %f", uiScale);
-
-        auto& io = ImGui::GetIO();
-        
-        ImVector<ImWchar> myRange;
-        ImFontGlyphRangesBuilder myGlyph;
-        auto&& used = g_Translator->Collect();
-        m_MapViewer.BuildFont(used);
-        myGlyph.AddText(used.c_str());
-        myGlyph.BuildRanges(&myRange);
-
-        io.Fonts->AddFontFromFileTTF(DATA_DIR("simhei.ttf").c_str(),
-            16, nullptr, myRange.Data);
-        io.Fonts->Build();
-        io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-        io.IniFilename = nullptr;
-
-        io.FontGlobalScale = uiScale;
-
-        // 设置样式缩放
-        ImGuiStyle& style = ImGui::GetStyle();
-        style.ScaleAllSizes(uiScale);
-        style.TouchExtraPadding = ImVec2{ 10,8 };
     }
 
     void ProcessInput() override {
@@ -395,13 +335,13 @@ protected:
                 break;
             }
             ImGui_ImplSDL2_ProcessEvent(&event);
-            auto result = m_Detector.ProcessEvent(event, m_Size.x, m_Size.y);
-            m_MapViewer.HandleAction(&m_MapFilter, result);
+            // auto result = m_Detector.ProcessEvent(event, m_Size.x, m_Size.y);
+            // m_MapViewer.HandleAction(&m_MapFilter, result);
         }
     }
 
     void Update(float deltaTime) override {
-        m_MapViewer.Constrain();
+        // m_MapViewer.Constrain();
     }
 
 
@@ -409,127 +349,18 @@ protected:
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplSDL2_NewFrame();
         ImGui::NewFrame();
-        ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), ImGuiDockNodeFlags_PassthruCentralNode);
-
-        // 窗口的 ID 和 标题
-        ImGuiID dockID = ImGui::GetID("##ui.dockspace");
-        std::string rootWin = "##ui.root";
-        std::string settingWin = std::string(TR("Settings")) + "##ui.settings";
-        std::string viewWin = "##ui.view";
-        std::string filterWin = std::string(TR("Filter")) + "##ui.filter";
-
-        const ImGuiViewport* viewport = ImGui::GetMainViewport();
-        ImGui::SetNextWindowPos(viewport->WorkPos);
-        ImGui::SetNextWindowSize(viewport->WorkSize);
-        ImGui::SetNextWindowViewport(viewport->ID);
-
-        int windowFlags = ImGuiWindowFlags_NoDecoration
-            | ImGuiWindowFlags_NoMove
-            | ImGuiWindowFlags_NoBackground
-            | ImGuiWindowFlags_NoDocking
-            | ImGuiWindowFlags_NoBringToFrontOnFocus
-            | ImGuiWindowFlags_NoNavFocus
-            ;
-
-        // root begin
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
-        ImGui::Begin(rootWin.c_str(), 0, windowFlags);
-        ImGui::PopStyleVar(3);
-        do {
-            auto configs = ImGui::GetIO().ConfigFlags;
-            if (0 == (configs & ImGuiConfigFlags_DockingEnable))
-                break;
-            if (ImGui::DockBuilderGetNode(dockID) && !m_Resized)
-                break;
-            m_Resized = false;
-            ImGui::DockBuilderRemoveNode(dockID);
-
-            ImGuiID root = ImGui::DockBuilderAddNode(dockID, ImGuiDockNodeFlags_DockSpace);
-
-            ImGui::DockBuilderSetNodePos(root, { 0.0f, 0.0f });
-            ImGui::DockBuilderSetNodeSize(root, viewport->WorkSize);
-
-            ImGuiID viewNode, settingNode, filterNode;
-            int w = viewport->WorkSize.x;
-            int h = viewport->WorkSize.y;
-            if (w > h) {
-                float spaceRate = glm::max(0.25f, 1.f * (w - h) / w);
-                viewNode = ImGui::DockBuilderSplitNode(root,
-                    ImGuiDir_Left, 1 - spaceRate, nullptr, &settingNode);
-                settingNode = ImGui::DockBuilderSplitNode(settingNode,
-                    ImGuiDir_Up, 0.4f, nullptr, &filterNode);
-            }
-            else {
-                float spaceRate = glm::max(0.4f, 1.f * (h - w) / h);
-                viewNode = ImGui::DockBuilderSplitNode(root,
-                    ImGuiDir_Up, 1 - spaceRate, nullptr, &settingNode);
-                settingNode = ImGui::DockBuilderSplitNode(settingNode,
-                    ImGuiDir_Left, 0.4f, nullptr, &filterNode);
-            }
-            
-            ImGui::DockBuilderDockWindow(viewWin.c_str(), viewNode);
-            if (auto MainNode = ImGui::DockBuilderGetNode(viewNode)) {
-                MainNode->LocalFlags |= ImGuiDockNodeFlags_NoTabBar;
-            }
-            ImGui::DockBuilderDockWindow(settingWin.c_str(), settingNode);
-            ImGui::DockBuilderDockWindow(filterWin.c_str(), filterNode);
-            ImGui::DockBuilderFinish(dockID);
-        } while (false);
-
-        ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 0.0f);
-        ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
-        ImGui::DockSpace(dockID, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_None);
-        ImGui::PopStyleVar();
-        ImGui::PopStyleColor();
-        ImGui::End();
-        // root end
-
-        // view begin
-        ImGui::Begin(viewWin.c_str(), nullptr, ImGuiWindowFlags_NoBackground);
-        {
-            auto framerate = ImGui::GetIO().Framerate;
-            std::string fmtFps = std::string(TR("Frame Rate")) + ": %.1f";
-            ImGui::TextColored(ImVec4(0,1,0,1), fmtFps.c_str(), framerate);
-            auto curWin = ImGui::GetCurrentWindow();
-            m_MapViewer.SetViewport(m_Size.y, glm::ivec4(
-                curWin->Pos.x, curWin->Pos.y,
-                curWin->Size.x, curWin->Size.y));
-        }
-        ImGui::End();
-        // view end
-
-        // setting begin
-        ImGui::Begin(settingWin.c_str(), nullptr, ImGuiWindowFlags_NoCollapse| ImGuiWindowFlags_NoMove);
-        {
-            ImGui::Text("Ver 1.0.251003");
-            std::string fmtBgColor(TR("Bg Color"));
-            ImGui::ColorEdit4(fmtBgColor.c_str(), glm::value_ptr(m_BgColor));
-            if (ImGui::Checkbox("Chinese", &g_EnableChinese)) {
-                m_Resized = true;
-            }
-            ImGui::Separator();
-            m_MapViewer.RenderImGui();
-        }
-        ImGui::End();
-        // setting end
-
-        // filter begin
-        ImGui::Begin(filterWin.c_str(), nullptr, ImGuiWindowFlags_NoCollapse| ImGuiWindowFlags_NoMove);
-        {
-            m_MapFilter.RenderImGui();
-        }
-        ImGui::End();
-        // filter end
         
-        
+        auto framerate = ImGui::GetIO().Framerate;
+        std::string fmtFps = "Frame Rate: %.1f";
+        ImGui::TextColored(ImVec4(0, 1, 0, 1), fmtFps.c_str(), framerate);
+        ImGui::TextColored(ImVec4(0, 1, 0, 1), "Counter: %d", counter);
+
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     }
 
     void RenderGL() {
-        m_MapViewer.Render();
+        // m_MapViewer.Render();
     }
 
     void Render() override {
@@ -549,7 +380,7 @@ protected:
         ImGui_ImplSDL2_Shutdown();
         ImGui::DestroyContext();
 
-        m_MapViewer.Cleanup();
+        // m_MapViewer.Cleanup();
 
         if (m_Context) {
             SDL_GL_DeleteContext(m_Context);
@@ -589,10 +420,19 @@ private:
 };
 
 #ifdef __EMSCRIPTEN__
-extern "C" void EMSCRIPTEN_KEEPALIVE HandleWindowResize(void* ud, int w, int h) {
-    if (auto game = static_cast<MyGame*>(ud)) {
-        game->OnResize(w, h);
+extern "C" bool EMSCRIPTEN_KEEPALIVE HandleWindowResize(int eventType, const EmscriptenUiEvent* uiEvent, void* userData) {
+    if (auto game = static_cast<MyGame*>(userData)) {
+        double width, height;
+        emscripten_get_element_css_size("canvas", &width, &height);
+        emscripten_set_canvas_element_size("canvas", (int)width, (int)height);
+        game->OnResize((int)width, (int)height);
+        counter++;
     }
+    counter++;
+    return true;
+}
+void SetupResizeEvent(MyGame* userData) {
+    emscripten_set_resize_callback(EMSCRIPTEN_EVENT_TARGET_WINDOW, userData, false, &HandleWindowResize);
 }
 #endif
 

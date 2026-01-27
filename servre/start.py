@@ -1,12 +1,11 @@
-from http.server import SimpleHTTPRequestHandler, HTTPServer
+# 使用Python代码启动
+import http.server
+import socketserver
 
-# 定义服务器地址和端口
-port = 9000
-server_address = ('localhost', port)
+PORT = 9000
 
-# 创建 HTTP 服务器
-httpd = HTTPServer(server_address, SimpleHTTPRequestHandler)
+Handler = http.server.SimpleHTTPRequestHandler
 
-# 启动服务器
-print("Start Server: ", server_address)
-httpd.serve_forever()
+with socketserver.TCPServer(("0.0.0.0", PORT), Handler) as httpd:
+    print(f"服务器已启动，访问地址: http://localhost:{PORT}")
+    httpd.serve_forever()

@@ -8,7 +8,7 @@
 #include <SDL_log.h>
 #include <SDL_assert.h>
 
-std::unique_ptr<Translator> g_Translator{ new Translator };
+std::unique_ptr<Translator> g_Translator{ nullptr };
 bool g_EnableChinese = true;
 std::wstring_convert<std::codecvt_utf8<wchar_t>> g_Converter;
 
